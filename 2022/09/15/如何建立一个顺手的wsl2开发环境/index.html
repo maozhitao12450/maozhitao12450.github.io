@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="mzt12450@163.com">
+  <meta name="keywords" content="java,linux,flink">
+  
+    <meta name="description" content="wsl2在window10上还挺方便的，就是很多坑需要填一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何建立一个顺手的wsl2开发环境">
+<meta property="og:url" content="http://zuoxu.club/2022/09/15/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E9%A1%BA%E6%89%8B%E7%9A%84wsl2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="发际线的志逐渐暴露的博客">
+<meta property="og:description" content="wsl2在window10上还挺方便的，就是很多坑需要填一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-15T12:00:22.000Z">
+<meta property="article:modified_time" content="2022-09-16T15:42:26.076Z">
+<meta property="article:author" content="mzt12450@163.com">
+<meta property="article:tag" content="java,linux,flink">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>如何建立一个顺手的wsl2开发环境 - 发际线的志逐渐暴露的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zuoxu.club","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":30,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gcXcta4bdN3QGc7kHrWgGeFP-gzGzoHsz","app_key":"iVjnGEWFYM1WD16AStAbrz88","server_url":"https://gcxcta4b.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>发际线的志逐渐暴露</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="如何建立一个顺手的wsl2开发环境"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        mzt12450@163.com
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-15 20:00" pubdate>
+          2022年9月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">如何建立一个顺手的wsl2开发环境</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="安装wsl2"><a href="#安装wsl2" class="headerlink" title="安装wsl2"></a>安装wsl2</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install">https://docs.microsoft.com/zh-cn/windows/wsl/install</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/386590591">https://zhuanlan.zhihu.com/p/386590591</a></p>
+</blockquote>
+<h2 id="迁移wsl2到非系统盘"><a href="#迁移wsl2到非系统盘" class="headerlink" title="迁移wsl2到非系统盘"></a>迁移wsl2到非系统盘</h2><p>使用lxrunoffline</p>
+<pre><code class="hljs">1. https://github.com/DDoSolitary/LxRunOffline/releases
+2. lxrunoffline list
+3. lxrunoffline move -n Ubuntu-20.04 -d D:\linux
+4. lxrunoffline get-dir -n Ubuntu-20.04
+5. ubuntu2004.exe config --default-user root # 设置登录用户为root
+</code></pre>
+<h2 id="解决路径复制问题"><a href="#解决路径复制问题" class="headerlink" title="解决路径复制问题"></a>解决路径复制问题</h2><pre><code class="hljs">windows路径为 D:\gitlab\xxx ，而对应的wsl2的路径为 /mnt/d/gitlab/xxx,复制路径的时候很麻烦，所以需要一点点帮助。
+</code></pre>
+<h3 id="xlaunch"><a href="#xlaunch" class="headerlink" title="xlaunch"></a>xlaunch</h3><pre><code class="hljs">这是个小工具，用来支持显示linux桌面以及提供一些windows和linux之间的交互
+</code></pre>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code class="hljs">1. https://github.com/ArcticaProject/vcxsrv/releases
+2. 点击.exe结尾的大的下载包
+3. 安装
+</code></pre>
+<h4 id="进入启动目录"><a href="#进入启动目录" class="headerlink" title="进入启动目录"></a>进入启动目录</h4><pre><code class="hljs">1. win + R
+2. shell:startup
+</code></pre>
+<h4 id="设置连接"><a href="#设置连接" class="headerlink" title="设置连接"></a>设置连接</h4><p>新建一个文件config.xlaunch，内容如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">XLaunch</span> <span class="hljs-attr">WindowMode</span>=<span class="hljs-string">&quot;MultiWindow&quot;</span> <span class="hljs-attr">ClientMode</span>=<span class="hljs-string">&quot;NoClient&quot;</span> <span class="hljs-attr">LocalClient</span>=<span class="hljs-string">&quot;False&quot;</span> <span class="hljs-attr">Display</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">LocalProgram</span>=<span class="hljs-string">&quot;xcalc&quot;</span> <span class="hljs-attr">RemoteProgram</span>=<span class="hljs-string">&quot;xterm&quot;</span> <span class="hljs-attr">RemotePassword</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">PrivateKey</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">RemoteHost</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">RemoteUser</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">XDMCPHost</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">XDMCPBroadcast</span>=<span class="hljs-string">&quot;False&quot;</span> <span class="hljs-attr">XDMCPIndirect</span>=<span class="hljs-string">&quot;False&quot;</span> <span class="hljs-attr">Clipboard</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">ClipboardPrimary</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">ExtraParams</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">Wgl</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">DisableAC</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">XDMCPTerminate</span>=<span class="hljs-string">&quot;False&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+<p>也可以打开xlaunch把看到的方框都勾上，其他都下一步也行。</p>
+<h3 id="安装Windows-Terminal"><a href="#安装Windows-Terminal" class="headerlink" title="安装Windows Terminal"></a>安装Windows Terminal</h3><p>直接在Microsoft store下载安装就行。<br>傻瓜操作过程：<br>    1. Win + s 打开搜索框<br>    2. 搜索 Microsoft store<br>    3. 搜索框搜索Windows Terminal<br>    4. 安装</p>
+<h3 id="创建一些脚本"><a href="#创建一些脚本" class="headerlink" title="创建一些脚本"></a>创建一些脚本</h3><ol>
+<li><p>创建脚本存放的地方</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"> mkdir -p /opt/scripts<br> cd /opt/scripts<br><span class="hljs-meta prompt_"> # </span><span class="language-bash">这个是用来让脚本生效的</span><br>echo &#x27;export PATH=$PATH:/opt/scripts&#x27; &gt;&gt; ~/.profile<br>source ~/.profile<br><span class="hljs-meta prompt_"># </span><span class="language-bash">这样每次打开wsl2会自动生成wsl2服务的ip到hosts里</span><br>echo &#x27;/opt/scripts/wslip.sh&#x27; &gt;&gt; ~/.bashrc<br></code></pre></td></tr></table></figure></li>
+<li><p>一些脚本</p>
+<ol>
+<li>path 用来转换window路径与linux路径 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python3">#! /usr/bin/python3.8<br># -*- coding: utf-8 -*-<br>import os<br>import sys<br><br>if __name__ == &quot;__main__&quot;:<br>    if len(sys.argv)&gt;1:<br>        path = sys.argv[1]<br>    else:<br>        path = os.popen(&#x27;xclip -o&#x27;).read()<br>        if len(path) == 0:<br>            # 这个地方要换成你xlaunch.exe所在的wsl2的地址<br>            os.system(&quot;/mnt/d/software/VcXsrv/xlaunch.exe&quot;)<br>            exit()<br>    splitResult = path.split(&quot;:&quot;)<br>    if len(splitResult) &lt;=1 :<br>        print(path)<br>        exit()<br>    sh_path = &#x27;/&#x27;.join(splitResult[1].split(&#x27;\\&#x27;))  # transform the windows path to linux path<br>    head=&#x27;/mnt/&#x27; + splitResult[0].lower()<br>    print(head + sh_path)<br></code></pre></td></tr></table></figure></li>
+<li>cdp 直接跳转到复制的windows路径下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br> <span class="hljs-keyword">if</span> [[ <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> ]];<span class="hljs-keyword">then</span><br> target=$(path <span class="hljs-variable">$1</span>)<br> <span class="hljs-built_in">cd</span> <span class="hljs-variable">$target</span><br> <span class="hljs-keyword">else</span><br> target=$(path)<br> <span class="hljs-built_in">cd</span> <span class="hljs-variable">$target</span><br> <span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure></li>
+<li>wslip.sh 输出wsl2地址到/etc/hosts，这样就可以访问<a target="_blank" rel="noopener" href="http://localhost.ubuntu.com/%E6%9D%A5%E8%AE%BF%E9%97%AEwsl2%E4%B8%8A%E7%9A%84%E6%9C%8D%E5%8A%A1%E4%BA%86">http://localhost.ubuntu.com/来访问wsl2上的服务了</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment"># 更简短的 ipaddr=$(ifconfig eth0 | grep &#x27;inet &#x27; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br>ipaddr=$(ifconfig eth0 | grep <span class="hljs-string">&#x27;inet &#x27;</span> | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span>)<br><span class="hljs-built_in">cp</span> -f /mnt/c/Windows/System32/drivers/etc/hosts /tmp/hosts<br>sed -i <span class="hljs-string">&#x27;/ubuntu/d&#x27;</span> /tmp/hosts<br>[[ -n `<span class="hljs-built_in">tail</span> -n 1 /tmp/hosts` ]] &amp;&amp; <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\n&quot;</span>;<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$ipaddr</span> localhost.ubuntu.com&quot;</span> &gt;&gt; /tmp/hosts<br><span class="hljs-built_in">cat</span> /tmp/hosts &gt; /mnt/c/Windows/System32/drivers/etc/hosts<br><span class="hljs-built_in">tail</span> -n -1  /mnt/c/Windows/System32/drivers/etc/hosts<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>可能会没有hosts文件的修改权限，右键hosts文件，切换安全tab,点击编辑，为ALL APPLICATION PACKAGES添加修改权限</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>现在就可以复制一个地址,例如 D:\software\VcXsrv 选中ctrl+C复制。</p>
+</li>
+<li><p>打开wsl2</p>
+<ol>
+<li>输入cdp，你就可以进入这个目录，如果你有的话</li>
+<li>输入path，你就可以获得转换好的地址/mnt/d/software/VcXsrv</li>
+</ol>
+</li>
+</ol>
+<h2 id="关于rz-sz-不装xshell的解决方案"><a href="#关于rz-sz-不装xshell的解决方案" class="headerlink" title="关于rz/sz ,不装xshell的解决方案"></a>关于rz/sz ,不装xshell的解决方案</h2><p>可以使用zssh替代 ssh ，使用 ctrl+ `(这个是1左边的按键)，然后就可以使用rz/sz了</p>
+<ol>
+<li>sudo apt-get install zssh</li>
+<li><a target="_blank" rel="noopener" href="https://phenix3443.github.io/notebook/ubuntu/zssh.html">https://phenix3443.github.io/notebook/ubuntu/zssh.html</a></li>
+</ol>
+<p>操作顺序一般为：<br>    1. 连接到目标服务器，进入需要上传的目录 cd /tmp<br>    2. 输入rz ，此时会出现 waiting to receive.**<br>    3. 使用快捷键 ctrl+ ` ，此时会出现 zssh &gt;<br>    4. 进入你要上传文件的目录 cd /mnt/d/software/VcXsrv<br>    5. 输入  sz -be Xcms.txt 就可以上传了</p>
+<h2 id="关于使用docker导致的内网地址无法访问"><a href="#关于使用docker导致的内网地址无法访问" class="headerlink" title="关于使用docker导致的内网地址无法访问"></a>关于使用docker导致的内网地址无法访问</h2><p>一般来说都是由于docker0冲突导致。设置成不会冲突的网段就行<br>vim /etc/docker/daemon.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;bip&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;10.55.0.1/16&quot;</span> <br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<h2 id="国内可用的-docker-源"><a href="#国内可用的-docker-源" class="headerlink" title="国内可用的 docker 源"></a>国内可用的 docker 源</h2><p>vim /etc/docker/daemon.json<br>{<br>  “registry-mirrors”: [<br>    “<a target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn&quot;/">https://docker.mirrors.ustc.edu.cn&quot;</a>,<br>    “<a target="_blank" rel="noopener" href="https://registry.docker-cn.com&quot;/">https://registry.docker-cn.com&quot;</a>,<br>    “<a target="_blank" rel="noopener" href="http://hub-mirror.c.163.com&quot;/">http://hub-mirror.c.163.com&quot;</a><br>  ],<br>}</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>如何建立一个顺手的wsl2开发环境</div>
+      <div>http://zuoxu.club/2022/09/15/如何建立一个顺手的wsl2开发环境/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>mzt12450@163.com</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月15日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年9月16日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/15/idea%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E6%90%9C%E7%B4%A2%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="idea无法使用全局搜索快捷键">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">idea无法使用全局搜索快捷键</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/" title="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
+                        <span class="hidden-mobile">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"enable":true,"appId":"gcXcta4bdN3QGc7kHrWgGeFP-gzGzoHsz","appKey":"iVjnGEWFYM1WD16AStAbrz88","path":"window.location.pathname","placeholder":"欢迎━(*｀∀´*)ノ亻!评论，和谐发言","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://gcxcta4b.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022006205号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
