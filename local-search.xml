@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2022/09/21/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/"/>
-    <url>/2022/09/21/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/</url>
-    
-    <content type="html"><![CDATA[<h2 id="关于HBASE-CELL-TTL"><a href="#关于HBASE-CELL-TTL" class="headerlink" title="关于HBASE CELL TTL"></a>关于HBASE CELL TTL</h2><ol><li>前置知识: hbase put 支持手动设置时间戳timestamp,同时该时间戳作为版本号只能增加(开启多版本的话会分开存储,不起用多版本那么久是只能增加),</li><li>Put 操作支持 ttlPut.setTTL(time); </li><li>time 代表从时间戳开始 + time ms 这么长时间后这次put相关的数据会被清理</li></ol><h2 id="关于批量操作"><a href="#关于批量操作" class="headerlink" title="关于批量操作"></a>关于批量操作</h2><ol><li>hbase的操作可以使用org.apache.hadoop.hbase.client.BufferedMutator来批量化操作</li><li>初始化过程如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">Connection connection; <span class="hljs-comment">// hbase连接</span><br><span class="hljs-type">BufferedMutatorParams</span> <span class="hljs-variable">bufferedMutatorParams</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedMutatorParams</span>(TableName.valueOf(<span class="hljs-string">&quot;tableName&quot;</span>));<br>bufferedMutatorParams.listener((exception, mutator) -&gt; &#123;<br>    <span class="hljs-comment">// 异步监控异常,如果没有的话会在触发flush时直接抛出异常,有的话会来到这</span><br>    doException...<br>&#125;);<br>bufferedMutator = connection.getBufferedMutator(bufferedMutatorParams);<br><br></code></pre></td></tr></table></figure></li><li>使用 bufferedMutator.mutate(normalPut); 只支持 put和delete</li><li>使用 bufferedMutator.flush(); 确认提交</li></ol>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>想写个合成表的功能</title>
     <link href="/2022/09/17/%E6%83%B3%E5%81%9A%E4%B8%AA%E5%90%88%E6%88%90%E8%A1%A8%E7%9A%84%E5%8A%9F%E8%83%BD/"/>
     <url>/2022/09/17/%E6%83%B3%E5%81%9A%E4%B8%AA%E5%90%88%E6%88%90%E8%A1%A8%E7%9A%84%E5%8A%9F%E8%83%BD/</url>
@@ -95,6 +82,31 @@
       <tag>lxrunoffline</tag>
       
       <tag>xlaunch</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hbase 的一些笔记</title>
+    <link href="/2022/09/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/"/>
+    <url>/2022/09/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h2 id="关于HBASE-CELL-TTL"><a href="#关于HBASE-CELL-TTL" class="headerlink" title="关于HBASE CELL TTL"></a>关于HBASE CELL TTL</h2><ol><li>前置知识: hbase put 支持手动设置时间戳timestamp,同时该时间戳作为版本号只能增加(开启多版本的话会分开存储,不起用多版本那么久是只能增加),</li><li>Put 操作支持 ttlPut.setTTL(time); </li><li>time 代表从时间戳开始 + time ms 这么长时间后这次put相关的数据会被清理</li></ol><h2 id="关于批量操作"><a href="#关于批量操作" class="headerlink" title="关于批量操作"></a>关于批量操作</h2><ol><li>hbase的操作可以使用org.apache.hadoop.hbase.client.BufferedMutator来批量化操作</li><li>初始化过程如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">Connection connection; <span class="hljs-comment">// hbase连接</span><br><span class="hljs-type">BufferedMutatorParams</span> <span class="hljs-variable">bufferedMutatorParams</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedMutatorParams</span>(TableName.valueOf(<span class="hljs-string">&quot;tableName&quot;</span>));<br>bufferedMutatorParams.listener((exception, mutator) -&gt; &#123;<br>    <span class="hljs-comment">// 异步监控异常,如果没有的话会在触发flush时直接抛出异常,有的话会来到这</span><br>    doException...<br>&#125;);<br>bufferedMutator = connection.getBufferedMutator(bufferedMutatorParams);<br><br></code></pre></td></tr></table></figure></li><li>使用 bufferedMutator.mutate(normalPut); 只支持 put和delete</li><li>使用 bufferedMutator.flush(); 确认提交</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>hbase</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hbase</tag>
       
     </tags>
     

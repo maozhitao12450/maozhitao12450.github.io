@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="关于HBASE CELL TTL 前置知识: hbase put 支持手动设置时间戳timestamp,同时该时间戳作为版本号只能增加(开启多版本的话会分开存储,不起用多版本那么久是只能增加), Put 操作支持 ttlPut.setTTL(time);  time 代表从时间戳开始 + time ms 这么长时间后这次put相关的数据会被清理  关于批量操作 hbase的操作可以使用org.ap">
+    <meta name="description" content="hbase 的一些笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="发际线的志逐渐暴露的博客">
-<meta property="og:url" content="http://zuoxu.club/2022/09/21/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="hbase 的一些笔记">
+<meta property="og:url" content="http://zuoxu.club/2022/09/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="关于HBASE CELL TTL 前置知识: hbase put 支持手动设置时间戳timestamp,同时该时间戳作为版本号只能增加(开启多版本的话会分开存储,不起用多版本那么久是只能增加), Put 操作支持 ttlPut.setTTL(time);  time 代表从时间戳开始 + time ms 这么长时间后这次put相关的数据会被清理  关于批量操作 hbase的操作可以使用org.ap">
+<meta property="og:description" content="hbase 的一些笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-21T06:48:50.209Z">
-<meta property="article:modified_time" content="2022-09-21T06:48:50.209Z">
+<meta property="article:published_time" content="2022-09-15T12:00:22.000Z">
+<meta property="article:modified_time" content="2022-09-21T06:59:49.882Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="java,linux,flink">
+<meta property="article:tag" content="hbase">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>发际线的志逐渐暴露的博客</title>
+  <title>hbase 的一些笔记 - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="hbase 的一些笔记"></span>
           
         </div>
 
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-21 14:48" pubdate>
-          2022年9月21日 下午
+        <time datetime="2022-09-15 20:00" pubdate>
+          2022年9月15日 晚上
         </time>
       </span>
     
@@ -298,7 +298,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">hbase 的一些笔记</h1>
             
             
               <div class="markdown-body">
@@ -322,6 +322,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/hbase/" class="category-chain-item">hbase</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/hbase/">#hbase</a>
+      
+    </div>
   
 </div>
 
@@ -331,8 +359,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://zuoxu.club/2022/09/21/记录一下hbase的一些使用问题/</div>
+      <div>hbase 的一些笔记</div>
+      <div>http://zuoxu.club/2022/09/15/记录一下hbase的一些使用问题/</div>
     </div>
     <div class="license-meta">
       
@@ -344,9 +372,14 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月21日</div>
+          <div>2022年9月15日</div>
         </div>
       
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年9月21日</div>
+        </div>
       
       <div class="license-meta-item">
         <div>许可协议</div>
@@ -374,12 +407,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/09/15/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E9%A1%BA%E6%89%8B%E7%9A%84wsl2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="如何建立一个顺手的wsl2开发环境">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">如何建立一个顺手的wsl2开发环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/17/%E6%83%B3%E5%81%9A%E4%B8%AA%E5%90%88%E6%88%90%E8%A1%A8%E7%9A%84%E5%8A%9F%E8%83%BD/" title="想写个合成表的功能">
-                        <span class="hidden-mobile">想写个合成表的功能</span>
+                      <a href="/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/" title="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
+                        <span class="hidden-mobile">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
