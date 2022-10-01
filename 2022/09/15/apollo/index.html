@@ -16,22 +16,23 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="想写个合成表的功能">
+    <meta name="description" content="apolloClient">
 <meta property="og:type" content="article">
-<meta property="og:title" content="想写个合成表的功能">
-<meta property="og:url" content="http://zuoxu.club/2022/09/17/%E6%83%B3%E5%81%9A%E4%B8%AA%E5%90%88%E6%88%90%E8%A1%A8%E7%9A%84%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:title" content="apolloClient">
+<meta property="og:url" content="http://zuoxu.club/2022/09/15/apollo/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="想写个合成表的功能">
+<meta property="og:description" content="apolloClient">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-17T04:05:00.000Z">
+<meta property="article:published_time" content="2022-09-15T12:00:22.000Z">
 <meta property="article:modified_time" content="2022-10-01T03:17:30.120Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="synthesisTable">
+<meta property="article:tag" content="python3">
+<meta property="article:tag" content="apollo">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>想写个合成表的功能 - 发际线的志逐渐暴露的博客</title>
+  <title>apolloClient - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="想写个合成表的功能"></span>
+            <span id="subtitle" data-typed-text="apolloClient"></span>
           
         </div>
 
@@ -229,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-17 12:05" pubdate>
-          2022年9月17日 中午
+        <time datetime="2022-09-15 20:00" pubdate>
+          2022年9月15日 晚上
         </time>
       </span>
     
@@ -241,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          216 字
+          2.9k 字
         
       </span>
     
@@ -252,7 +253,7 @@
         
         
         
-          2 分钟
+          25 分钟
         
       </span>
     
@@ -298,62 +299,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">想写个合成表的功能</h1>
+            <h1 style="display: none">apolloClient</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="技术体系"><a href="#技术体系" class="headerlink" title="技术体系"></a>技术体系</h2><ol>
-<li><p>还是用spring+h2+mybatis吧</p>
-</li>
-<li><p>怎么开始呢？</p>
-</li>
-<li><p>先想想核心功能吧</p>
-<ol>
-<li>管理合成路径<ol>
-<li>整体可以理解<ol>
-<li>定义：<ol>
-<li>a.x 是素材<ol>
-<li> 素材应该有自己的标准合成时间</li>
-</ol>
-</li>
-<li> c.x 为数字</li>
-</ol>
-</li>
-<li>那么一般来说合成是 a.1 * c.1 + a.2 * c.2 = a.3 </li>
-</ol>
-</li>
-</ol>
-</li>
-<li>管理合成时间<ol>
-<li>那么需要从两个方面处理这个问题<ol>
-<li>那么需要定义合成的人<ol>
-<li>这个人应该拥有各种素材的自己的合成时间<ol>
-<li>或者说用比例会更合适？</li>
-<li>可以配置比例或者增减时间</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>从合成人员能够合成任务方面</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>处理合成结果<ol>
-<li>合成结果</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>捋一捋执行过程吧</p>
-<ol>
-<li>添加素材</li>
-<li></li>
-</ol>
-</li>
-</ol>
-
+                <p>apolloClient 模拟登录,更新配置文件,主要是由于api开放平台不支持直接用配置文本上传</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs python3"><br># -*- coding: utf-8 -*-<br>from time import time<br>import requests<br>import http.cookiejar<br>import json<br><br>class ApolloClient():<br>    def __init__(self,portal_address:str):<br>        self._portal_address = portal_address<br>        self._session = None<br>        pass<br><br>    def login(self,userName,password):<br>        __url = &#x27;&#123;portal_address&#125;/signin&#x27;.format(<br>            portal_address=self._portal_address<br>        )<br>        __data = &#123;<br>                &quot;username&quot;:userName,<br>                &quot;password&quot;:password,<br>                &quot;login-submit&quot;:&quot;登录&quot;<br>            &#125;<br>        self._session = requests.Session()<br>        self._session.cookies = http.cookiejar.LWPCookieJar(filename=&#x27;./.idea/apollo/cookies.txt&#x27;)<br>        response = self._session.post(__url,data=__data)<br>        if response.status_code == 200 and &#x27;&lt;html ng-app=&quot;index&quot;&gt;&#x27; in str(response.content):<br>            self._session.cookies.save(ignore_discard=True, ignore_expires=True)<br>            return True<br>        return False<br>    <br>    def getApplicationInfo(self,applicationName:str,apolloEnv:str,upEnv:str):<br>        &#x27;&#x27;&#x27;<br>        3.2.6 获取某个Namespace信息接口<br>        &#x27;&#x27;&#x27;<br>        __url = &#x27;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces&#x27;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>        )<br>        return self._session.get(url=__url).json()<br>    <br>    def uploadConfig(self,namespaceId:int,applicationName:str,namespaceName:str,apolloEnv:str,upEnv:str,confiStr:str):<br>        &#x27;&#x27;&#x27;<br>            上传配置文件<br>        &#x27;&#x27;&#x27;<br>        __url = &#x27;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces/&#123;namespaceName&#125;/items&#x27;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>            namespaceName= namespaceName<br>        )<br>        _data = &#123;<br>            &quot;configText&quot;: confiStr,<br>            &quot;namespaceId&quot;:namespaceId,<br>            &quot;format&quot;:&quot;properties&quot;<br>        &#125;<br>        return self._session.put(url=__url,json=_data,headers=&#123;&quot;Content-Type&quot;:&quot;application/json;charset=UTF-8&quot;&#125;)<br><br>    def doPublish(self,applicationName:str,namespaceName:str,apolloEnv:str,upEnv:str):<br>        &#x27;&#x27;&#x27;<br>            发布配置文件<br>        &#x27;&#x27;&#x27;<br>        __url = &quot;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces/&#123;namespaceName&#125;/releases&quot;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>            namespaceName= namespaceName<br>        )<br>        now = time()<br>        _data = &#123;<br>            &quot;releaseTitle&quot;:f&quot;&#123;now&#125;-release&quot;,<br>            &quot;releaseComment&quot;:&quot;&quot;,<br>            &quot;isEmergencyPublish&quot;:False<br>        &#125;<br>        return (f&quot;&#123;now&#125;-release&quot;,self._session.post(url=__url,json=_data,headers=&#123;&quot;Content-Type&quot;:&quot;application/json;charset=UTF-8&quot;&#125;).json())<br><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -361,32 +313,13 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%90%88%E6%88%90%E8%A1%A8/" class="category-chain-item">合成表</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/synthesisTable/">#synthesisTable</a>
+        <a href="/tags/python3/">#python3</a>
+      
+        <a href="/tags/apollo/">#apollo</a>
       
     </div>
   
@@ -398,8 +331,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>想写个合成表的功能</div>
-      <div>http://zuoxu.club/2022/09/17/想做个合成表的功能/</div>
+      <div>apolloClient</div>
+      <div>http://zuoxu.club/2022/09/15/apollo/</div>
     </div>
     <div class="license-meta">
       
@@ -411,7 +344,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月17日</div>
+          <div>2022年9月15日</div>
         </div>
       
       
@@ -446,12 +379,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/09/15/idea%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E6%90%9C%E7%B4%A2%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="idea无法使用全局搜索快捷键">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">idea无法使用全局搜索快捷键</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/16/nvm%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" title="node.js环境，nvm环境安装">
-                        <span class="hidden-mobile">node.js环境，nvm环境安装</span>
+                      <a href="/2022/09/15/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E9%A1%BA%E6%89%8B%E7%9A%84wsl2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="如何建立一个顺手的wsl2开发环境">
+                        <span class="hidden-mobile">如何建立一个顺手的wsl2开发环境</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
