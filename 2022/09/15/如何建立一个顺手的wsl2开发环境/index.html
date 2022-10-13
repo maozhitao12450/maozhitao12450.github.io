@@ -24,7 +24,7 @@
 <meta property="og:description" content="wsl2在window10上还挺方便的，就是很多坑需要填一下。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-15T12:00:22.000Z">
-<meta property="article:modified_time" content="2022-10-01T03:19:52.009Z">
+<meta property="article:modified_time" content="2022-10-13T05:31:15.203Z">
 <meta property="article:author" content="mzt12450@163.com">
 <meta property="article:tag" content="wsl2">
 <meta property="article:tag" content="lxrunoffline">
@@ -314,8 +314,8 @@
 <h2 id="迁移wsl2到非系统盘"><a href="#迁移wsl2到非系统盘" class="headerlink" title="迁移wsl2到非系统盘"></a>迁移wsl2到非系统盘</h2><p>使用lxrunoffline</p>
 <pre><code class="hljs">1. https://github.com/DDoSolitary/LxRunOffline/releases
 2. lxrunoffline list
-3. lxrunoffline move -n Ubuntu-20.04 -d D:\linux
-4. lxrunoffline get-dir -n Ubuntu-20.04
+3. lxrunoffline move -n Ubuntu -d D:\linux
+4. lxrunoffline get-dir -n Ubuntu
 5. ubuntu2004.exe config --default-user root # 设置登录用户为root
 </code></pre>
 <h2 id="解决路径复制问题"><a href="#解决路径复制问题" class="headerlink" title="解决路径复制问题"></a>解决路径复制问题</h2><pre><code class="hljs">windows路径为 D:\gitlab\xxx ，而对应的wsl2的路径为 /mnt/d/gitlab/xxx,复制路径的时候很麻烦，所以需要一点点帮助。
@@ -412,7 +412,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月1日</div>
+          <div>2022年10月13日</div>
         </div>
       
       <div class="license-meta-item">
