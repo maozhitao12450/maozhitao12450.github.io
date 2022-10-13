@@ -24,7 +24,7 @@
 <meta property="og:description" content="pulsar broker 初始化及构成">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-09T09:16:00.000Z">
-<meta property="article:modified_time" content="2022-10-13T13:49:32.773Z">
+<meta property="article:modified_time" content="2022-10-13T13:53:08.717Z">
 <meta property="article:author" content="mzt12450@163.com">
 <meta property="article:tag" content="pulsar">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          58 字
+          2.1k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          1 分钟
+          18 分钟
         
       </span>
     
@@ -303,7 +303,113 @@
             
               <div class="markdown-body">
                 
-                <p>在生命周期（二）中大致梳理了一下消息的生产流程，出现了很多不明白的地方，也就是TODO标记的。<br>为了更好的理解处理过程</p>
+                <p>在生命周期（二）中大致梳理了一下消息的生产流程，出现了很多不明白的地方，也就是TODO标记的。<br>为了更好的理解处理过程,经公司技术大佬提醒，让我梳理一下线程模型</p>
+<p>我dump后整理一下<br>以standlone模式启动后，本地共有353个线程<br>太多了，我试着看了其中一个线程，发现pulsar-broker的线程池都(也许不全是)使用DefaultThreadFactory初始化。<br>那么就可以看到pulsar-broker模块共有24个线程池分别分别在者以下类中,标注一下启动完standlone后已经创建的线程[init]</p>
+<ol>
+<li>BrokerService.java<ol>
+<li>pulsar-topic-publish-rate-limiter-monitor</li>
+<li>pulsar-stats-updater [init]</li>
+<li>pulsar-msg-expiry-monitor [init]</li>
+<li>pulsar-inactivity-monitor [init]</li>
+<li>pulsar-compaction-monitor [init]</li>
+<li>pulsar-broker-publish-rate-limiter-monitor</li>
+<li>pulsar-backlog-quota-checker [init]</li>
+<li>pulsar-acceptor [init]</li>
+<li>consumed-Ledgers-monitor  [init]</li>
+</ol>
+</li>
+<li>CompactorTool.java<ol>
+<li>compactor-io</li>
+</ol>
+</li>
+<li>InMemoryDelayedDeliveryTrackerFactory.java<ol>
+<li>pulsar-delayed-delivery</li>
+</ol>
+</li>
+<li>MessagingServiceShutdownHook.java<ol>
+<li>shutdown-thread</li>
+</ol>
+</li>
+<li>ModularLoadManagerImpl.java<ol>
+<li>pulsar-modular-load-manager</li>
+</ol>
+</li>
+<li>PrometheusMetricsProvider.java<ol>
+<li>metrics</li>
+</ol>
+</li>
+<li>PrometheusMetricsServlet.java<ol>
+<li>prometheus-stats</li>
+</ol>
+</li>
+<li>PulsarService.java<ol>
+<li>pulsar-load-manager</li>
+<li>pulsar [init]</li>
+<li>zk-cache-callback [init]?</li>
+<li>transaction-replay</li>
+<li>pulsar-io [init]</li>
+<li>getClass().getSimpleName() -shutdown</li>
+<li>pulsar-transaction-timer</li>
+<li>compaction</li>
+</ol>
+</li>
+<li>SimpleLoadManagerImpl.java<ol>
+<li> pulsar-simple-load-manager</li>
+</ol>
+</li>
+</ol>
+<p>初始化就创建的线程并不多</p>
+<ol>
+<li>BrokerService.java<ol>
+<li>pulsar-stats-updater [init] <ol>
+<li>按照 statsUpdateInitailDelayInSecs + n*statsUpdateFrequencyInSecs 秒执行统计</li>
+<li>org.apache.pulsar.broker.service.BrokerService#updateRates TODO</li>
+</ol>
+</li>
+<li>pulsar-msg-expiry-monitor [init]<ol>
+<li>checkMessageExpiry <ol>
+<li>messageExpiryCheckIntervalInMinutes 单位分钟，默认5分钟</li>
+<li>checkMessageExpiry 定期检查消息过期</li>
+</ol>
+</li>
+<li>checkReplicationPolicies <ol>
+<li>定期检测 TODO </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>pulsar-inactivity-monitor [init] <ol>
+<li>brokerDeleteInactiveTopicsEnabled 默认启用<ol>
+<li>自动清理无效topic</li>
+<li>brokerDeleteInactiveTopicsFrequencySeconds 默认 60s</li>
+<li>org.apache.pulsar.broker.service.BrokerService#checkGC TODO</li>
+</ol>
+</li>
+<li>brokerDeduplicationProducerInactivityTimeoutMinutes 自动清理不活跃的生产者 默认360分钟也就是6小时<ol>
+<li>但是源码中将这个值除以3了？</li>
+<li>也就是默认2小时自动清理。。。</li>
+<li>org.apache.pulsar.broker.service.BrokerService#checkMessageDeduplicationInfo TODO </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>pulsar-compaction-monitor [init]<ol>
+<li>brokerServiceCompactionMonitorIntervalInSeconds 默认 60秒</li>
+<li>org.apache.pulsar.broker.service.BrokerService#checkCompaction</li>
+</ol>
+</li>
+<li>pulsar-backlog-quota-checker [init]</li>
+<li>pulsar-acceptor [init]</li>
+<li>consumed-Ledgers-monitor  [init]</li>
+</ol>
+</li>
+<li>PulsarService.java <ol>
+<li>pulsar [init]</li>
+<li>zk-cache-callback [init]?</li>
+<li>pulsar-io [init]</li>
+</ol>
+</li>
+</ol>
 
                 
               </div>
