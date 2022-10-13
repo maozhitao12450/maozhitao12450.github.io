@@ -16,23 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="apolloClient">
+    <meta name="description" content="pulsar 源码编译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="apolloClient">
-<meta property="og:url" content="http://zuoxu.club/2022/10/01/apollo/index.html">
+<meta property="og:title" content="pulsar 源码编译">
+<meta property="og:url" content="http://zuoxu.club/2022/10/10/pulsar-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="apolloClient">
+<meta property="og:description" content="pulsar 源码编译">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-01T03:19:00.000Z">
-<meta property="article:modified_time" content="2022-10-13T05:33:17.295Z">
+<meta property="article:published_time" content="2022-10-10T03:30:00.000Z">
+<meta property="article:modified_time" content="2022-10-13T05:33:17.939Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="python3">
-<meta property="article:tag" content="apollo">
+<meta property="article:tag" content="pulsar 源码">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>apolloClient - 发际线的志逐渐暴露的博客</title>
+  <title>pulsar 源码编译 - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="apolloClient"></span>
+            <span id="subtitle" data-typed-text="pulsar 源码编译"></span>
           
         </div>
 
@@ -230,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-01 11:19" pubdate>
-          2022年10月1日 上午
+        <time datetime="2022-10-10 11:30" pubdate>
+          2022年10月10日 中午
         </time>
       </span>
     
@@ -242,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          1.4k 字
         
       </span>
     
@@ -253,7 +252,7 @@
         
         
         
-          25 分钟
+          12 分钟
         
       </span>
     
@@ -299,13 +298,85 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">apolloClient</h1>
+            <h1 style="display: none">pulsar 源码编译</h1>
             
             
               <div class="markdown-body">
                 
-                <p>apolloClient 模拟登录,更新配置文件,主要是由于api开放平台不支持直接用配置文本上传</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs python3"><br># -*- coding: utf-8 -*-<br>from time import time<br>import requests<br>import http.cookiejar<br>import json<br><br>class ApolloClient():<br>    def __init__(self,portal_address:str):<br>        self._portal_address = portal_address<br>        self._session = None<br>        pass<br><br>    def login(self,userName,password):<br>        __url = &#x27;&#123;portal_address&#125;/signin&#x27;.format(<br>            portal_address=self._portal_address<br>        )<br>        __data = &#123;<br>                &quot;username&quot;:userName,<br>                &quot;password&quot;:password,<br>                &quot;login-submit&quot;:&quot;登录&quot;<br>            &#125;<br>        self._session = requests.Session()<br>        self._session.cookies = http.cookiejar.LWPCookieJar(filename=&#x27;./.idea/apollo/cookies.txt&#x27;)<br>        response = self._session.post(__url,data=__data)<br>        if response.status_code == 200 and &#x27;&lt;html ng-app=&quot;index&quot;&gt;&#x27; in str(response.content):<br>            self._session.cookies.save(ignore_discard=True, ignore_expires=True)<br>            return True<br>        return False<br>    <br>    def getApplicationInfo(self,applicationName:str,apolloEnv:str,upEnv:str):<br>        &#x27;&#x27;&#x27;<br>        3.2.6 获取某个Namespace信息接口<br>        &#x27;&#x27;&#x27;<br>        __url = &#x27;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces&#x27;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>        )<br>        return self._session.get(url=__url).json()<br>    <br>    def uploadConfig(self,namespaceId:int,applicationName:str,namespaceName:str,apolloEnv:str,upEnv:str,confiStr:str):<br>        &#x27;&#x27;&#x27;<br>            上传配置文件<br>        &#x27;&#x27;&#x27;<br>        __url = &#x27;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces/&#123;namespaceName&#125;/items&#x27;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>            namespaceName= namespaceName<br>        )<br>        _data = &#123;<br>            &quot;configText&quot;: confiStr,<br>            &quot;namespaceId&quot;:namespaceId,<br>            &quot;format&quot;:&quot;properties&quot;<br>        &#125;<br>        return self._session.put(url=__url,json=_data,headers=&#123;&quot;Content-Type&quot;:&quot;application/json;charset=UTF-8&quot;&#125;)<br><br>    def doPublish(self,applicationName:str,namespaceName:str,apolloEnv:str,upEnv:str):<br>        &#x27;&#x27;&#x27;<br>            发布配置文件<br>        &#x27;&#x27;&#x27;<br>        __url = &quot;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces/&#123;namespaceName&#125;/releases&quot;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>            namespaceName= namespaceName<br>        )<br>        now = time()<br>        _data = &#123;<br>            &quot;releaseTitle&quot;:f&quot;&#123;now&#125;-release&quot;,<br>            &quot;releaseComment&quot;:&quot;&quot;,<br>            &quot;isEmergencyPublish&quot;:False<br>        &#125;<br>        return (f&quot;&#123;now&#125;-release&quot;,self._session.post(url=__url,json=_data,headers=&#123;&quot;Content-Type&quot;:&quot;application/json;charset=UTF-8&quot;&#125;).json())<br><br></code></pre></td></tr></table></figure>
+                <h2 id="总体过程"><a href="#总体过程" class="headerlink" title="总体过程"></a>总体过程</h2><ol>
+<li>下载源码 我的版本是2.8.1</li>
+<li>idea 配置<ol>
+<li><strong>详情请见源码README.md中的 setting-up-your-ide</strong></li>
+<li>请务必看这段,不看根本编译不过</li>
+</ol>
+</li>
+<li>mvn clean install -DskipTests -Dlicense.skip=true<ol>
+<li>这个必选要执行,因为源码中的许多模块直接依赖固定版本(当前版本,例如我下的是2.8.1.8),比一般的pulsar版本多了一个小版本,maven仓库里是找不到的,是本地编译的结果</li>
+</ol>
+</li>
+</ol>
+<h2 id="实际操作过程"><a href="#实际操作过程" class="headerlink" title="实际操作过程"></a>实际操作过程</h2><ol>
+<li>从github下载源码</li>
+<li>check 对应的tag</li>
+<li>打开README.md</li>
+<li>打开到 Setting up your IDE</li>
+<li><strong>照着操作</strong></li>
+</ol>
+<h3 id="我的配置过程-就是Setting-up-your-IDE的翻译-以及我的操作过程"><a href="#我的配置过程-就是Setting-up-your-IDE的翻译-以及我的操作过程" class="headerlink" title="我的配置过程(就是Setting up your IDE的翻译,以及我的操作过程)"></a>我的配置过程(就是Setting up your IDE的翻译,以及我的操作过程)</h3><h4 id="设置JDK11"><a href="#设置JDK11" class="headerlink" title="设置JDK11"></a>设置JDK11</h4><ol>
+<li>打开 <strong>Project Settings</strong>.<br> 依次点击 <strong>File</strong> -&gt; <strong>Project Structure</strong> -&gt; <strong>Project Settings</strong> -&gt; <strong>Project</strong>.</li>
+<li>选择JDK版本为JDK11<br> 如果没有JDK11,那么依次点击 <strong>SDK输入框</strong> -&gt; <strong>ADD SDK</strong> -&gt; <strong>Download JDK…</strong> -&gt; version选中11 -&gt; <strong>AdoptOpenJDK (Hotspot)</strong> -&gt; <strong>download</strong></li>
+</ol>
+<h4 id="设置Maven使用的Java版本"><a href="#设置Maven使用的Java版本" class="headerlink" title="设置Maven使用的Java版本"></a>设置Maven使用的Java版本</h4><ol>
+<li><p>依次点击以下设置进入maven设置<br><strong>Settings</strong> -&gt; <strong>Build, Execution, Deployment</strong> -&gt; <strong>Build Tools</strong> -&gt; <strong>Maven</strong> -&gt; <strong>Importing</strong>.</p>
+</li>
+<li><p>设置 <strong>JDK for Importer</strong>,选择  <strong>Use Project JDK</strong> </p>
+</li>
+<li><p>依次点击 <strong>Maven</strong> -&gt; <strong>Runner</strong> 也设置为 <strong>Use Project JDK</strong>.</p>
+</li>
+</ol>
+<h4 id="设置-annotation-processing"><a href="#设置-annotation-processing" class="headerlink" title="设置 annotation processing"></a>设置 annotation processing</h4><ol>
+<li><p>依次点击进入设置<br><strong>Settings</strong> -&gt; <strong>Build, Execution, Deployment</strong> -&gt; <strong>Compiler</strong> -&gt; <strong>Annotation Processors</strong>.</p>
+</li>
+<li><p>依次选中:</p>
+<ol>
+<li><strong>Enable annotation processing</strong></li>
+<li><strong>Obtain processors from project classpath</strong></li>
+<li><strong>Module content root</strong></li>
+</ol>
+</li>
+<li><p>设置文件夹路径:</p>
+<ol>
+<li>设置Production sources directory: 为 target/generated-sources/annotations</li>
+<li>设置Test sources directory:  为 target/generated-test-sources/test-annotations</li>
+</ol>
+</li>
+<li><p>点击确认 <strong>OK</strong>.</p>
+</li>
+<li><p>安装 lombok plugin</p>
+</li>
+</ol>
+<h4 id="Maven-模块调整"><a href="#Maven-模块调整" class="headerlink" title="Maven 模块调整"></a>Maven 模块调整</h4><ol>
+<li>一般在右侧,打开maven菜单,点击profiles菜单<ol>
+<li>选中”core-modules” </li>
+<li>取消选中”main”</li>
+<li>点击”Reload All Maven Projects”</li>
+<li>在maven的工具栏里点击  “Generate Sources and Update Folders For All Projects” <ol>
+<li>这一步大概需要花费10分钟,如果只选中 “core-modules” 能快一点</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>ps: 3,4两部不知道的话可以双击<strong>shift</strong>直接输入指令搜索 </p>
+</blockquote>
+<h4 id="启动编译"><a href="#启动编译" class="headerlink" title="启动编译"></a>启动编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">                跳过测试     忽略证书检查</span><br>mvn clean install -DskipTests -Dlicense.skip=true<br></code></pre></td></tr></table></figure>
+
+<h4 id="测试编译结果"><a href="#测试编译结果" class="headerlink" title="测试编译结果"></a>测试编译结果</h4><ol>
+<li>双击<strong>shift</strong>,打开搜索框,输入 org.apache.pulsar.PulsarBrokerStarterTest#testMainWithNoArgument</li>
+<li>运行该测试用例</li>
+</ol>
+
                 
               </div>
             
@@ -313,13 +384,32 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/pulsar/" class="category-chain-item">pulsar</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/python3/">#python3</a>
-      
-        <a href="/tags/apollo/">#apollo</a>
+        <a href="/tags/pulsar-%E6%BA%90%E7%A0%81/">#pulsar 源码</a>
       
     </div>
   
@@ -331,8 +421,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>apolloClient</div>
-      <div>http://zuoxu.club/2022/10/01/apollo/</div>
+      <div>pulsar 源码编译</div>
+      <div>http://zuoxu.club/2022/10/10/pulsar-源码编译/</div>
     </div>
     <div class="license-meta">
       
@@ -344,7 +434,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月1日</div>
+          <div>2022年10月10日</div>
         </div>
       
       
@@ -379,9 +469,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/09/pulsar-issues/" title="pulsar issues 学习笔记(一)">
+                      <a href="/2022/10/12/pulsar%20%E6%B6%88%E6%81%AF%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E7%94%9F%E4%BA%A7%E8%80%85-client/" title="pulsar 消息生命周期(一)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pulsar issues 学习笔记(一)</span>
+                        <span class="hidden-mobile">pulsar 消息生命周期(一)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -389,8 +479,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/17/%E6%83%B3%E5%81%9A%E4%B8%AA%E5%90%88%E6%88%90%E8%A1%A8%E7%9A%84%E5%8A%9F%E8%83%BD/" title="想写个合成表的功能">
-                        <span class="hidden-mobile">想写个合成表的功能</span>
+                      <a href="/2022/10/10/pulsar%E5%9F%BA%E7%A1%80/" title="pulsar 2.8.4 基础学习">
+                        <span class="hidden-mobile">pulsar 2.8.4 基础学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
