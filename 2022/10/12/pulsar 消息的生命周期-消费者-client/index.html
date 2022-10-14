@@ -24,7 +24,7 @@
 <meta property="og:description" content="pulsar 消息生命周期 客户端 消费者">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-12T03:12:00.000Z">
-<meta property="article:modified_time" content="2022-10-13T13:53:09.126Z">
+<meta property="article:modified_time" content="2022-10-14T10:52:24.962Z">
 <meta property="article:author" content="mzt12450@163.com">
 <meta property="article:tag" content="pulsar">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          885 字
+          2k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          8 分钟
+          17 分钟
         
       </span>
     
@@ -304,8 +304,24 @@
               <div class="markdown-body">
                 
                 <h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">bin/pulsar-client consume my-topic -s &quot;first-subscription&quot;<br><br>/usr/bin/java -cp /opt/apache-pulsar-2.8.4/conf:::/opt/apache-pulsar-2.8.4/lib/*: <br>-Dlog4j.configurationFile=log4j2.yaml <br>-Djava.net.preferIPv4Stack=true -Xmx128m -XX:MaxDirectMemorySize=128m -client <br>-Dio.netty.leakDetectionLevel=disabled <br>-Dpulsar.log.dir=/opt/apache-pulsar-2.8.4/logs <br>-Dpulsar.log.appender=Console <br>-Dpulsar.log.level=info <br>-Dpulsar.log.root.level=info org.apache.pulsar.client.cli.PulsarClientTool /opt/apache-pulsar-2.8.4/conf/client.conf consume my-topic -s first-subscription<br><br></code></pre></td></tr></table></figure>
-
-<p>org.apache.pulsar.client.impl.ConsumerBuilderImpl#subscribe<br>org.apache.pulsar.client.impl.PulsarClientImpl#multiTopicSubscribeAsync<br>org.apache.pulsar.client.impl.MultiTopicsConsumerImpl<br>org.apache.pulsar.client.impl.BatchMessageIdImpl<br>org.apache.pulsar.client.impl.UnAckedTopicMessageTracker<br>org.apache.pulsar.client.impl.ConsumerImpl</p>
+<h2 id="都有哪些交互"><a href="#都有哪些交互" class="headerlink" title="都有哪些交互"></a>都有哪些交互</h2><p>org.apache.pulsar.common.api.proto.CommandGetSchema<br>PARTITIONED_METADATA</p>
+<p>消费者有两个实现<br>org.apache.pulsar.client.impl.ZeroQueueConsumerImpl<br>org.apache.pulsar.client.impl.ConsumerImpl [我们用这个]<br>统计类 org.apache.pulsar.client.impl.ConsumerStatsRecorderImpl</p>
+<h3 id="ackTimeoutMillis-TODO"><a href="#ackTimeoutMillis-TODO" class="headerlink" title="ackTimeoutMillis TODO"></a>ackTimeoutMillis TODO</h3><h3 id="tracker"><a href="#tracker" class="headerlink" title="tracker?"></a>tracker?</h3><h4 id="org-apache-pulsar-client-impl-UnAckedMessageTracker-TODO-这个干嘛的"><a href="#org-apache-pulsar-client-impl-UnAckedMessageTracker-TODO-这个干嘛的" class="headerlink" title="org.apache.pulsar.client.impl.UnAckedMessageTracker TODO 这个干嘛的?"></a>org.apache.pulsar.client.impl.UnAckedMessageTracker TODO 这个干嘛的?</h4><h4 id="org-apache-pulsar-client-impl-PersistentAcknowledgmentsGroupingTracker"><a href="#org-apache-pulsar-client-impl-PersistentAcknowledgmentsGroupingTracker" class="headerlink" title="org.apache.pulsar.client.impl.PersistentAcknowledgmentsGroupingTracker"></a>org.apache.pulsar.client.impl.PersistentAcknowledgmentsGroupingTracker</h4><h3 id="org-apache-pulsar-client-impl-ConnectionHandler"><a href="#org-apache-pulsar-client-impl-ConnectionHandler" class="headerlink" title="org.apache.pulsar.client.impl.ConnectionHandler"></a>org.apache.pulsar.client.impl.ConnectionHandler</h3><p>org.apache.pulsar.client.impl.ConnectionHandler#grabCnx完成后执行消费者的 org.apache.pulsar.client.impl.ConsumerImpl#connectionOpened</p>
+<ol>
+<li>此时会发送SUBSCRIBE请求到broker</li>
+<li>发送FLOW消息至Broker开启消费org.apache.pulsar.client.impl.ConsumerImpl#increaseAvailablePermits</li>
+<li></li>
+</ol>
+<h3 id="死信队列-getDeadLetterPolicy-org-apache-pulsar-client-impl-ConsumerImpl-deadLetterPolicy-TODO"><a href="#死信队列-getDeadLetterPolicy-org-apache-pulsar-client-impl-ConsumerImpl-deadLetterPolicy-TODO" class="headerlink" title="死信队列 getDeadLetterPolicy  org.apache.pulsar.client.impl.ConsumerImpl#deadLetterPolicy TODO"></a>死信队列 getDeadLetterPolicy  org.apache.pulsar.client.impl.ConsumerImpl#deadLetterPolicy TODO</h3><h3 id="初始化完成后开始消费消息"><a href="#初始化完成后开始消费消息" class="headerlink" title="初始化完成后开始消费消息"></a>初始化完成后开始消费消息</h3><p>org.apache.pulsar.client.api.Consumer#receive(int, java.util.concurrent.TimeUnit)<br>直接看会发现是从 org.apache.pulsar.client.impl.ConsumerBase#incomingMessages 缓存中获取的数据,并不是在这放入的.</p>
+<h3 id="实际接收是连接到broker后接收到-MESSAGE-的处理-这个我们到broker里看"><a href="#实际接收是连接到broker后接收到-MESSAGE-的处理-这个我们到broker里看" class="headerlink" title="实际接收是连接到broker后接收到 MESSAGE 的处理(这个我们到broker里看)"></a>实际接收是连接到broker后接收到 MESSAGE 的处理(这个我们到broker里看)</h3><p>org.apache.pulsar.client.impl.ClientCnx#handleMessage</p>
+<ol>
+<li>根据broker要求的cmdMessage.getConsumerId()得到确切的消费者</li>
+<li>org.apache.pulsar.common.api.proto.CommandMessage#getAckSetsCount TODO ?这是啥?</li>
+<li>org.apache.pulsar.client.impl.AcknowledgmentsGroupingTracker#isDuplicate 重复校验 TODO </li>
+<li>org.apache.pulsar.client.impl.ConsumerBase#internalPinnedExecutor TODO 这是什么?</li>
+<li>org.apache.pulsar.client.impl.ConsumerBase#enqueueMessageAndCheckBatchReceive 这个方法是入队列的</li>
+<li>当收到消息达到1000不会继续接收消息,没在客户端看到逻辑,应该由broker控制</li>
+</ol>
 
                 
               </div>
@@ -370,7 +386,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月13日</div>
+          <div>2022年10月14日</div>
         </div>
       
       <div class="license-meta-item">
@@ -398,6 +414,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/10/14/pulsar%20%E6%B6%88%E6%81%AF%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E6%B6%88%E8%B4%B9%E8%80%85-brocker/" title="pulsar 消息生命周期(五)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pulsar 消息生命周期(五)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

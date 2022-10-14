@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="自动同步blog脚本">
+    <meta name="description" content="pulsar 消息生命周期 Broker 消费者">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
-<meta property="og:url" content="http://zuoxu.club/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/index.html">
+<meta property="og:title" content="pulsar 消息生命周期(五)">
+<meta property="og:url" content="http://zuoxu.club/2022/10/14/pulsar%20%E6%B6%88%E6%81%AF%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E6%B6%88%E8%B4%B9%E8%80%85-brocker/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="自动同步blog脚本">
+<meta property="og:description" content="pulsar 消息生命周期 Broker 消费者">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-12T14:41:22.000Z">
-<meta property="article:modified_time" content="2022-10-14T10:52:24.965Z">
+<meta property="article:published_time" content="2022-10-14T06:55:00.000Z">
+<meta property="article:modified_time" content="2022-10-14T10:52:24.962Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="pulsar">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>写个脚本做自动同步，这样就不用手动操作了，只要写博客就行 - 发际线的志逐渐暴露的博客</title>
+  <title>pulsar 消息生命周期(五) - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行"></span>
+            <span id="subtitle" data-typed-text="pulsar 消息生命周期(五)"></span>
           
         </div>
 
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-12 22:41" pubdate>
-          2022年9月12日 晚上
+        <time datetime="2022-10-14 14:55" pubdate>
+          2022年10月14日 下午
         </time>
       </span>
     
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          3.1k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          10 分钟
+          26 分钟
         
       </span>
     
@@ -298,17 +298,97 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</h1>
+            <h1 style="display: none">pulsar 消息生命周期(五)</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1-先到gitee上建个空项目叫blog"><a href="#1-先到gitee上建个空项目叫blog" class="headerlink" title="1. 先到gitee上建个空项目叫blog"></a>1. 先到gitee上建个空项目叫blog</h2><h2 id="2-点击头像-gt-设置-gt-ssh公钥"><a href="#2-点击头像-gt-设置-gt-ssh公钥" class="headerlink" title="2. 点击头像 -&gt; 设置 -&gt; ssh公钥"></a>2. 点击头像 -&gt; 设置 -&gt; ssh公钥</h2><p>添加服务器公钥和自己公钥到里面</p>
-<h2 id="3-在本地拉取代码，在服务器-root拉取代码"><a href="#3-在本地拉取代码，在服务器-root拉取代码" class="headerlink" title="3. 在本地拉取代码，在服务器/root拉取代码"></a>3. 在本地拉取代码，在服务器/root拉取代码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">上传文件</span><br>tag=&quot;v&quot;$(date &quot;+%Y%m%d%H%M%S&quot;)<br>git tag $tag <br>echo &quot;创建tag完成：&quot;$tag<br>git push origin $tag<br>echo &quot;上传tag成功&quot;<br>ssh root@124.222.0.48 &quot;cd /blog;git fetch;git checkout -b $tag;git pull origin $tag;&quot;<br>echo &quot;下载tag成功&quot;<br><br>ssh root@124.222.0.48 &quot;rm -rf /hexo/source/_posts/*.md;&quot;<br>echo &quot;清理文件完成&quot; <br>ssh root@124.222.0.48 &quot;cp /blog/blogs/*/*.md /hexo/source/_posts/;&quot; <br>echo &quot;复制完成&quot;<br>ssh root@124.222.0.48 &quot;cd /hexo;hexo clean; hexo g;&quot; <br>echo &quot;重新构建静态文件完成&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">删除标签</span><br>tags=$(git tag -l)<br>git push --delete origin $tags <br>git tag -d $tags<br>ssh root@124.222.0.48 &quot;cd /blog;git tag -d $tags;git checkout master;git pull origin master;git branch -D $tags&quot;<br>echo &quot;清理标签完成&quot;<br><br>ssh root@124.222.0.48 &quot;cd /nginx;docker-compose down;docker-compose up -d ;&quot;<br>echo &quot;重新构建docker完成&quot; <br><br><br></code></pre></td></tr></table></figure>
-
-<h2 id="4-在本机的linux环境下添加定时任务"><a href="#4-在本机的linux环境下添加定时任务" class="headerlink" title="4. 在本机的linux环境下添加定时任务"></a>4. 在本机的linux环境下添加定时任务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">crontab -e <br><br>0 11 * * * cd /mnt/d/github/blog &amp;&amp; bash ./sync # 每天定时11点执行上面的脚本<br><br></code></pre></td></tr></table></figure>
-
-<h1 id="https-blog-csdn-net-viva-la-free-article-details-109967308"><a href="#https-blog-csdn-net-viva-la-free-article-details-109967308" class="headerlink" title="https://blog.csdn.net/viva_la_free/article/details/109967308"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/viva_la_free/article/details/109967308">https://blog.csdn.net/viva_la_free/article/details/109967308</a></h1><h1 id="定时任务不生效。。。"><a href="#定时任务不生效。。。" class="headerlink" title="定时任务不生效。。。"></a>定时任务不生效。。。</h1><h2 id="5-当然会有更好的方案，但是这个对于我来说比较简单。"><a href="#5-当然会有更好的方案，但是这个对于我来说比较简单。" class="headerlink" title="5. 当然会有更好的方案，但是这个对于我来说比较简单。"></a>5. 当然会有更好的方案，但是这个对于我来说比较简单。</h2><p>我装了wsl2，所以电脑上有常驻的linux</p>
+                <h2 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h2><p>从客户端可以看到客户端收到了 MESSAGE 消息,那么我们从这个点切入,看看服务端是如何发送消息</p>
+<p>通过搜索MESSAGE消息的创建<br>可以找到 org.apache.pulsar.broker.service.ServerCnx#newMessageAndIntercept 服务端创建了消息<br>我们最终来到了 org.apache.pulsar.broker.service.Consumer#sendMessages</p>
+<p>org.apache.pulsar.broker.service.Consumer 服务端的消费者<br>服务端的消费者是客户端消费者启动时发送的 org.apache.pulsar.common.api.proto.CommandSubscribe创建的<br>org.apache.pulsar.broker.service.ServerCnx#handleSubscribe</p>
+<h2 id="看看初始化过程服务端消费者创建过程"><a href="#看看初始化过程服务端消费者创建过程" class="headerlink" title="看看初始化过程服务端消费者创建过程"></a>看看初始化过程服务端消费者创建过程</h2><p>收到客户端的  SUBSCRIBE 请求<br>org.apache.pulsar.broker.service.ServerCnx#handleSubscribe</p>
+<ol>
+<li>鉴权 TODO </li>
+<li>org.apache.pulsar.broker.service.ServerCnx#consumers 直接放入</li>
+<li>获取/创建topic,创建过程我们在生产者broker里看过了,就不重复看了</li>
+<li>org.apache.pulsar.broker.service.Topic#subscribe <ol>
+<li>org.apache.pulsar.broker.service.BrokerService#checkTopicNsOwnership TODO 这个和org.apache.pulsar.broker.namespace.NamespaceService#bundleFactory有关需要单独看 TODO </li>
+<li>开头全是校验,有时间再看 TODO </li>
+<li>lock.readLock().lock(); 读锁?<ol>
+<li>USAGE_COUNT_UPDATER加一 ? TODO 这是干嘛的?</li>
+</ol>
+</li>
+<li>org.apache.pulsar.broker.service.AbstractTopic#handleConsumerAdded</li>
+<li>根据 isDurable 这个配置区分为两个<ol>
+<li>org.apache.pulsar.broker.service.persistent.PersistentTopic#getDurableSubscription TODO</li>
+<li>org.apache.pulsar.broker.service.persistent.PersistentTopic#getNonDurableSubscription TODO</li>
+</ol>
+</li>
+<li>正式创建服务端消费者 org.apache.pulsar.broker.service.Consumer TODO 初始化过程要看看</li>
+<li>在订阅中添加该消费者org.apache.pulsar.broker.service.Subscription#addConsumer<ol>
+<li>org.apache.pulsar.broker.transaction.pendingack.PendingAckHandle#pendingAckHandleFuture TODO </li>
+<li>更新游标时间cursor lastActive 为系统时间</li>
+<li>dispatcher == null || !dispatcher.isConsumerConnected() 这就涉及到dispatcher了,话说生产者没看到啊(TODO)<ol>
+<li>根据consumer.subType()区分处理,创建不同的dispatcher<ol>
+<li>Exclusive useStreamingDispatcher<ol>
+<li>PersistentStreamingDispatcherSingleActiveConsumer TODO 区别和能力,需要再看</li>
+<li>PersistentDispatcherSingleActiveConsumer TODO 区别和能力,需要再看</li>
+</ol>
+</li>
+<li>Shared<ol>
+<li>PersistentStreamingDispatcherMultipleConsumers TODO 区别和能力,需要再看</li>
+<li>PersistentDispatcherMultipleConsumers TODO 区别和能力,需要再看</li>
+</ol>
+</li>
+<li>Failover<ol>
+<li>PersistentStreamingDispatcherSingleActiveConsumer   TODO 区别和能力,需要再看  </li>
+<li>PersistentDispatcherSingleActiveConsumer TODO 区别和能力,需要再看</li>
+</ol>
+</li>
+<li>Key_Shared<ol>
+<li>PersistentStickyKeyDispatcherMultipleConsumers</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>如果dispatcher创建了但是没有consumer连接过,会有一个previousDispatcher存在,在这关闭这个dispatcher</li>
+</ol>
+</li>
+<li>添加consumer到dispatcher里</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="消费者开启消费"><a href="#消费者开启消费" class="headerlink" title="消费者开启消费"></a>消费者开启消费</h2><p>收到客户端的 FLOW 请求</p>
+<ol>
+<li>org.apache.pulsar.broker.service.ServerCnx#handleFlow</li>
+<li>在这判断是否是要阻塞消费<ol>
+<li>消费者类型必须是 Shared 或Key_Shared并且maxUnackedMessages必须设置&gt;0</li>
+</ol>
+</li>
+<li>org.apache.pulsar.broker.service.Consumer#MESSAGE_PERMITS_UPDATER TODO 这个看着有用,需要看看</li>
+<li>org.apache.pulsar.broker.service.Subscription#consumerFlow<ol>
+<li>org.apache.pulsar.broker.service.Dispatcher#consumerFlow</li>
+<li>启动消费者线程,线程名为 broker-topic-workers</li>
+<li>org.apache.pulsar.broker.service.persistent.PersistentDispatcherSingleActiveConsumer#readMoreEntries<ol>
+<li>Math.min(availablePermits,dispatcherMaxReadBatchSize) 读取数据数量</li>
+<li>preciseDispatcherFlowControl 默认为false 如果开启这个会使用历史消息平均大小处理</li>
+<li>如果消费限速,那么1s后重试</li>
+<li>consumer.readCompacted()根据是否压缩不同处理<ol>
+<li>org.apache.pulsar.compaction.CompactedTopic#asyncReadEntriesOrWait TODO</li>
+<li>org.apache.bookkeeper.mledger.ManagedCursor#asyncReadEntriesOrWait</li>
+</ol>
+</li>
+<li>来到了游标控制 TODO 这个重点看</li>
+<li>我迷路了…</li>
+<li>总之最终会调用 org.apache.pulsar.broker.service.Consumer#sendMessages 向消费者发送MESSAGE消息</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="查看服务端消费者的消费流程"><a href="#查看服务端消费者的消费流程" class="headerlink" title="查看服务端消费者的消费流程"></a>查看服务端消费者的消费流程</h2><p>本来想从 org.apache.pulsar.broker.service.Consumer#sendMessages 入手<br>org.apache.pulsar.broker.service.persistent.PersistentStreamingDispatcherSingleActiveConsumer#readEntryComplete</p>
 
                 
               </div>
@@ -327,7 +407,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BB%BA%E7%AB%99/" class="category-chain-item">建站</a>
+  <a href="/categories/pulsar/" class="category-chain-item">pulsar</a>
   
   
 
@@ -342,7 +422,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hexo/">#hexo</a>
+        <a href="/tags/pulsar/">#pulsar</a>
       
     </div>
   
@@ -354,8 +434,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</div>
-      <div>http://zuoxu.club/2022/09/12/写个脚本做自动同步/</div>
+      <div>pulsar 消息生命周期(五)</div>
+      <div>http://zuoxu.club/2022/10/14/pulsar 消息生命周期-消费者-brocker/</div>
     </div>
     <div class="license-meta">
       
@@ -367,7 +447,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月12日</div>
+          <div>2022年10月14日</div>
         </div>
       
       
@@ -402,9 +482,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/" title="hbase 的一些笔记">
+                      <a href="/2022/10/14/pulsar%20%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hbase 的一些笔记</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -412,8 +492,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/06/hexo%E5%BB%BA%E7%AB%99%E5%AD%A6%E4%B9%A0/" title="hexo建站学习">
-                        <span class="hidden-mobile">hexo建站学习</span>
+                      <a href="/2022/10/12/pulsar%20%E6%B6%88%E6%81%AF%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E6%B6%88%E8%B4%B9%E8%80%85-client/" title="pulsar 消息生命周期(四)">
+                        <span class="hidden-mobile">pulsar 消息生命周期(四)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

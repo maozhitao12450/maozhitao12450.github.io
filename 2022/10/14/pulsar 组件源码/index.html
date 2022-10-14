@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="自动同步blog脚本">
+    <meta name="description" content="org.apache.pulsar.broker.service.StandaloneTest#testAdvertised">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
-<meta property="og:url" content="http://zuoxu.club/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/index.html">
+<meta property="og:title" content="发际线的志逐渐暴露的博客">
+<meta property="og:url" content="http://zuoxu.club/2022/10/14/pulsar%20%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="自动同步blog脚本">
+<meta property="og:description" content="org.apache.pulsar.broker.service.StandaloneTest#testAdvertised">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-12T14:41:22.000Z">
-<meta property="article:modified_time" content="2022-10-14T10:52:24.965Z">
+<meta property="article:published_time" content="2022-10-14T10:52:24.963Z">
+<meta property="article:modified_time" content="2022-10-14T10:52:24.963Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="java,linux,flink">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>写个脚本做自动同步，这样就不用手动操作了，只要写博客就行 - 发际线的志逐渐暴露的博客</title>
+  <title>发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-12 22:41" pubdate>
-          2022年9月12日 晚上
+        <time datetime="2022-10-14 18:52" pubdate>
+          2022年10月14日 晚上
         </time>
       </span>
     
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          62 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          10 分钟
+          1 分钟
         
       </span>
     
@@ -298,17 +298,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1-先到gitee上建个空项目叫blog"><a href="#1-先到gitee上建个空项目叫blog" class="headerlink" title="1. 先到gitee上建个空项目叫blog"></a>1. 先到gitee上建个空项目叫blog</h2><h2 id="2-点击头像-gt-设置-gt-ssh公钥"><a href="#2-点击头像-gt-设置-gt-ssh公钥" class="headerlink" title="2. 点击头像 -&gt; 设置 -&gt; ssh公钥"></a>2. 点击头像 -&gt; 设置 -&gt; ssh公钥</h2><p>添加服务器公钥和自己公钥到里面</p>
-<h2 id="3-在本地拉取代码，在服务器-root拉取代码"><a href="#3-在本地拉取代码，在服务器-root拉取代码" class="headerlink" title="3. 在本地拉取代码，在服务器/root拉取代码"></a>3. 在本地拉取代码，在服务器/root拉取代码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">上传文件</span><br>tag=&quot;v&quot;$(date &quot;+%Y%m%d%H%M%S&quot;)<br>git tag $tag <br>echo &quot;创建tag完成：&quot;$tag<br>git push origin $tag<br>echo &quot;上传tag成功&quot;<br>ssh root@124.222.0.48 &quot;cd /blog;git fetch;git checkout -b $tag;git pull origin $tag;&quot;<br>echo &quot;下载tag成功&quot;<br><br>ssh root@124.222.0.48 &quot;rm -rf /hexo/source/_posts/*.md;&quot;<br>echo &quot;清理文件完成&quot; <br>ssh root@124.222.0.48 &quot;cp /blog/blogs/*/*.md /hexo/source/_posts/;&quot; <br>echo &quot;复制完成&quot;<br>ssh root@124.222.0.48 &quot;cd /hexo;hexo clean; hexo g;&quot; <br>echo &quot;重新构建静态文件完成&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">删除标签</span><br>tags=$(git tag -l)<br>git push --delete origin $tags <br>git tag -d $tags<br>ssh root@124.222.0.48 &quot;cd /blog;git tag -d $tags;git checkout master;git pull origin master;git branch -D $tags&quot;<br>echo &quot;清理标签完成&quot;<br><br>ssh root@124.222.0.48 &quot;cd /nginx;docker-compose down;docker-compose up -d ;&quot;<br>echo &quot;重新构建docker完成&quot; <br><br><br></code></pre></td></tr></table></figure>
-
-<h2 id="4-在本机的linux环境下添加定时任务"><a href="#4-在本机的linux环境下添加定时任务" class="headerlink" title="4. 在本机的linux环境下添加定时任务"></a>4. 在本机的linux环境下添加定时任务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">crontab -e <br><br>0 11 * * * cd /mnt/d/github/blog &amp;&amp; bash ./sync # 每天定时11点执行上面的脚本<br><br></code></pre></td></tr></table></figure>
-
-<h1 id="https-blog-csdn-net-viva-la-free-article-details-109967308"><a href="#https-blog-csdn-net-viva-la-free-article-details-109967308" class="headerlink" title="https://blog.csdn.net/viva_la_free/article/details/109967308"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/viva_la_free/article/details/109967308">https://blog.csdn.net/viva_la_free/article/details/109967308</a></h1><h1 id="定时任务不生效。。。"><a href="#定时任务不生效。。。" class="headerlink" title="定时任务不生效。。。"></a>定时任务不生效。。。</h1><h2 id="5-当然会有更好的方案，但是这个对于我来说比较简单。"><a href="#5-当然会有更好的方案，但是这个对于我来说比较简单。" class="headerlink" title="5. 当然会有更好的方案，但是这个对于我来说比较简单。"></a>5. 当然会有更好的方案，但是这个对于我来说比较简单。</h2><p>我装了wsl2，所以电脑上有常驻的linux</p>
+                <p>org.apache.pulsar.broker.service.StandaloneTest#testAdvertised</p>
 
                 
               </div>
@@ -317,34 +312,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%BB%BA%E7%AB%99/" class="category-chain-item">建站</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/hexo/">#hexo</a>
-      
-    </div>
   
 </div>
 
@@ -354,8 +321,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</div>
-      <div>http://zuoxu.club/2022/09/12/写个脚本做自动同步/</div>
+      <div></div>
+      <div>http://zuoxu.club/2022/10/14/pulsar 组件源码/</div>
     </div>
     <div class="license-meta">
       
@@ -367,14 +334,9 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月12日</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>更新于</div>
           <div>2022年10月14日</div>
         </div>
+      
       
       <div class="license-meta-item">
         <div>许可协议</div>
@@ -402,18 +364,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/" title="hbase 的一些笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hbase 的一些笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/06/hexo%E5%BB%BA%E7%AB%99%E5%AD%A6%E4%B9%A0/" title="hexo建站学习">
-                        <span class="hidden-mobile">hexo建站学习</span>
+                      <a href="/2022/10/14/pulsar%20%E6%B6%88%E6%81%AF%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E6%B6%88%E8%B4%B9%E8%80%85-brocker/" title="pulsar 消息生命周期(五)">
+                        <span class="hidden-mobile">pulsar 消息生命周期(五)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
