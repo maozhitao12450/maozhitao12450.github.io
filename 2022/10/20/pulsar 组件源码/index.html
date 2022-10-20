@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="nvm可以方便管理多个node版本，但是github安装慢，这里提供个快速方案">
+    <meta name="description" content="org.apache.pulsar.broker.service.StandaloneTest#testAdvertised">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node.js环境，nvm环境安装">
-<meta property="og:url" content="http://zuoxu.club/2022/09/16/nvm%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:title" content="发际线的志逐渐暴露的博客">
+<meta property="og:url" content="http://zuoxu.club/2022/10/20/pulsar%20%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="nvm可以方便管理多个node版本，但是github安装慢，这里提供个快速方案">
+<meta property="og:description" content="org.apache.pulsar.broker.service.StandaloneTest#testAdvertised">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-16T15:41:22.000Z">
-<meta property="article:modified_time" content="2022-10-20T09:07:55.274Z">
+<meta property="article:published_time" content="2022-10-20T09:07:55.272Z">
+<meta property="article:modified_time" content="2022-10-20T09:07:55.272Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="node.js">
+<meta property="article:tag" content="java,linux,flink">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>node.js环境，nvm环境安装 - 发际线的志逐渐暴露的博客</title>
+  <title>发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="node.js环境，nvm环境安装"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-16 23:41" pubdate>
-          2022年9月16日 晚上
+        <time datetime="2022-10-20 17:07" pubdate>
+          2022年10月20日 下午
         </time>
       </span>
     
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          560 字
+          62 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          5 分钟
+          1 分钟
         
       </span>
     
@@ -298,18 +298,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">node.js环境，nvm环境安装</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="linux环境下安装"><a href="#linux环境下安装" class="headerlink" title="linux环境下安装"></a>linux环境下安装</h2><h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">https://gitee.com/naozeizei/nvm-for-gitee</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">国内安装nvm比较慢，我写了脚本能快速安装nodejs</span><br>curl -o- https://gitee.com/naozeizei/nvm-for-gitee/raw/master/nvm-cn.sh | bash<br><span class="hljs-meta prompt_"># </span><span class="language-bash">执行完毕后请重新建立一个terminal</span> <br></code></pre></td></tr></table></figure>
-<h3 id="安装nodeJs"><a href="#安装nodeJs" class="headerlink" title="安装nodeJs"></a>安装nodeJs</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nvm install 12.0.0 <br></code></pre></td></tr></table></figure>
-
-<h2 id="windows环境下安装"><a href="#windows环境下安装" class="headerlink" title="windows环境下安装"></a>windows环境下安装</h2><p><a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a><br>很遗憾，目前没有找到除了github release以外的安全稳定的安装渠道，所幸nvm大小只有4mb,慢就慢点吧。<br>进入nvm安装目录，编辑settings.txt，增加以下两个国内镜像</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-string">node_mirror:npm.taobao.org/mirrors/node/</span><br><span class="hljs-string">npm_mirror:npm.taobao.org/mirrors/npm/</span><br><br></code></pre></td></tr></table></figure>
-<p>重启电脑<br>win + x 然后按 A<br>会打开powershell<br>输入 nvm 回车，能看到版本号说明安装成功</p>
-<h3 id="安装nodeJs-1"><a href="#安装nodeJs-1" class="headerlink" title="安装nodeJs"></a>安装nodeJs</h3><p>在powershell里输入 nvm install 12.0.0<br>等待一会将会完成安装<br>输入nvm use 12.0.0<br>输入 npm -v</p>
+                <p>org.apache.pulsar.broker.service.StandaloneTest#testAdvertised</p>
 
                 
               </div>
@@ -319,13 +313,6 @@
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/node-js/">#node.js</a>
-      
-    </div>
-  
 </div>
 
 
@@ -334,8 +321,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>node.js环境，nvm环境安装</div>
-      <div>http://zuoxu.club/2022/09/16/nvm环境安装/</div>
+      <div></div>
+      <div>http://zuoxu.club/2022/10/20/pulsar 组件源码/</div>
     </div>
     <div class="license-meta">
       
@@ -347,14 +334,9 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月16日</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>更新于</div>
           <div>2022年10月20日</div>
         </div>
+      
       
       <div class="license-meta-item">
         <div>许可协议</div>
@@ -382,18 +364,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/17/%E6%83%B3%E5%81%9A%E4%B8%AA%E5%90%88%E6%88%90%E8%A1%A8%E7%9A%84%E5%8A%9F%E8%83%BD/" title="想写个合成表的功能">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">想写个合成表的功能</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/15/idea%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E6%90%9C%E7%B4%A2%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="idea无法使用全局搜索快捷键">
-                        <span class="hidden-mobile">idea无法使用全局搜索快捷键</span>
+                      <a href="/2022/10/20/hbase%20cell%20ttl%20%E8%B8%A9%E5%9D%91/" title="hbase cell ttl 踩坑">
+                        <span class="hidden-mobile">hbase cell ttl 踩坑</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
