@@ -24,7 +24,7 @@
 <meta property="og:description" content="pulsar broker 初始化及构成">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-09T09:16:00.000Z">
-<meta property="article:modified_time" content="2022-10-20T09:14:24.296Z">
+<meta property="article:modified_time" content="2022-10-22T03:39:52.947Z">
 <meta property="article:author" content="mzt12450@163.com">
 <meta property="article:tag" content="pulsar">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.8k 字
+          6.2k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          49 分钟
+          52 分钟
         
       </span>
     
@@ -490,6 +490,9 @@
 <h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><p>不是很关心的都不看</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-built_in">this</span>.brokerService = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrokerService</span>(<span class="hljs-built_in">this</span>, ioEventLoopGroup);<br><br><span class="hljs-built_in">this</span>.startNamespaceService(); <br><br><span class="hljs-built_in">this</span>.brokerService.start();<br><br><span class="hljs-comment">// Initialize namespace service, after service url assigned. Should init zk and refresh self owner info.</span><br><span class="hljs-built_in">this</span>.nsService.initialize();<br><span class="hljs-comment">// Start the leader election service</span><br>startLeaderElectionService();<br>   leaderElectionService.start();<br>   <span class="hljs-comment">// 执行选举leader &quot;/loadbalance/leader&quot;</span><br>   org.apache.pulsar.metadata.coordination.impl.LeaderElectionImpl#elect()<br>   <span class="hljs-comment">// 选举逻辑比较简单建议自己看</span><br>   org.apache.pulsar.metadata.coordination.impl.LeaderElectionImpl#LeaderElectionImpl<br>   <span class="hljs-comment">// 初始化线程 leader-election-executor,负责在NotificationType.Deleted时重新触发选举</span><br><br><span class="hljs-comment">// Register heartbeat and bootstrap namespaces.</span><br><span class="hljs-built_in">this</span>.nsService.registerBootstrapNamespaces();<br><br><span class="hljs-comment">// By starting the Load manager service, the broker will also become visible</span><br><span class="hljs-comment">// to the rest of the broker by creating the registration z-node. This needs</span><br><span class="hljs-comment">// to be done only when the broker is fully operative.</span><br><span class="hljs-built_in">this</span>.startLoadManagementService();<br><span class="hljs-comment">// Initialize the message protocol handlers.</span><br><span class="hljs-comment">// start the protocol handlers only after the broker is ready,</span><br><span class="hljs-comment">// so that the protocol handlers can access broker service properly.</span><br><span class="hljs-built_in">this</span>.protocolHandlers.start(brokerService);<br>acquireSLANamespace();<br><br></code></pre></td></tr></table></figure>
 
+<h3 id="选举leader以及负载均衡相关"><a href="#选举leader以及负载均衡相关" class="headerlink" title="选举leader以及负载均衡相关"></a>选举leader以及负载均衡相关</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-comment">// Start the leader election service</span><br>startLeaderElectionService();<br>   leaderElectionService.start();<br>   <span class="hljs-comment">// 执行选举leader &quot;/loadbalance/leader&quot;</span><br>   org.apache.pulsar.metadata.coordination.impl.LeaderElectionImpl#elect()<br>   <span class="hljs-comment">// 选举逻辑比较简单建议自己看</span><br>   org.apache.pulsar.metadata.coordination.impl.LeaderElectionImpl#LeaderElectionImpl<br>   <span class="hljs-comment">// 初始化线程 leader-election-executor,负责在NotificationType.Deleted时重新触发选举</span><br><br></code></pre></td></tr></table></figure>
+
+
 <h2 id="org-apache-pulsar-broker-namespace-NamespaceService-命名空间初始化"><a href="#org-apache-pulsar-broker-namespace-NamespaceService-命名空间初始化" class="headerlink" title="org.apache.pulsar.broker.namespace.NamespaceService 命名空间初始化"></a>org.apache.pulsar.broker.namespace.NamespaceService 命名空间初始化</h2><ol>
 <li>bundleFactory<ol>
 <li>this.bundleFactory = new NamespaceBundleFactory(pulsar, Hashing.crc32());</li>
@@ -569,7 +572,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月20日</div>
+          <div>2022年10月22日</div>
         </div>
       
       <div class="license-meta-item">
