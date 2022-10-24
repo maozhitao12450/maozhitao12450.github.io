@@ -5,8 +5,8 @@
   
   <entry>
     <title></title>
-    <link href="/2022/10/22/pulsar-ns-isolation-policy/"/>
-    <url>/2022/10/22/pulsar-ns-isolation-policy/</url>
+    <link href="/2022/10/24/pulsar-ns-isolation-policy/"/>
+    <url>/2022/10/24/pulsar-ns-isolation-policy/</url>
     
     <content type="html"><![CDATA[<p>TODO</p>]]></content>
     
@@ -42,7 +42,7 @@
   
   
   <entry>
-    <title>pulsar 集群切换导致的缩容错误(七)</title>
+    <title>pulsar update-partitioned-topic执行流程(八)</title>
     <link href="/2022/10/21/pulsar(8)%20update-partitioned-topic%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"/>
     <url>/2022/10/21/pulsar(8)%20update-partitioned-topic%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/</url>
     
@@ -96,7 +96,7 @@
     <link href="/2022/10/20/pulsar(6)%20%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     <url>/2022/10/20/pulsar(6)%20%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
     
-    <content type="html"><![CDATA[<h2 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h2><p>org.apache.pulsar.broker.PulsarService#start<br>org.apache.pulsar.broker.PulsarService#startLeaderElectionService</p><h2 id="这个部分还是使用流程图吧-比较直观"><a href="#这个部分还是使用流程图吧-比较直观" class="headerlink" title="这个部分还是使用流程图吧,比较直观"></a>这个部分还是使用流程图吧,比较直观</h2><p><a href="https://www.liuchengtu.com/lct/#R26463e766d8d5c623d4fcac6dc4f6490">https://www.liuchengtu.com/lct/#R26463e766d8d5c623d4fcac6dc4f6490</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h2><p>org.apache.pulsar.broker.PulsarService#start<br>org.apache.pulsar.broker.PulsarService#startLeaderElectionService</p><h2 id="这个部分还是使用流程图吧-比较直观"><a href="#这个部分还是使用流程图吧-比较直观" class="headerlink" title="这个部分还是使用流程图吧,比较直观"></a>这个部分还是使用流程图吧,比较直观</h2><p><a href="https://www.liuchengtu.com/lct/#R26463e766d8d5c623d4fcac6dc4f6490">https://www.liuchengtu.com/lct/#R26463e766d8d5c623d4fcac6dc4f6490</a></p><h2 id="文字梳理"><a href="#文字梳理" class="headerlink" title="文字梳理"></a>文字梳理</h2><ol><li>pulsar Service 构建过程中会构建以下2个组件<ol><li>org.apache.pulsar.broker.loadbalance.LeaderElectionService 领导选举服务</li><li>org.apache.pulsar.broker.loadbalance.LoadManager 负责处理加载/卸载</li></ol></li><li>注册两个事件监听<ol><li>path变更事件</li><li>session变更事件</li></ol></li><li>启动时触发一次选举<ol><li>逻辑就是抢先注册成为leader</li><li>生成高负载卸载任务,1分钟每次</li><li>负载卸载时会通知客户端断开连接,客户端重试连接</li></ol></li><li>负载变更由客户端执行变更逻辑<ol><li>重连流程中会通知leader节点处理lookup操作</li><li>leader根据根据当前负载情况分配低负载的broker处理该连接</li></ol></li></ol>]]></content>
     
     
     <categories>
