@@ -4,6 +4,81 @@
   
   
   <entry>
+    <title>pulsar 概念梳理</title>
+    <link href="/2022/10/26/pulsar%20%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/"/>
+    <url>/2022/10/26/pulsar%20%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>pulsar</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>pulsar</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pulsar 工具/技巧集合</title>
+    <link href="/2022/10/26/%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/"/>
+    <url>/2022/10/26/%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/</url>
+    
+    <content type="html"><![CDATA[<h2 id="查询创建耗时"><a href="#查询创建耗时" class="headerlink" title="查询创建耗时"></a>查询创建耗时</h2><h3 id="以下操作基于kibana"><a href="#以下操作基于kibana" class="headerlink" title="以下操作基于kibana"></a>以下操作基于kibana</h3><p>“tenant/namespaces/persistent/topic-partition-x” &amp;&amp; (“Created new ledger” ||”Creating a new ledger”)</p><h2 id="promethues"><a href="#promethues" class="headerlink" title="promethues"></a>promethues</h2><h3 id="缓存命中率"><a href="#缓存命中率" class="headerlink" title="缓存命中率"></a>缓存命中率</h3><p>brk_ml_cache_hits_rate/(brk_ml_cache_misses_rate + brk_ml_cache_hits_rate)*100<br>pulsar_ml_cache_hits_rate/(pulsar_ml_cache_misses_rate + pulsar_ml_cache_hits_rate)*100</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>pulsar</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>pulsar</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pulsar 持久化 执行流程(九)</title>
+    <link href="/2022/10/25/pulsar(9)%20broker%E4%B8%8Ebookeeper,%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+    <url>/2022/10/25/pulsar(9)%20broker%E4%B8%8Ebookeeper,%E6%8C%81%E4%B9%85%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><a href="https://www.liuchengtu.com/lct/#R19b3b45e470e0acaaa86d203ca14ffc3">https://www.liuchengtu.com/lct/#R19b3b45e470e0acaaa86d203ca14ffc3</a></p><p>org.apache.pulsar.broker.BookKeeperClientFactory#create</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>pulsar</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>pulsar</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>pulsar 集群切换导致的缩容错误(七)</title>
     <link href="/2022/10/21/pulsar(7)%20%E9%9B%86%E7%BE%A4%E5%88%87%E6%8D%A2%E5%AF%BC%E8%87%B4%E7%9A%84partition%20shrink/"/>
     <url>/2022/10/21/pulsar(7)%20%E9%9B%86%E7%BE%A4%E5%88%87%E6%8D%A2%E5%AF%BC%E8%87%B4%E7%9A%84partition%20shrink/</url>
@@ -453,6 +528,56 @@
     <tags>
       
       <tag>hbase</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>搭建linux 代理服务器</title>
+    <link href="/2022/09/12/linux%20%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <url>/2022/09/12/linux%20%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>CopyCopydebian系：apt-get install tinyproxy<br>centos系：yum install tinyproxy</p><h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">service tinyproxy.service start<br></code></pre></td></tr></table></figure><h2 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">service tinyproxy.service start<br></code></pre></td></tr></table></figure><p>结果如下</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@VM-16-3-centos ~]# systemctl status tinyproxy.service<br>● tinyproxy.service - Startup script for the tinyproxy server<br>   Loaded: loaded (/usr/lib/systemd/system/tinyproxy.service; enabled; vendor preset: disabled)<br>   Active: active (running) since Wed 2022-10-26 18:03:20 CST; 2s ago<br>  Process: 7330 ExecStart=/usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf (code=exited, status=0/SUCCESS)<br> Main PID: 7332 (tinyproxy)<br>    Tasks: 11<br>   Memory: 3.2M<br>   CGroup: /system.slice/tinyproxy.service<br>           ├─7332 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7333 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7334 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7335 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7336 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7337 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7338 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7339 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7340 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           ├─7341 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br>           └─7342 /usr/sbin/tinyproxy -c /etc/tinyproxy/tinyproxy.conf<br><br></code></pre></td></tr></table></figure><h2 id="注释调"><a href="#注释调" class="headerlink" title="注释调"></a>注释调</h2><p>Allow 127.0.0.1<br>如果知道自己的IP也可以设置</p><h2 id="生效修改"><a href="#生效修改" class="headerlink" title="生效修改"></a>生效修改</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl restart tinyproxy.service<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>建站</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>loki学习日记</title>
+    <link href="/2022/09/12/loki/"/>
+    <url>/2022/09/12/loki/</url>
+    
+    <content type="html"><![CDATA[<h2 id="官网地址"><a href="#官网地址" class="headerlink" title="官网地址"></a>官网地址</h2><pre><code class="hljs">https://grafana.com/docs/loki/latest/getting-started/</code></pre><h2 id="get-start"><a href="#get-start" class="headerlink" title="get-start"></a>get-start</h2><p>官网教程如下</p><h3 id="Obtain-the-test-environment"><a href="#Obtain-the-test-environment" class="headerlink" title="Obtain the test environment"></a>Obtain the test environment</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><br>mkdir evaluate-loki<br>cd evaluate-loki<br><br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/loki-config.yaml -O loki-config.yaml<br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/promtail-local-config.yaml -O promtail-local-config.yaml<br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/docker-compose.yaml -O docker-compose.yaml<br><br></code></pre></td></tr></table></figure><p>但是我的网络无法从这个地址下载,其实可以直接取github上找<br><a href="https://github.com/grafana/loki/tree/main/examples/getting-started">https://github.com/grafana/loki/tree/main/examples/getting-started</a><br>下载对应的3个配置文件</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日志</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>loki</tag>
       
     </tags>
     

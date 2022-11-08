@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="自动同步blog脚本">
+    <meta name="description" content="学习日记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
-<meta property="og:url" content="http://zuoxu.club/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/index.html">
+<meta property="og:title" content="loki学习日记">
+<meta property="og:url" content="http://zuoxu.club/2022/09/12/loki/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="自动同步blog脚本">
+<meta property="og:description" content="学习日记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-12T14:41:22.000Z">
-<meta property="article:modified_time" content="2022-11-08T05:40:11.675Z">
+<meta property="article:modified_time" content="2022-11-08T05:40:11.672Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="loki">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>写个脚本做自动同步，这样就不用手动操作了，只要写博客就行 - 发际线的志逐渐暴露的博客</title>
+  <title>loki学习日记 - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行"></span>
+            <span id="subtitle" data-typed-text="loki学习日记"></span>
           
         </div>
 
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          616 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          10 分钟
+          6 分钟
         
       </span>
     
@@ -298,17 +298,16 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</h1>
+            <h1 style="display: none">loki学习日记</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1-先到gitee上建个空项目叫blog"><a href="#1-先到gitee上建个空项目叫blog" class="headerlink" title="1. 先到gitee上建个空项目叫blog"></a>1. 先到gitee上建个空项目叫blog</h2><h2 id="2-点击头像-gt-设置-gt-ssh公钥"><a href="#2-点击头像-gt-设置-gt-ssh公钥" class="headerlink" title="2. 点击头像 -&gt; 设置 -&gt; ssh公钥"></a>2. 点击头像 -&gt; 设置 -&gt; ssh公钥</h2><p>添加服务器公钥和自己公钥到里面</p>
-<h2 id="3-在本地拉取代码，在服务器-root拉取代码"><a href="#3-在本地拉取代码，在服务器-root拉取代码" class="headerlink" title="3. 在本地拉取代码，在服务器/root拉取代码"></a>3. 在本地拉取代码，在服务器/root拉取代码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">上传文件</span><br>tag=&quot;v&quot;$(date &quot;+%Y%m%d%H%M%S&quot;)<br>git tag $tag <br>echo &quot;创建tag完成：&quot;$tag<br>git push origin $tag<br>echo &quot;上传tag成功&quot;<br>ssh root@124.222.0.48 &quot;cd /blog;git fetch;git checkout -b $tag;git pull origin $tag;&quot;<br>echo &quot;下载tag成功&quot;<br><br>ssh root@124.222.0.48 &quot;rm -rf /hexo/source/_posts/*.md;&quot;<br>echo &quot;清理文件完成&quot; <br>ssh root@124.222.0.48 &quot;cp /blog/blogs/*/*.md /hexo/source/_posts/;&quot; <br>echo &quot;复制完成&quot;<br>ssh root@124.222.0.48 &quot;cd /hexo;hexo clean; hexo g;&quot; <br>echo &quot;重新构建静态文件完成&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">删除标签</span><br>tags=$(git tag -l)<br>git push --delete origin $tags <br>git tag -d $tags<br>ssh root@124.222.0.48 &quot;cd /blog;git tag -d $tags;git checkout master;git pull origin master;git branch -D $tags&quot;<br>echo &quot;清理标签完成&quot;<br><br>ssh root@124.222.0.48 &quot;cd /nginx;docker-compose down;docker-compose up -d ;&quot;<br>echo &quot;重新构建docker完成&quot; <br><br><br></code></pre></td></tr></table></figure>
-
-<h2 id="4-在本机的linux环境下添加定时任务"><a href="#4-在本机的linux环境下添加定时任务" class="headerlink" title="4. 在本机的linux环境下添加定时任务"></a>4. 在本机的linux环境下添加定时任务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">crontab -e <br><br>0 11 * * * cd /mnt/d/github/blog &amp;&amp; bash ./sync # 每天定时11点执行上面的脚本<br><br></code></pre></td></tr></table></figure>
-
-<h1 id="https-blog-csdn-net-viva-la-free-article-details-109967308"><a href="#https-blog-csdn-net-viva-la-free-article-details-109967308" class="headerlink" title="https://blog.csdn.net/viva_la_free/article/details/109967308"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/viva_la_free/article/details/109967308">https://blog.csdn.net/viva_la_free/article/details/109967308</a></h1><h1 id="定时任务不生效。。。"><a href="#定时任务不生效。。。" class="headerlink" title="定时任务不生效。。。"></a>定时任务不生效。。。</h1><h2 id="5-当然会有更好的方案，但是这个对于我来说比较简单。"><a href="#5-当然会有更好的方案，但是这个对于我来说比较简单。" class="headerlink" title="5. 当然会有更好的方案，但是这个对于我来说比较简单。"></a>5. 当然会有更好的方案，但是这个对于我来说比较简单。</h2><p>我装了wsl2，所以电脑上有常驻的linux</p>
+                <h2 id="官网地址"><a href="#官网地址" class="headerlink" title="官网地址"></a>官网地址</h2><pre><code class="hljs">https://grafana.com/docs/loki/latest/getting-started/
+</code></pre>
+<h2 id="get-start"><a href="#get-start" class="headerlink" title="get-start"></a>get-start</h2><p>官网教程如下</p>
+<h3 id="Obtain-the-test-environment"><a href="#Obtain-the-test-environment" class="headerlink" title="Obtain the test environment"></a>Obtain the test environment</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><br>mkdir evaluate-loki<br>cd evaluate-loki<br><br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/loki-config.yaml -O loki-config.yaml<br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/promtail-local-config.yaml -O promtail-local-config.yaml<br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/docker-compose.yaml -O docker-compose.yaml<br><br></code></pre></td></tr></table></figure>
+<p>但是我的网络无法从这个地址下载,其实可以直接取github上找<br><a target="_blank" rel="noopener" href="https://github.com/grafana/loki/tree/main/examples/getting-started">https://github.com/grafana/loki/tree/main/examples/getting-started</a><br>下载对应的3个配置文件</p>
 
                 
               </div>
@@ -327,7 +326,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BB%BA%E7%AB%99/" class="category-chain-item">建站</a>
+  <a href="/categories/%E6%97%A5%E5%BF%97/" class="category-chain-item">日志</a>
   
   
 
@@ -342,7 +341,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hexo/">#hexo</a>
+        <a href="/tags/loki/">#loki</a>
       
     </div>
   
@@ -354,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</div>
-      <div>http://zuoxu.club/2022/09/12/写个脚本做自动同步/</div>
+      <div>loki学习日记</div>
+      <div>http://zuoxu.club/2022/09/12/loki/</div>
     </div>
     <div class="license-meta">
       
@@ -402,9 +401,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/12/loki/" title="loki学习日记">
+                      <a href="/2022/09/12/linux%20%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="搭建linux 代理服务器">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">loki学习日记</span>
+                        <span class="hidden-mobile">搭建linux 代理服务器</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -412,8 +411,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/06/hexo%E5%BB%BA%E7%AB%99%E5%AD%A6%E4%B9%A0/" title="hexo建站学习">
-                        <span class="hidden-mobile">hexo建站学习</span>
+                      <a href="/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/" title="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
+                        <span class="hidden-mobile">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
