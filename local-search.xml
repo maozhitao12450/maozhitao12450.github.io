@@ -133,7 +133,7 @@
     <link href="/2022/10/21/pulsar-tools/"/>
     <url>/2022/10/21/pulsar-tools/</url>
     
-    <content type="html"><![CDATA[<h2 id="pulsarctl"><a href="#pulsarctl" class="headerlink" title="pulsarctl"></a>pulsarctl</h2><p><a href="https://github.com/streamnative/pulsarctl/releases/tag/v2.9.3.14">https://github.com/streamnative/pulsarctl/releases/tag/v2.9.3.14</a></p><ol><li>下载,解压</li><li>放到PATH里 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">export PATH=$PATH:xxx/pulsarctl-amd64-linux<br></code></pre></td></tr></table></figure></li><li>设置相关地址 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pulsarctl context set development --admin-service-url=&quot;http://1.2.3.4:8080&quot; --bookie-service-url=&quot;http://1.2.3.4:8083&quot;<br></code></pre></td></tr></table></figure></li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="pulsarctl"><a href="#pulsarctl" class="headerlink" title="pulsarctl"></a>pulsarctl</h2><p><a href="https://github.com/streamnative/pulsarctl/releases/tag/v2.9.3.14">https://github.com/streamnative/pulsarctl/releases/tag/v2.9.3.14</a></p><ol><li>下载,解压</li><li>放到PATH里 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">export PATH=$PATH:xxx/pulsarctl-amd64-linux<br></code></pre></td></tr></table></figure></li><li>设置相关地址 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pulsarctl context set development --admin-service-url=&quot;http://1.2.3.4:8080&quot; --bookie-service-url=&quot;http://1.2.3.4:8083&quot;<br></code></pre></td></tr></table></figure></li><li>pulsarctl的一些坑<ol><li>由于这玩意是用go写的,有序列化和反序列化的过程,所以会缺少几个字段</li></ol></li><li>打算自己写个python的</li></ol>]]></content>
     
     
     <categories>
@@ -480,6 +480,31 @@
     <tags>
       
       <tag>idea</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>vscode markdown 粘贴图片</title>
+    <link href="/2022/09/15/vscode%20markdown%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87/"/>
+    <url>/2022/09/15/vscode%20markdown%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87/</url>
+    
+    <content type="html"><![CDATA[<ol><li>vscode 插件搜索 Paste Image</li><li>ctrl+shift+p </li><li>搜索Paste Image就可以看到快捷键了<ol><li>我这是 ctrl+alt+v</li></ol></li><li>默认会放在和markdow同一目录下,如果想改变的话可以打开<ol><li>文件 -&gt; 首选项 -&gt; 搜索Paste Image -&gt; 改变相关配置<br><img src="image/2022-11-08-13-51-01.png"></li></ol></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>vscode使用技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vscode</tag>
       
     </tags>
     
