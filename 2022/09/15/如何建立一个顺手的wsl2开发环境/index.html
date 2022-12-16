@@ -24,7 +24,7 @@
 <meta property="og:description" content="wsl2在window10上还挺方便的，就是很多坑需要填一下。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-15T12:00:22.000Z">
-<meta property="article:modified_time" content="2022-11-15T07:53:45.727Z">
+<meta property="article:modified_time" content="2022-12-16T12:00:07.875Z">
 <meta property="article:author" content="mzt12450@163.com">
 <meta property="article:tag" content="wsl2">
 <meta property="article:tag" content="lxrunoffline">
@@ -243,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          3.8k 字
         
       </span>
     
@@ -254,7 +254,7 @@
         
         
         
-          31 分钟
+          32 分钟
         
       </span>
     
@@ -365,6 +365,10 @@
 <h2 id="关于使用docker导致的内网地址无法访问"><a href="#关于使用docker导致的内网地址无法访问" class="headerlink" title="关于使用docker导致的内网地址无法访问"></a>关于使用docker导致的内网地址无法访问</h2><p>一般来说都是由于docker0冲突导致。设置成不会冲突的网段就行<br>vim /etc/docker/daemon.json</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;bip&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;10.55.0.1/16&quot;</span> <br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 <h2 id="国内可用的-docker-源"><a href="#国内可用的-docker-源" class="headerlink" title="国内可用的 docker 源"></a>国内可用的 docker 源</h2><p>vim /etc/docker/daemon.json<br>{<br>  “registry-mirrors”: [<br>    “<a target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn&quot;/">https://docker.mirrors.ustc.edu.cn&quot;</a>,<br>    “<a target="_blank" rel="noopener" href="https://registry.docker-cn.com&quot;/">https://registry.docker-cn.com&quot;</a>,<br>    “<a target="_blank" rel="noopener" href="http://hub-mirror.c.163.com&quot;/">http://hub-mirror.c.163.com&quot;</a><br>  ],<br>}</p>
+<h2 id="docker-compose-默认从172-20-0-0-16选取可用网段"><a href="#docker-compose-默认从172-20-0-0-16选取可用网段" class="headerlink" title="docker compose 默认从172.20.0.0/16选取可用网段"></a>docker compose 默认从172.20.0.0/16选取可用网段</h2><p>我公司很多地址也是这个网段,不太方便,需要修改一下<br>vim /etc/docker/daemon.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><span class="hljs-attr">&quot;default-address-pools&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><br><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;base&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;10.10.0.0/16&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;size&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">24</span><span class="hljs-punctuation">&#125;</span><br><br><span class="hljs-punctuation">]</span><br><br></code></pre></td></tr></table></figure>
+
+
 
                 
               </div>
@@ -412,7 +416,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年11月15日</div>
+          <div>2022年12月16日</div>
         </div>
       
       <div class="license-meta-item">
