@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="pulsar 源码编译">
+    <meta name="description" content="一些好用的python库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pulsar 源码编译">
-<meta property="og:url" content="http://zuoxu.club/2022/10/10/pulsar(0)-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/index.html">
+<meta property="og:title" content="python 好用的库">
+<meta property="og:url" content="http://zuoxu.club/2022/09/06/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BA%93/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="pulsar 源码编译">
+<meta property="og:description" content="一些好用的python库">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-10T03:30:00.000Z">
-<meta property="article:modified_time" content="2023-01-12T10:15:50.266Z">
+<meta property="article:published_time" content="2022-09-06T13:53:22.000Z">
+<meta property="article:modified_time" content="2023-01-12T10:15:50.296Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="pulsar 源码">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>pulsar 源码编译 - 发际线的志逐渐暴露的博客</title>
+  <title>python 好用的库 - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="pulsar 源码编译"></span>
+            <span id="subtitle" data-typed-text="python 好用的库"></span>
           
         </div>
 
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-10 11:30" pubdate>
-          2022年10月10日 中午
+        <time datetime="2022-09-06 21:53" pubdate>
+          2022年9月6日 晚上
         </time>
       </span>
     
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          48 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          23 分钟
+          1 分钟
         
       </span>
     
@@ -298,85 +298,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">pulsar 源码编译</h1>
+            <h1 style="display: none">python 好用的库</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="总体过程"><a href="#总体过程" class="headerlink" title="总体过程"></a>总体过程</h2><ol>
-<li>下载源码 我的版本是2.8.1</li>
-<li>idea 配置<ol>
-<li><strong>详情请见源码README.md中的 setting-up-your-ide</strong></li>
-<li>请务必看这段,不看根本编译不过</li>
-</ol>
-</li>
-<li>mvn clean install -DskipTests -Dlicense.skip=true<ol>
-<li>这个必选要执行,因为源码中的许多模块直接依赖固定版本(当前版本,例如我下的是2.8.1.8),比一般的pulsar版本多了一个小版本,maven仓库里是找不到的,是本地编译的结果</li>
-</ol>
-</li>
-</ol>
-<h2 id="实际操作过程"><a href="#实际操作过程" class="headerlink" title="实际操作过程"></a>实际操作过程</h2><ol>
-<li>从github下载源码</li>
-<li>check 对应的tag</li>
-<li>打开README.md</li>
-<li>打开到 Setting up your IDE</li>
-<li><strong>照着操作</strong></li>
-</ol>
-<h3 id="我的配置过程-就是Setting-up-your-IDE的翻译-以及我的操作过程"><a href="#我的配置过程-就是Setting-up-your-IDE的翻译-以及我的操作过程" class="headerlink" title="我的配置过程(就是Setting up your IDE的翻译,以及我的操作过程)"></a>我的配置过程(就是Setting up your IDE的翻译,以及我的操作过程)</h3><h4 id="设置JDK11"><a href="#设置JDK11" class="headerlink" title="设置JDK11"></a>设置JDK11</h4><ol>
-<li>打开 <strong>Project Settings</strong>.<br> 依次点击 <strong>File</strong> -&gt; <strong>Project Structure</strong> -&gt; <strong>Project Settings</strong> -&gt; <strong>Project</strong>.</li>
-<li>选择JDK版本为JDK11<br> 如果没有JDK11,那么依次点击 <strong>SDK输入框</strong> -&gt; <strong>ADD SDK</strong> -&gt; <strong>Download JDK…</strong> -&gt; version选中11 -&gt; <strong>AdoptOpenJDK (Hotspot)</strong> -&gt; <strong>download</strong></li>
-</ol>
-<h4 id="设置Maven使用的Java版本"><a href="#设置Maven使用的Java版本" class="headerlink" title="设置Maven使用的Java版本"></a>设置Maven使用的Java版本</h4><ol>
-<li><p>依次点击以下设置进入maven设置<br><strong>Settings</strong> -&gt; <strong>Build, Execution, Deployment</strong> -&gt; <strong>Build Tools</strong> -&gt; <strong>Maven</strong> -&gt; <strong>Importing</strong>.</p>
-</li>
-<li><p>设置 <strong>JDK for Importer</strong>,选择  <strong>Use Project JDK</strong> </p>
-</li>
-<li><p>依次点击 <strong>Maven</strong> -&gt; <strong>Runner</strong> 也设置为 <strong>Use Project JDK</strong>.</p>
-</li>
-</ol>
-<h4 id="设置-annotation-processing"><a href="#设置-annotation-processing" class="headerlink" title="设置 annotation processing"></a>设置 annotation processing</h4><ol>
-<li><p>依次点击进入设置<br><strong>Settings</strong> -&gt; <strong>Build, Execution, Deployment</strong> -&gt; <strong>Compiler</strong> -&gt; <strong>Annotation Processors</strong>.</p>
-</li>
-<li><p>依次选中:</p>
-<ol>
-<li><strong>Enable annotation processing</strong></li>
-<li><strong>Obtain processors from project classpath</strong></li>
-<li><strong>Module content root</strong></li>
-</ol>
-</li>
-<li><p>设置文件夹路径:</p>
-<ol>
-<li>设置Production sources directory: 为 target/generated-sources/annotations</li>
-<li>设置Test sources directory:  为 target/generated-test-sources/test-annotations</li>
-</ol>
-</li>
-<li><p>点击确认 <strong>OK</strong>.</p>
-</li>
-<li><p>安装 lombok plugin</p>
-</li>
-</ol>
-<h4 id="Maven-模块调整"><a href="#Maven-模块调整" class="headerlink" title="Maven 模块调整"></a>Maven 模块调整</h4><ol>
-<li>一般在右侧,打开maven菜单,点击profiles菜单<ol>
-<li>选中”core-modules” </li>
-<li>取消选中”main”</li>
-<li>点击”Reload All Maven Projects”</li>
-<li>在maven的工具栏里点击  “Generate Sources and Update Folders For All Projects” <ol>
-<li>这一步大概需要花费10分钟,如果只选中 “core-modules” 能快一点</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>ps: 3,4两部不知道的话可以双击<strong>shift</strong>直接输入指令搜索 </p>
-</blockquote>
-<h4 id="启动编译"><a href="#启动编译" class="headerlink" title="启动编译"></a>启动编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">                跳过测试     忽略证书检查</span><br>mvn clean install -DskipTests -Dlicense.skip=true<br></code></pre></td></tr></table></figure>
+                <h1 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h1><p>pip3 install tqdm</p>
+<h1 id="jenkin客户端"><a href="#jenkin客户端" class="headerlink" title="jenkin客户端"></a>jenkin客户端</h1><p>pip3 install jenkinsapi</p>
 
-<h4 id="测试编译结果"><a href="#测试编译结果" class="headerlink" title="测试编译结果"></a>测试编译结果</h4><ol>
-<li>双击<strong>shift</strong>,打开搜索框,输入 org.apache.pulsar.PulsarBrokerStarterTest#testMainWithNoArgument</li>
-<li>运行该测试用例</li>
-</ol>
-<h2 id="源码启动pulsar-standlone"><a href="#源码启动pulsar-standlone" class="headerlink" title="源码启动pulsar standlone"></a>源码启动pulsar standlone</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 1. 打开 org.apache.pulsar.broker.service.StandaloneTest</span><br><span class="hljs-comment">// 2. 添加测试例子</span><br><span class="hljs-comment">// 这个是启动pulsarStandalone</span><br> <span class="hljs-meta">@Test</span><br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testStart</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>     <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;&quot;</span>);<br>     <span class="hljs-type">String</span> <span class="hljs-variable">absolutePath</span> <span class="hljs-operator">=</span> file.toPath().toAbsolutePath().getParent().resolve(<span class="hljs-string">&quot;conf/standalone.conf&quot;</span>).toString();<br>     String[] args = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<br>             <span class="hljs-string">&quot;--config&quot;</span>, absolutePath, <span class="hljs-comment">// standalone的配置文件路径</span><br>             <span class="hljs-string">&quot;-nfw&quot;</span> <span class="hljs-comment">// 不起用functionworker</span><br>     &#125;;<br>     <span class="hljs-type">PulsarStandaloneStarter</span> <span class="hljs-variable">standalone</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PulsarStandaloneStarter</span>(args);<br>     standalone.start();<br>     Thread.sleep(<span class="hljs-number">200000000</span>);<br> &#125;<br><br><span class="hljs-comment">// 3. org.apache.pulsar.client.cli.TestCmdProduce</span><br><span class="hljs-comment">// 4. 添加以下测试用例</span><br> <span class="hljs-meta">@Test</span><br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testProduceMessage</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>     String[] args = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<br>             <span class="hljs-string">&quot;D:\\gitlab\\pulsar\\conf\\client.conf&quot;</span>,<br>             <span class="hljs-string">&quot;produce&quot;</span>,<br>             <span class="hljs-string">&quot;my-topic&quot;</span>,<br>             <span class="hljs-string">&quot;--messages&quot;</span>,<br>             <span class="hljs-string">&quot;hello-pulsar&quot;</span><br>     &#125;;<br>     org.apache.pulsar.client.cli.PulsarClientTool.main(args);<br> &#125;<br><br> <span class="hljs-meta">@Test</span><br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testConsumeMessage</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>     String[] args = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<br>             <span class="hljs-string">&quot;D:\\gitlab\\pulsar\\conf\\client.conf&quot;</span>,<br>             <span class="hljs-string">&quot;consume&quot;</span>,<br>             <span class="hljs-string">&quot;my-topic&quot;</span>,<br>             <span class="hljs-string">&quot;-s&quot;</span>,<br>             <span class="hljs-string">&quot;first-subscription&quot;</span><br>     &#125;;<br>     org.apache.pulsar.client.cli.PulsarClientTool.main(args);<br> &#125;<br><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -394,7 +323,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/pulsar/" class="category-chain-item">pulsar</a>
+  <a href="/categories/python/" class="category-chain-item">python</a>
   
   
 
@@ -409,7 +338,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/pulsar-%E6%BA%90%E7%A0%81/">#pulsar 源码</a>
+        <a href="/tags/python/">#python</a>
       
     </div>
   
@@ -421,8 +350,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>pulsar 源码编译</div>
-      <div>http://zuoxu.club/2022/10/10/pulsar(0)-源码编译/</div>
+      <div>python 好用的库</div>
+      <div>http://zuoxu.club/2022/09/06/好用的库/</div>
     </div>
     <div class="license-meta">
       
@@ -434,7 +363,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月10日</div>
+          <div>2022年9月6日</div>
         </div>
       
       
@@ -469,21 +398,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/12/pulsar-manager/" title="pulsar manager">
+                      <a href="/2022/09/06/hexo%E5%BB%BA%E7%AB%99%E5%AD%A6%E4%B9%A0/" title="hexo建站学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pulsar manager</span>
+                        <span class="hidden-mobile">hexo建站学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2022/10/10/pulsar%E5%9F%BA%E7%A1%80/" title="pulsar 2.8.4 基础学习">
-                        <span class="hidden-mobile">pulsar 2.8.4 基础学习</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>

@@ -794,5 +794,30 @@
   
   
   
+  <entry>
+    <title>python 好用的库</title>
+    <link href="/2022/09/06/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BA%93/"/>
+    <url>/2022/09/06/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BA%93/</url>
+    
+    <content type="html"><![CDATA[<h1 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h1><p>pip3 install tqdm</p><h1 id="jenkin客户端"><a href="#jenkin客户端" class="headerlink" title="jenkin客户端"></a>jenkin客户端</h1><p>pip3 install jenkinsapi</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>
