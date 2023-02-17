@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2023/02/17/jenkins%E4%BB%BB%E5%8A%A1%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+    <url>/2023/02/17/jenkins%E4%BB%BB%E5%8A%A1%E5%AE%A2%E6%88%B7%E7%AB%AF/</url>
+    
+    <content type="html"><![CDATA[<p>{<br>  “took” : 2,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 32,<br>    “successful” : 32,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : {<br>      “value” : 4,<br>      “relation” : “eq”<br>    },<br>    “max_score” : 0.0,<br>    “hits” : [<br>      {<br>        “_index” : “newim_v3”,<br>        “_type” : “_doc”,<br>        “_id” : “15927031:215847167213”,<br>        “_score” : 0.0,<br>        “_routing” : “15927031”,<br>        “_source” : {<br>          “withUnread” : true,<br>          “visible” : true,<br>          “read” : true,<br>          “businessFeature” : {<br>            “userInappropriate” : false,<br>            “communicateStatus” : “UNKNOWN”,<br>            “flags” : 8736,<br>            “myReply” : true<br>          },<br>          “session” : {<br>            “context” : {<br>              “job” : {<br>                “applyType” : “EMAIL”,<br>                “state” : “RELEASED”<br>              },<br>              “jobNumber” : “CC159270310J40257170706”<br>            },<br>            “referType” : “TALENT”,<br>            “sessionType” : “P2P”,<br>            “speakTurns” : 2,<br>            “sessionId” : “85c0b1d0f144c985492ea628fefbca82”<br>          },<br>          “@metadata” : {<br>            “traceId” : “4d3e418817a847f886a160bb1e6206bb”,<br>            “eventTime” : “2023-02-11T02:20:10.974Z”<br>          },<br>          “accountType” : “STAFF”,<br>          “initiator” : true,<br>          “topTime” : 0,<br>          “rootOrgId” : 15927031,<br>          “target” : {<br>            “accountId” : 675925814,<br>            “candidate” : {<br>              “originType” : “B”,<br>              “sourceType” : [<br>                “TALENT”<br>              ],<br>              “id” : 33603260406,<br>              “state” : “INAPPROPRIATE”<br>            },<br>            “sortTime” : 1665217588416,<br>            “accountType” : “USER”,<br>            “initiator” : false,<br>            “label” : [ ],<br>            “speakTimes” : 1,<br>            “account” : {<br>              “resume” : {<br>                “currentJob” : “集团营销经理”,<br>                “currentCompany” : “东方今典集团”,<br>                “resumeNumber” : “JM759258146R90250000000”<br>              },<br>              “aliasName” : “张先生”,<br>              “name” : “张鹏飞”,<br>              “lang” : “1”,<br>              “channelId” : “675925814”<br>            },<br>            “memberId” : 216467355110<br>          },<br>          “accountId” : 1098292508,<br>          “communicateTime” : 1665217588416,<br>          “@timestamp” : “2023-02-11T02:20:10.987Z”,<br>          “initiativeHidden” : false,<br>          “speakTimes” : 1,<br>          “memberId” : 215847167213,<br>          “stashed” : false<br>        }<br>      },<br>      {<br>        “_index” : “newim_v3”,<br>        “_type” : “_doc”,<br>        “_id” : “15927031:241160454713”,<br>        “_score” : 0.0,<br>        “_routing” : “15927031”,<br>        “_source” : {<br>          “withUnread” : false,<br>          “visible” : false,<br>          “read” : true,<br>          “businessFeature” : {<br>            “userInappropriate” : false,<br>            “communicateStatus” : “UNKNOWN”,<br>            “flags” : 8736,<br>            “myReply” : true<br>          },<br>          “session” : {<br>            “context” : {<br>              “org” : {<br>                “name” : “河南商景营销策划有限公司”<br>              },<br>              “job” : {<br>                “applyType” : “EMAIL”,<br>                “state” : “RELEASED”,<br>                “title” : “无责底薪4K销售”<br>              },<br>              “jobNumber” : “CC159270310J40257170706”<br>            },<br>            “referType” : “TALENT”,<br>            “sessionType” : “P2P”,<br>            “speakTurns” : 1,<br>            “sessionId” : “85c0b1d0f144c985492ea628fefbca82”<br>          },<br>          “@metadata” : {<br>            “traceId” : “a3f77a05277a487b8dce348454f0ed68”,<br>            “eventTime” : “2023-02-12T05:39:09.626Z”<br>          },<br>          “accountType” : “STAFF”,<br>          “initiator” : true,<br>          “topTime” : 0,<br>          “rootOrgId” : 15927031,<br>          “target” : {<br>            “accountId” : 675925814,<br>            “candidate” : {<br>              “originType” : “B”,<br>              “sourceType” : [<br>                “TALENT”<br>              ],<br>              “id” : 33603260406,<br>              “state” : “INAPPROPRIATE”<br>            },<br>            “sortTime” : 1676082011078,<br>            “accountType” : “USER”,<br>            “initiator” : false,<br>            “label” : [ ],<br>            “speakTimes” : 0,<br>            “account” : {<br>              “resume” : {<br>                “currentJob” : “集团营销经理”,<br>                “currentCompany” : “东方今典集团”,<br>                “resumeNumber” : “JM759258146R90250000000”<br>              },<br>              “aliasName” : “张先生”,<br>              “name” : “张鹏飞”,<br>              “lang” : “1”,<br>              “channelId” : “675925814”<br>            },<br>            “memberId” : 242034213210<br>          },<br>          “accountId” : 1098292508,<br>          “communicateTime” : 1676082011078,<br>          “@timestamp” : “2023-02-12T05:39:09.641Z”,<br>          “initiativeHidden” : true,<br>          “speakTimes” : 1,<br>          “memberId” : 241160454713,<br>          “stashed” : false<br>        }<br>      },<br>      {<br>        “_index” : “newim_v3”,<br>        “_type” : “_doc”,<br>        “_id” : “675925814:216467355110”,<br>        “_score” : 0.0,<br>        “_routing” : “675925814”,<br>        “_source” : {<br>          “withUnread” : false,<br>          “visible” : false,<br>          “read” : true,<br>          “businessFeature” : {<br>            “userInappropriate” : false,<br>            “flags” : 8736,<br>            “communicateStatus” : “GREET”,<br>            “myReply” : false<br>          },<br>          “session” : {<br>            “context” : {<br>              “job” : {<br>                “applyType” : “EMAIL”,<br>                “state” : “RELEASED”<br>              },<br>              “jobNumber” : “CC159270310J40257170706”<br>            },<br>            “referType” : “TALENT”,<br>            “sessionType” : “P2P”,<br>            “speakTurns” : 1,<br>            “sessionId” : “85c0b1d0f144c985492ea628fefbca82”<br>          },<br>          “@metadata” : {<br>            “traceId” : “9cb047aef2574dada7150f44e42c0940”,<br>            “eventTime” : “2023-01-29T02:46:12.823Z”<br>          },<br>          “accountType” : “USER”,<br>          “initiator” : false,<br>          “topTime” : 0,<br>          “rootOrgId” : 15927031,<br>          “target” : {<br>            “accountId” : 1098292508,<br>            “sortTime” : 1668509255225,<br>            “accountType” : “STAFF”,<br>            “initiator” : true,<br>            “speakTimes” : 1,<br>            “account” : {<br>              “org” : {<br>                “reviewOrgNature” : 1,<br>                “cmpId” : 15927031,<br>                “name” : “河南商景营销策划有限公司”,<br>                “shieldOrg” : false<br>              },<br>              “nickName” : “崔女士”,<br>              “name” : “崔娅琼”,<br>              “channelId” : “1098292508”<br>            },<br>            “memberId” : 230151300913<br>          },<br>          “accountId” : 675925814,<br>          “communicateTime” : 1668509255225,<br>          “@timestamp” : “2023-01-29T02:46:12.829Z”,<br>          “initiativeHidden” : false,<br>          “speakTimes” : 0,<br>          “memberId” : 230898321710,<br>          “stashed” : false<br>        }<br>      },<br>      {<br>        “_index” : “newim_v3”,<br>        “_type” : “_doc”,<br>        “_id” : “675925814:242034213210”,<br>        “_score” : 0.0,<br>        “_routing” : “675925814”,<br>        “_source” : {<br>          “memberId” : 242034213210,<br>          “accountType” : “USER”,<br>          “accountId” : 675925814,<br>          “rootOrgId” : 15927031,<br>          “visible” : false,<br>          “initiator” : false,<br>          “communicateTime” : 1676082011078,<br>          “topTime” : 0,<br>          “read” : true,<br>          “speakTimes” : 0,<br>          “initiativeHidden” : false,<br>          “stashed” : false,<br>          “withUnread” : false,<br>          “session” : {<br>            “sessionId” : “85c0b1d0f144c985492ea628fefbca82”,<br>            “speakTurns” : 1,<br>            “referType” : “TALENT”,<br>            “sessionType” : “P2P”,<br>            “context” : {<br>              “jobNumber” : “CC159270310J40257170706”,<br>              “job” : {<br>                “title” : “无责底薪4K销售”,<br>                “state” : “RELEASED”,<br>                “applyType” : “EMAIL”<br>              },<br>              “org” : {<br>                “name” : “河南商景营销策划有限公司”<br>              }<br>            }<br>          },<br>          “businessFeature” : {<br>            “flags” : 8736,<br>            “myReply” : false,<br>            “communicateStatus” : “GREET”,<br>            “userInappropriate” : false<br>          },<br>          “target” : {<br>            “memberId” : 241160454713,<br>            “accountType” : “STAFF”,<br>            “accountId” : 1098292508,<br>            “sortTime” : 1676082011078,<br>            “initiator” : true,<br>            “speakTimes” : 1,<br>            “account” : {<br>              “name” : “崔娅琼”,<br>              “nickName” : “崔女士”,<br>              “channelId” : “1098292508”,<br>              “org” : {<br>                “name” : “河南商景营销策划有限公司”,<br>                “cmpId” : 15927031,<br>                “reviewOrgNature” : 1,<br>                “shieldOrg” : false<br>              }<br>            }<br>          },<br>          “@timestamp” : “2023-02-11T02:33:13.058Z”,<br>          “@metadata” : {<br>            “traceId” : “4a7979c1bdc54a9b94130c4aea8f0b25”,<br>            “eventTime” : “2023-02-11T02:33:11.038Z”<br>          }<br>        }<br>      }<br>    ]<br>  }<br>}</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>作为一个程序员,白嫖的快乐才是真的快乐</title>
+    <link href="/2023/02/17/%E7%99%BD%E5%AB%96%E4%BD%BF%E6%88%91%E5%BF%AB%E4%B9%90/"/>
+    <url>/2023/02/17/%E7%99%BD%E5%AB%96%E4%BD%BF%E6%88%91%E5%BF%AB%E4%B9%90/</url>
+    
+    <content type="html"><![CDATA[<h2 id="测试用的mysql数据库-如果想建个最新的mysql测试之类的可以使用"><a href="#测试用的mysql数据库-如果想建个最新的mysql测试之类的可以使用" class="headerlink" title="测试用的mysql数据库,如果想建个最新的mysql测试之类的可以使用"></a>测试用的mysql数据库,如果想建个最新的mysql测试之类的可以使用</h2><p><a href="http://sqlpub.com/">http://sqlpub.com</a></p><h2 id="目前看来可以长期白嫖的数据库-大小5G-只需要有邮箱就可以注册-需要翻墙"><a href="#目前看来可以长期白嫖的数据库-大小5G-只需要有邮箱就可以注册-需要翻墙" class="headerlink" title="目前看来可以长期白嫖的数据库,大小5G,只需要有邮箱就可以注册(需要翻墙)"></a>目前看来可以长期白嫖的数据库,大小5G,只需要有邮箱就可以注册(需要翻墙)</h2><p><a href="https://app.planetscale.com/">https://app.planetscale.com</a></p><h2 id="aws-亚马逊云如果你有一张信用卡-那么可以白嫖全套一年"><a href="#aws-亚马逊云如果你有一张信用卡-那么可以白嫖全套一年" class="headerlink" title="aws 亚马逊云如果你有一张信用卡,那么可以白嫖全套一年"></a>aws 亚马逊云如果你有一张信用卡,那么可以白嫖全套一年</h2><blockquote><p><a href="https://console.aws.amazon.com/console/home">https://console.aws.amazon.com/console/home</a><br>信用卡可以白嫖招商银行的全币种信用卡,没有年费.<br>能白嫖数据库一个,服务器1g1c30G硬盘,永久免费Nosql30G…可以考虑,目前在试试</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>白嫖</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>白嫖</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>wireshark 学习笔记</title>
     <link href="/2022/12/08/wireshark/"/>
     <url>/2022/12/08/wireshark/</url>
@@ -787,6 +825,33 @@
     <tags>
       
       <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>mysql5.7 docker-compose 文件备份</title>
+    <link href="/2022/09/06/mysql5.7%E7%9A%84dockercompose/"/>
+    <url>/2022/09/06/mysql5.7%E7%9A%84dockercompose/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><br><span class="hljs-attr">version:</span> <span class="hljs-string">&#x27;3.1&#x27;</span><br><br><span class="hljs-attr">services:</span><br><br>  <span class="hljs-attr">db:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:8.0.31</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">./mysql/data:/var/lib/mysql</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">./mysql/conf.d:/etc/mysql/conf.d</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;MYSQL_ROOT_PASSWORD=123456&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;TZ=Asia/Shanghai&quot;</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-number">3306</span><span class="hljs-string">:3306</span><br><br>  <span class="hljs-attr">adminer:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">adminer:4.8.1-standalone</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-number">8080</span><span class="hljs-string">:8080</span><br><br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>docker-bak</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+      <tag>mysql</tag>
       
     </tags>
     
