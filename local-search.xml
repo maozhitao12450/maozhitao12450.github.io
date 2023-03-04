@@ -17,6 +17,31 @@
   
   
   <entry>
+    <title>如何在window环境下直接使用指令执行python脚本</title>
+    <link href="/2023/03/04/%E5%A6%82%E4%BD%95%E5%9C%A8window%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8Cpython%E8%84%9A%E6%9C%AC/"/>
+    <url>/2023/03/04/%E5%A6%82%E4%BD%95%E5%9C%A8window%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8Cpython%E8%84%9A%E6%9C%AC/</url>
+    
+    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>python脚本跨平台还挺好用的,所以现在都不直接写shell脚本了,写的都是python脚本,但是在windows环境下这个脚本总需要使用python3 C:\Users\xxx\xxx\xxx.py执行,特别的麻烦,有没有能够直接执行脚本的方式呢?</p><h2 id="如何做到"><a href="#如何做到" class="headerlink" title="如何做到"></a>如何做到</h2><ol><li>找到一个文件夹,建议是C:\Users{用户名}\bin,把这个文件夹加入path里(这个应该都会吧,不会请在评论区回复一下,我补充一下)</li><li>把需要执行的python脚本拖到这个目录下</li><li>新建一个同名的后缀名为.bat的文件</li><li>内容如下<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat">python3 C:\Users\&#123;用户名&#125;\bin\脚本名.py %* <br></code></pre></td></tr></table></figure></li></ol><h2 id="懒人做法"><a href="#懒人做法" class="headerlink" title="懒人做法"></a>懒人做法</h2><p>我写了个bat脚本,新建一个文件 py_to_bat.bat ,放到这个文件夹下,直接点解运行就行</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">md</span> %~dp0python<br>(<span class="hljs-keyword">for</span> /f &quot;delims=&quot; <span class="hljs-variable">%%i</span> <span class="hljs-keyword">in</span> (&#x27;<span class="hljs-built_in">dir</span> /b /s &quot;*.py&quot; ^| <span class="hljs-built_in">findstr</span> &quot;py$&quot;&#x27;) <span class="hljs-keyword">do</span> (<br>    <span class="hljs-built_in">del</span>  <span class="hljs-variable">%%~</span>ni.bat<br>    <span class="hljs-built_in">move</span> <span class="hljs-variable">%~dp0/%</span>%~ni.py <span class="hljs-variable">%~dp0/python/%</span>%~ni.py<br>    <span class="hljs-built_in">echo</span> python3 <span class="hljs-variable">%~dp0/python/%</span>%~ni.py <span class="hljs-variable">%%*</span> &gt; <span class="hljs-variable">%%~</span>ni.bat<br>))<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>pulsar 订阅执行流程(十)</title>
     <link href="/2023/02/23/pulsar(10)%20%E8%AE%A2%E9%98%85/"/>
     <url>/2023/02/23/pulsar(10)%20%E8%AE%A2%E9%98%85/</url>

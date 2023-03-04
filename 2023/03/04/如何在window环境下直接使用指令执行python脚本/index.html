@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="hbase 的一些笔记">
+    <meta name="description" content="如何在window环境下直接使用指令执行python脚本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hbase 的一些笔记">
-<meta property="og:url" content="http://zuoxu.club/2022/09/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bhbase%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="如何在window环境下直接使用指令执行python脚本">
+<meta property="og:url" content="http://zuoxu.club/2023/03/04/%E5%A6%82%E4%BD%95%E5%9C%A8window%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8Cpython%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="hbase 的一些笔记">
+<meta property="og:description" content="如何在window环境下直接使用指令执行python脚本">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-15T12:00:22.000Z">
-<meta property="article:modified_time" content="2023-03-04T06:46:57.171Z">
+<meta property="article:published_time" content="2023-03-04T06:20:05.000Z">
+<meta property="article:modified_time" content="2023-03-04T06:46:57.172Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="hbase">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>hbase 的一些笔记 - 发际线的志逐渐暴露的博客</title>
+  <title>如何在window环境下直接使用指令执行python脚本 - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="hbase 的一些笔记"></span>
+            <span id="subtitle" data-typed-text="如何在window环境下直接使用指令执行python脚本"></span>
           
         </div>
 
@@ -232,8 +232,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-15 20:00" pubdate>
-          2022年9月15日 晚上
+        <time datetime="2023-03-04 14:20" pubdate>
+          2023年3月4日 下午
         </time>
       </span>
     
@@ -244,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          652 字
+          563 字
         
       </span>
     
@@ -255,7 +255,7 @@
         
         
         
-          6 分钟
+          5 分钟
         
       </span>
     
@@ -301,23 +301,20 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">hbase 的一些笔记</h1>
+            <h1 style="display: none">如何在window环境下直接使用指令执行python脚本</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="关于HBASE-CELL-TTL"><a href="#关于HBASE-CELL-TTL" class="headerlink" title="关于HBASE CELL TTL"></a>关于HBASE CELL TTL</h2><ol>
-<li>前置知识: hbase put 支持手动设置时间戳timestamp,同时该时间戳作为版本号只能增加(开启多版本的话会分开存储,不起用多版本那么久是只能增加),</li>
-<li>Put 操作支持 ttlPut.setTTL(time); </li>
-<li>time 代表从时间戳开始 + time ms 这么长时间后这次put相关的数据会被清理</li>
+                <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>python脚本跨平台还挺好用的,所以现在都不直接写shell脚本了,写的都是python脚本,但是在windows环境下这个脚本总需要使用python3 C:\Users\xxx\xxx\xxx.py执行,特别的麻烦,有没有能够直接执行脚本的方式呢?</p>
+<h2 id="如何做到"><a href="#如何做到" class="headerlink" title="如何做到"></a>如何做到</h2><ol>
+<li>找到一个文件夹,建议是C:\Users{用户名}\bin,把这个文件夹加入path里(这个应该都会吧,不会请在评论区回复一下,我补充一下)</li>
+<li>把需要执行的python脚本拖到这个目录下</li>
+<li>新建一个同名的后缀名为.bat的文件</li>
+<li>内容如下<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat">python3 C:\Users\&#123;用户名&#125;\bin\脚本名.py %* <br></code></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="关于批量操作"><a href="#关于批量操作" class="headerlink" title="关于批量操作"></a>关于批量操作</h2><ol>
-<li>hbase的操作可以使用org.apache.hadoop.hbase.client.BufferedMutator来批量化操作</li>
-<li>初始化过程如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">Connection connection; <span class="hljs-comment">// hbase连接</span><br><span class="hljs-type">BufferedMutatorParams</span> <span class="hljs-variable">bufferedMutatorParams</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedMutatorParams</span>(TableName.valueOf(<span class="hljs-string">&quot;tableName&quot;</span>));<br>bufferedMutatorParams.listener((exception, mutator) -&gt; &#123;<br>    <span class="hljs-comment">// 异步监控异常,如果没有的话会在触发flush时直接抛出异常,有的话会来到这</span><br>    doException...<br>&#125;);<br>bufferedMutator = connection.getBufferedMutator(bufferedMutatorParams);<br><br></code></pre></td></tr></table></figure></li>
-<li>使用 bufferedMutator.mutate(normalPut); 只支持 put和delete</li>
-<li>使用 bufferedMutator.flush(); 确认提交</li>
-</ol>
-
+<h2 id="懒人做法"><a href="#懒人做法" class="headerlink" title="懒人做法"></a>懒人做法</h2><p>我写了个bat脚本,新建一个文件 py_to_bat.bat ,放到这个文件夹下,直接点解运行就行</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">md</span> %~dp0python<br>(<span class="hljs-keyword">for</span> /f &quot;delims=&quot; <span class="hljs-variable">%%i</span> <span class="hljs-keyword">in</span> (&#x27;<span class="hljs-built_in">dir</span> /b /s &quot;*.py&quot; ^| <span class="hljs-built_in">findstr</span> &quot;py$&quot;&#x27;) <span class="hljs-keyword">do</span> (<br>    <span class="hljs-built_in">del</span>  <span class="hljs-variable">%%~</span>ni.bat<br>    <span class="hljs-built_in">move</span> <span class="hljs-variable">%~dp0/%</span>%~ni.py <span class="hljs-variable">%~dp0/python/%</span>%~ni.py<br>    <span class="hljs-built_in">echo</span> python3 <span class="hljs-variable">%~dp0/python/%</span>%~ni.py <span class="hljs-variable">%%*</span> &gt; <span class="hljs-variable">%%~</span>ni.bat<br>))<br><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -335,7 +332,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/hbase/" class="category-chain-item">hbase</a>
+  <a href="/categories/python/" class="category-chain-item">python</a>
   
   
 
@@ -350,7 +347,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hbase/">#hbase</a>
+        <a href="/tags/python/">#python</a>
       
     </div>
   
@@ -362,8 +359,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>hbase 的一些笔记</div>
-      <div>http://zuoxu.club/2022/09/15/记录一下hbase的一些使用问题/</div>
+      <div>如何在window环境下直接使用指令执行python脚本</div>
+      <div>http://zuoxu.club/2023/03/04/如何在window环境下直接使用指令执行python脚本/</div>
     </div>
     <div class="license-meta">
       
@@ -375,7 +372,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月15日</div>
+          <div>2023年3月4日</div>
         </div>
       
       
@@ -410,9 +407,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/15/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E9%A1%BA%E6%89%8B%E7%9A%84wsl2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="如何建立一个顺手的wsl2开发环境">
+                      <a href="/2023/03/04/jenkins%E4%BB%BB%E5%8A%A1%E5%AE%A2%E6%88%B7%E7%AB%AF/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">如何建立一个顺手的wsl2开发环境</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +417,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/12/linux%20%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="搭建linux 代理服务器">
-                        <span class="hidden-mobile">搭建linux 代理服务器</span>
+                      <a href="/2023/02/23/pulsar(10)%20%E8%AE%A2%E9%98%85/" title="pulsar 订阅执行流程(十)">
+                        <span class="hidden-mobile">pulsar 订阅执行流程(十)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
