@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>很多时候需要一些验证,但是又不想用自己的信息的时候可以试试临时邮箱和手机号</title>
+    <link href="/2023/03/05/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1%E5%92%8C%E6%89%8B%E6%9C%BA%E5%8F%B7/"/>
+    <url>/2023/03/05/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1%E5%92%8C%E6%89%8B%E6%9C%BA%E5%8F%B7/</url>
+    
+    <content type="html"><![CDATA[<h2 id="临时邮箱网址"><a href="#临时邮箱网址" class="headerlink" title="临时邮箱网址"></a>临时邮箱网址</h2><p><a href="https://www.linshi-email.com/">https://www.linshi-email.com/</a></p><h2 id="免费国外手机验证码网址"><a href="#免费国外手机验证码网址" class="headerlink" title="免费国外手机验证码网址"></a>免费国外手机验证码网址</h2><p><a href="https://jiemahao.com/">https://jiemahao.com/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>白嫖</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>白嫖</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>venv</title>
+    <link href="/2023/03/04/python-venv/"/>
+    <url>/2023/03/04/python-venv/</url>
+    
+    <content type="html"><![CDATA[<h2 id="今天无意中知道了python是有虚拟环境的"><a href="#今天无意中知道了python是有虚拟环境的" class="headerlink" title="今天无意中知道了python是有虚拟环境的"></a>今天无意中知道了python是有虚拟环境的</h2><p>Python中的venv模块可以用来创建轻量级的虚拟环境，每个虚拟环境都有其独立的Python包集合。</p><h2 id="使用手册"><a href="#使用手册" class="headerlink" title="使用手册"></a>使用手册</h2><h3 id="1-创建虚拟环境"><a href="#1-创建虚拟环境" class="headerlink" title="1. 创建虚拟环境"></a>1. 创建虚拟环境</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">python3 -m venv &lt;目录&gt;<br></code></pre></td></tr></table></figure><p>创建虚拟环境，其中&lt;目录&gt;是虚拟环境的路径。</p><p>在创建虚拟环境时，可以使用–system-site-packages选项来让虚拟环境可以访问系统Python的site-packages目录。</p><h3 id="2-激活虚拟环境"><a href="#2-激活虚拟环境" class="headerlink" title="2. 激活虚拟环境"></a>2. 激活虚拟环境</h3><p>linux可以使用source activate 激活虚拟环境，</p><p>如果是windows,那么activate脚本在&lt;目录&gt;\Scripts\下</p><h3 id="3-退出虚拟环境"><a href="#3-退出虚拟环境" class="headerlink" title="3. 退出虚拟环境"></a>3. 退出虚拟环境</h3><p>使用deactivate命令退出虚拟环境。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>如何在window环境下直接使用指令执行python脚本</title>
     <link href="/2023/03/04/%E5%A6%82%E4%BD%95%E5%9C%A8window%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8Cpython%E8%84%9A%E6%9C%AC/"/>
     <url>/2023/03/04/%E5%A6%82%E4%BD%95%E5%9C%A8window%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8Cpython%E8%84%9A%E6%9C%AC/</url>
