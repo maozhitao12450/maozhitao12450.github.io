@@ -163,6 +163,12 @@
     <content type="html"><![CDATA[<h2 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h2><p><a href="https://www.wireshark.org/">https://www.wireshark.org</a></p><h2 id="learnWS"><a href="#learnWS" class="headerlink" title="learnWS"></a>learnWS</h2>]]></content>
     
     
+    <categories>
+      
+      <category>wireshark</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -181,6 +187,12 @@
     
     <content type="html"><![CDATA[<h2 id="设置环境变量-BROWSER"><a href="#设置环境变量-BROWSER" class="headerlink" title="设置环境变量 BROWSER"></a>设置环境变量 BROWSER</h2><p>在windows里找到浏览器.exe文件所在路径,</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">直接执行</span><br>/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe<br><br>vim  ~/.profile<br>alias open=&quot;/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe &quot;<br>source ~/.profile <br></code></pre></td></tr></table></figure><h2 id="我迁移了wsl之后就没有权限打开c盘的应用了-解决方案如下"><a href="#我迁移了wsl之后就没有权限打开c盘的应用了-解决方案如下" class="headerlink" title="我迁移了wsl之后就没有权限打开c盘的应用了,解决方案如下"></a>我迁移了wsl之后就没有权限打开c盘的应用了,解决方案如下</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/wsl.conf<br><br>[automount]<br>enabled = true<br>root = /mnt/<br>options = &quot;metadata,dmask=022,fmask=022&quot; # 主要是吧fmask改成022<br>mountFsTab = false<br><br>[boot]<br>systemd=true<br><br></code></pre></td></tr></table></figure><h2 id="尝试打开浏览器"><a href="#尝试打开浏览器" class="headerlink" title="尝试打开浏览器"></a>尝试打开浏览器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">open http://www.baidu.com<br><br></code></pre></td></tr></table></figure>]]></content>
     
+    
+    <categories>
+      
+      <category>wsl</category>
+      
+    </categories>
     
     
     <tags>
@@ -252,6 +264,12 @@
     
     <content type="html"><![CDATA[<p>configurations {<br>    all{<br>        resolutionStrategy.force “com.google.guava:guava:19.0”<br>    }<br>}</p>]]></content>
     
+    
+    <categories>
+      
+      <category>gradle</category>
+      
+    </categories>
     
     
     <tags>
@@ -697,6 +715,12 @@
     <content type="html"><![CDATA[<p>apolloClient 模拟登录,更新配置文件,主要是由于api开放平台不支持直接用配置文本上传</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs python3"><br># -*- coding: utf-8 -*-<br>from time import time<br>import requests<br>import http.cookiejar<br>import json<br><br>class ApolloClient():<br>    def __init__(self,portal_address:str):<br>        self._portal_address = portal_address<br>        self._session = None<br>        pass<br><br>    def login(self,userName,password):<br>        __url = &#x27;&#123;portal_address&#125;/signin&#x27;.format(<br>            portal_address=self._portal_address<br>        )<br>        __data = &#123;<br>                &quot;username&quot;:userName,<br>                &quot;password&quot;:password,<br>                &quot;login-submit&quot;:&quot;登录&quot;<br>            &#125;<br>        self._session = requests.Session()<br>        self._session.cookies = http.cookiejar.LWPCookieJar(filename=&#x27;./.idea/apollo/cookies.txt&#x27;)<br>        response = self._session.post(__url,data=__data)<br>        if response.status_code == 200 and &#x27;&lt;html ng-app=&quot;index&quot;&gt;&#x27; in str(response.content):<br>            self._session.cookies.save(ignore_discard=True, ignore_expires=True)<br>            return True<br>        return False<br>    <br>    def getApplicationInfo(self,applicationName:str,apolloEnv:str,upEnv:str):<br>        &#x27;&#x27;&#x27;<br>        3.2.6 获取某个Namespace信息接口<br>        &#x27;&#x27;&#x27;<br>        __url = &#x27;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces&#x27;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>        )<br>        return self._session.get(url=__url).json()<br>    <br>    def uploadConfig(self,namespaceId:int,applicationName:str,namespaceName:str,apolloEnv:str,upEnv:str,confiStr:str):<br>        &#x27;&#x27;&#x27;<br>            上传配置文件<br>        &#x27;&#x27;&#x27;<br>        __url = &#x27;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces/&#123;namespaceName&#125;/items&#x27;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>            namespaceName= namespaceName<br>        )<br>        _data = &#123;<br>            &quot;configText&quot;: confiStr,<br>            &quot;namespaceId&quot;:namespaceId,<br>            &quot;format&quot;:&quot;properties&quot;<br>        &#125;<br>        return self._session.put(url=__url,json=_data,headers=&#123;&quot;Content-Type&quot;:&quot;application/json;charset=UTF-8&quot;&#125;)<br><br>    def doPublish(self,applicationName:str,namespaceName:str,apolloEnv:str,upEnv:str):<br>        &#x27;&#x27;&#x27;<br>            发布配置文件<br>        &#x27;&#x27;&#x27;<br>        __url = &quot;&#123;portal_address&#125;/apps/&#123;applicationName&#125;/envs/&#123;apolloEnv&#125;/clusters/&#123;upEnv&#125;/namespaces/&#123;namespaceName&#125;/releases&quot;.format(<br>            portal_address=self._portal_address,<br>            applicationName=applicationName,<br>            apolloEnv=apolloEnv,<br>            upEnv=upEnv,<br>            namespaceName= namespaceName<br>        )<br>        now = time()<br>        _data = &#123;<br>            &quot;releaseTitle&quot;:f&quot;&#123;now&#125;-release&quot;,<br>            &quot;releaseComment&quot;:&quot;&quot;,<br>            &quot;isEmergencyPublish&quot;:False<br>        &#125;<br>        return (f&quot;&#123;now&#125;-release&quot;,self._session.post(url=__url,json=_data,headers=&#123;&quot;Content-Type&quot;:&quot;application/json;charset=UTF-8&quot;&#125;).json())<br><br></code></pre></td></tr></table></figure>]]></content>
     
     
+    <categories>
+      
+      <category>apollo</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -743,6 +767,12 @@
     <content type="html"><![CDATA[<h2 id="linux环境下安装"><a href="#linux环境下安装" class="headerlink" title="linux环境下安装"></a>linux环境下安装</h2><h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">https://gitee.com/naozeizei/nvm-for-gitee</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">国内安装nvm比较慢，我写了脚本能快速安装nodejs</span><br>curl -o- https://gitee.com/naozeizei/nvm-for-gitee/raw/master/nvm-cn.sh | bash<br><span class="hljs-meta prompt_"># </span><span class="language-bash">执行完毕后请重新建立一个terminal</span> <br></code></pre></td></tr></table></figure><h3 id="安装nodeJs"><a href="#安装nodeJs" class="headerlink" title="安装nodeJs"></a>安装nodeJs</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nvm install 12.0.0 <br></code></pre></td></tr></table></figure><h2 id="windows环境下安装"><a href="#windows环境下安装" class="headerlink" title="windows环境下安装"></a>windows环境下安装</h2><p><a href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a><br>很遗憾，目前没有找到除了github release以外的安全稳定的安装渠道，所幸nvm大小只有4mb,慢就慢点吧。<br>进入nvm安装目录，编辑settings.txt，增加以下两个国内镜像</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-string">node_mirror:npm.taobao.org/mirrors/node/</span><br><span class="hljs-string">npm_mirror:npm.taobao.org/mirrors/npm/</span><br><br></code></pre></td></tr></table></figure><p>重启电脑<br>win + x 然后按 A<br>会打开powershell<br>输入 nvm 回车，能看到版本号说明安装成功</p><h3 id="安装nodeJs-1"><a href="#安装nodeJs-1" class="headerlink" title="安装nodeJs"></a>安装nodeJs</h3><p>在powershell里输入 nvm install 12.0.0<br>等待一会将会完成安装<br>输入nvm use 12.0.0<br>输入 npm -v</p>]]></content>
     
     
+    <categories>
+      
+      <category>nodejs</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -761,6 +791,12 @@
     
     <content type="html"><![CDATA[<h2 id="关于idea无法使用ctrl-shift-F"><a href="#关于idea无法使用ctrl-shift-F" class="headerlink" title="关于idea无法使用ctrl+shift+F"></a>关于idea无法使用ctrl+shift+F</h2><ol><li>搜狗输入法的繁简切换快捷键冲突</li><li>建议移除相关搜狗输入法快捷键</li></ol>]]></content>
     
+    
+    <categories>
+      
+      <category>idea</category>
+      
+    </categories>
     
     
     <tags>
@@ -783,14 +819,14 @@
     
     <categories>
       
-      <category>vscode使用技巧</category>
+      <category>vscode</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>vscode</tag>
+      <tag>vscode使用技巧</tag>
       
     </tags>
     
@@ -805,6 +841,12 @@
     
     <content type="html"><![CDATA[<h2 id="安装wsl2"><a href="#安装wsl2" class="headerlink" title="安装wsl2"></a>安装wsl2</h2><blockquote><p><a href="https://docs.microsoft.com/zh-cn/windows/wsl/install">https://docs.microsoft.com/zh-cn/windows/wsl/install</a></p></blockquote><blockquote><p><a href="https://zhuanlan.zhihu.com/p/386590591">https://zhuanlan.zhihu.com/p/386590591</a></p></blockquote><h2 id="迁移wsl2到非系统盘"><a href="#迁移wsl2到非系统盘" class="headerlink" title="迁移wsl2到非系统盘"></a>迁移wsl2到非系统盘</h2><p>使用lxrunoffline</p><pre><code class="hljs">1. https://github.com/DDoSolitary/LxRunOffline/releases2. lxrunoffline list3. lxrunoffline move -n Ubuntu -d D:\linux4. lxrunoffline get-dir -n Ubuntu5. ubuntu2004.exe config --default-user root # 设置登录用户为root</code></pre><h2 id="解决路径复制问题"><a href="#解决路径复制问题" class="headerlink" title="解决路径复制问题"></a>解决路径复制问题</h2><pre><code class="hljs">windows路径为 D:\gitlab\xxx ，而对应的wsl2的路径为 /mnt/d/gitlab/xxx,复制路径的时候很麻烦，所以需要一点点帮助。</code></pre><h3 id="xlaunch"><a href="#xlaunch" class="headerlink" title="xlaunch"></a>xlaunch</h3><pre><code class="hljs">这是个小工具，用来支持显示linux桌面以及提供一些windows和linux之间的交互</code></pre><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code class="hljs">1. https://github.com/ArcticaProject/vcxsrv/releases2. 点击.exe结尾的大的下载包3. 安装</code></pre><h4 id="进入启动目录"><a href="#进入启动目录" class="headerlink" title="进入启动目录"></a>进入启动目录</h4><pre><code class="hljs">1. win + R2. shell:startup</code></pre><h4 id="设置连接"><a href="#设置连接" class="headerlink" title="设置连接"></a>设置连接</h4><p>新建一个文件config.xlaunch，内容如下</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">XLaunch</span> <span class="hljs-attr">WindowMode</span>=<span class="hljs-string">&quot;MultiWindow&quot;</span> <span class="hljs-attr">ClientMode</span>=<span class="hljs-string">&quot;NoClient&quot;</span> <span class="hljs-attr">LocalClient</span>=<span class="hljs-string">&quot;False&quot;</span> <span class="hljs-attr">Display</span>=<span class="hljs-string">&quot;-1&quot;</span> <span class="hljs-attr">LocalProgram</span>=<span class="hljs-string">&quot;xcalc&quot;</span> <span class="hljs-attr">RemoteProgram</span>=<span class="hljs-string">&quot;xterm&quot;</span> <span class="hljs-attr">RemotePassword</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">PrivateKey</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">RemoteHost</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">RemoteUser</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">XDMCPHost</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">XDMCPBroadcast</span>=<span class="hljs-string">&quot;False&quot;</span> <span class="hljs-attr">XDMCPIndirect</span>=<span class="hljs-string">&quot;False&quot;</span> <span class="hljs-attr">Clipboard</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">ClipboardPrimary</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">ExtraParams</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">Wgl</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">DisableAC</span>=<span class="hljs-string">&quot;True&quot;</span> <span class="hljs-attr">XDMCPTerminate</span>=<span class="hljs-string">&quot;False&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure><p>也可以打开xlaunch把看到的方框都勾上，其他都下一步也行。</p><h3 id="安装Windows-Terminal"><a href="#安装Windows-Terminal" class="headerlink" title="安装Windows Terminal"></a>安装Windows Terminal</h3><p>直接在Microsoft store下载安装就行。<br>傻瓜操作过程：<br>    1. Win + s 打开搜索框<br>    2. 搜索 Microsoft store<br>    3. 搜索框搜索Windows Terminal<br>    4. 安装</p><h3 id="创建一些脚本"><a href="#创建一些脚本" class="headerlink" title="创建一些脚本"></a>创建一些脚本</h3><ol><li><p>创建脚本存放的地方</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"> mkdir -p /opt/scripts<br> cd /opt/scripts<br><span class="hljs-meta prompt_"> # </span><span class="language-bash">这个是用来让脚本生效的</span><br>echo &#x27;export PATH=$PATH:/opt/scripts&#x27; &gt;&gt; ~/.profile<br>source ~/.profile<br><span class="hljs-meta prompt_"># </span><span class="language-bash">这样每次打开wsl2会自动生成wsl2服务的ip到hosts里</span><br>echo &#x27;/opt/scripts/wslip.sh&#x27; &gt;&gt; ~/.bashrc<br></code></pre></td></tr></table></figure></li><li><p>一些脚本</p><ol><li>path 用来转换window路径与linux路径 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python3">#! /usr/bin/python3.8<br># -*- coding: utf-8 -*-<br>import os<br>import sys<br><br>if __name__ == &quot;__main__&quot;:<br>    if len(sys.argv)&gt;1:<br>        path = sys.argv[1]<br>    else:<br>        path = os.popen(&#x27;xclip -o&#x27;).read()<br>        if len(path) == 0:<br>            # 这个地方要换成你xlaunch.exe所在的wsl2的地址<br>            os.system(&quot;/mnt/d/software/VcXsrv/xlaunch.exe&quot;)<br>            exit()<br>    splitResult = path.split(&quot;:&quot;)<br>    if len(splitResult) &lt;=1 :<br>        print(path)<br>        exit()<br>    sh_path = &#x27;/&#x27;.join(splitResult[1].split(&#x27;\\&#x27;))  # transform the windows path to linux path<br>    head=&#x27;/mnt/&#x27; + splitResult[0].lower()<br>    print(head + sh_path)<br></code></pre></td></tr></table></figure></li><li>cdp 直接跳转到复制的windows路径下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br> <span class="hljs-keyword">if</span> [[ <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> ]];<span class="hljs-keyword">then</span><br> target=$(path <span class="hljs-variable">$1</span>)<br> <span class="hljs-built_in">cd</span> <span class="hljs-variable">$target</span><br> <span class="hljs-keyword">else</span><br> target=$(path)<br> <span class="hljs-built_in">cd</span> <span class="hljs-variable">$target</span><br> <span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure></li><li>wslip.sh 输出wsl2地址到/etc/hosts，这样就可以访问<a href="http://localhost.ubuntu.com/%E6%9D%A5%E8%AE%BF%E9%97%AEwsl2%E4%B8%8A%E7%9A%84%E6%9C%8D%E5%8A%A1%E4%BA%86">http://localhost.ubuntu.com/来访问wsl2上的服务了</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment"># 更简短的 ipaddr=$(ifconfig eth0 | grep &#x27;inet &#x27; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br>ipaddr=$(ifconfig eth0 | grep <span class="hljs-string">&#x27;inet &#x27;</span> | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span>)<br><span class="hljs-built_in">cp</span> -f /mnt/c/Windows/System32/drivers/etc/hosts /tmp/hosts<br>sed -i <span class="hljs-string">&#x27;/ubuntu/d&#x27;</span> /tmp/hosts<br>[[ -n `<span class="hljs-built_in">tail</span> -n 1 /tmp/hosts` ]] &amp;&amp; <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\n&quot;</span>;<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$ipaddr</span> localhost.ubuntu.com&quot;</span> &gt;&gt; /tmp/hosts<br><span class="hljs-built_in">cat</span> /tmp/hosts &gt; /mnt/c/Windows/System32/drivers/etc/hosts<br><span class="hljs-built_in">tail</span> -n -1  /mnt/c/Windows/System32/drivers/etc/hosts<br></code></pre></td></tr></table></figure><blockquote><p>可能会没有hosts文件的修改权限，右键hosts文件，切换安全tab,点击编辑，为ALL APPLICATION PACKAGES添加修改权限</p></blockquote></li></ol></li><li><p>现在就可以复制一个地址,例如 D:\software\VcXsrv 选中ctrl+C复制。</p></li><li><p>打开wsl2</p><ol><li>输入cdp，你就可以进入这个目录，如果你有的话</li><li>输入path，你就可以获得转换好的地址/mnt/d/software/VcXsrv</li></ol></li></ol><h2 id="关于rz-sz-不装xshell的解决方案"><a href="#关于rz-sz-不装xshell的解决方案" class="headerlink" title="关于rz/sz ,不装xshell的解决方案"></a>关于rz/sz ,不装xshell的解决方案</h2><p>可以使用zssh替代 ssh ，使用 ctrl+ `(这个是1左边的按键)，然后就可以使用rz/sz了</p><ol><li>sudo apt-get install zssh</li><li><a href="https://phenix3443.github.io/notebook/ubuntu/zssh.html">https://phenix3443.github.io/notebook/ubuntu/zssh.html</a></li></ol><p>操作顺序一般为：<br>    1. 连接到目标服务器，进入需要上传的目录 cd /tmp<br>    2. 输入rz ，此时会出现 waiting to receive.**<br>    3. 使用快捷键 ctrl+ ` ，此时会出现 zssh &gt;<br>    4. 进入你要上传文件的目录 cd /mnt/d/software/VcXsrv<br>    5. 输入  sz -be Xcms.txt 就可以上传了</p><h2 id="关于使用docker导致的内网地址无法访问"><a href="#关于使用docker导致的内网地址无法访问" class="headerlink" title="关于使用docker导致的内网地址无法访问"></a>关于使用docker导致的内网地址无法访问</h2><p>一般来说都是由于docker0冲突导致。设置成不会冲突的网段就行<br>vim /etc/docker/daemon.json</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;bip&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;10.55.0.1/16&quot;</span> <br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure><h2 id="国内可用的-docker-源"><a href="#国内可用的-docker-源" class="headerlink" title="国内可用的 docker 源"></a>国内可用的 docker 源</h2><p>vim /etc/docker/daemon.json<br>{<br>  “registry-mirrors”: [<br>    “<a href="https://docker.mirrors.ustc.edu.cn&quot;/">https://docker.mirrors.ustc.edu.cn&quot;</a>,<br>    “<a href="https://registry.docker-cn.com&quot;/">https://registry.docker-cn.com&quot;</a>,<br>    “<a href="http://hub-mirror.c.163.com&quot;/">http://hub-mirror.c.163.com&quot;</a><br>  ],<br>}</p><h2 id="docker-compose-默认从172-20-0-0-16选取可用网段"><a href="#docker-compose-默认从172-20-0-0-16选取可用网段" class="headerlink" title="docker compose 默认从172.20.0.0/16选取可用网段"></a>docker compose 默认从172.20.0.0/16选取可用网段</h2><p>我公司很多地址也是这个网段,不太方便,需要修改一下<br>vim /etc/docker/daemon.json</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><span class="hljs-attr">&quot;default-address-pools&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><br><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;base&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;10.10.0.0/16&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;size&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">24</span><span class="hljs-punctuation">&#125;</span><br><br><span class="hljs-punctuation">]</span><br><br></code></pre></td></tr></table></figure>]]></content>
     
+    
+    <categories>
+      
+      <category>wsl</category>
+      
+    </categories>
     
     
     <tags>
@@ -856,14 +898,14 @@
     
     <categories>
       
-      <category>建站</category>
+      <category>linux</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>linux</tag>
+      <tag>建站</tag>
       
     </tags>
     
@@ -881,14 +923,14 @@
     
     <categories>
       
-      <category>日志</category>
+      <category>loki</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>loki</tag>
+      <tag>日志</tag>
       
     </tags>
     
@@ -956,7 +998,7 @@
     
     <categories>
       
-      <category>docker-bak</category>
+      <category>mysql</category>
       
     </categories>
     
