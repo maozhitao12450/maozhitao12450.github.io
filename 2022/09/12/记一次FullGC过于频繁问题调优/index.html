@@ -16,22 +16,23 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="pulsar 工具">
+    <meta name="description" content="监控发现xxljob-admin服务的频繁的oldGC,记录一下排查过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pulsar 工具">
-<meta property="og:url" content="http://zuoxu.club/2022/10/21/pulsar-tools/index.html">
+<meta property="og:title" content="一次频繁fullGC调优">
+<meta property="og:url" content="http://zuoxu.club/2022/09/12/%E8%AE%B0%E4%B8%80%E6%AC%A1FullGC%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%E9%97%AE%E9%A2%98%E8%B0%83%E4%BC%98/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="pulsar 工具">
+<meta property="og:description" content="监控发现xxljob-admin服务的频繁的oldGC,记录一下排查过程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-21T03:05:30.000Z">
-<meta property="article:modified_time" content="2023-03-24T06:26:39.219Z">
+<meta property="article:published_time" content="2022-09-12T14:41:22.000Z">
+<meta property="article:modified_time" content="2023-03-24T06:26:39.218Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="pulsar">
+<meta property="article:tag" content="jvm">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>pulsar 工具 - 发际线的志逐渐暴露的博客</title>
+  <title>一次频繁fullGC调优 - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="pulsar 工具"></span>
+            <span id="subtitle" data-typed-text="一次频繁fullGC调优"></span>
           
         </div>
 
@@ -232,8 +233,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-21 11:05" pubdate>
-          2022年10月21日 上午
+        <time datetime="2022-09-12 22:41" pubdate>
+          2022年9月12日 晚上
         </time>
       </span>
     
@@ -244,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          328 字
+          1.1k 字
         
       </span>
     
@@ -255,7 +256,7 @@
         
         
         
-          3 分钟
+          9 分钟
         
       </span>
     
@@ -301,21 +302,30 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">pulsar 工具</h1>
+            <h1 style="display: none">一次频繁fullGC调优</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="pulsarctl"><a href="#pulsarctl" class="headerlink" title="pulsarctl"></a>pulsarctl</h2><p><a target="_blank" rel="noopener" href="https://github.com/streamnative/pulsarctl/releases/tag/v2.9.3.14">https://github.com/streamnative/pulsarctl/releases/tag/v2.9.3.14</a></p>
+                <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>公司监控发现xxljob-admin频繁fullgc,看了监控不仅频繁fullgc,内存还满了</p>
 <ol>
-<li>下载,解压</li>
-<li>放到PATH里 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">export PATH=$PATH:xxx/pulsarctl-amd64-linux<br></code></pre></td></tr></table></figure></li>
-<li>设置相关地址 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pulsarctl context set development --admin-service-url=&quot;http://1.2.3.4:8080&quot; --bookie-service-url=&quot;http://1.2.3.4:8083&quot;<br></code></pre></td></tr></table></figure></li>
-<li>pulsarctl的一些坑<ol>
-<li>由于这玩意是用go写的,有序列化和反序列化的过程,所以会缺少几个字段</li>
+<li>dump heap 到本地<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jmap -dump:format=b,file=&lt;dumpfile_path&gt; &lt;pid&gt;<br></code></pre></td></tr></table></figure></li>
+<li>使用MAT打开, <strong>MemoryAnalyzer</strong></li>
+<li>点击 <strong>Dominator Tree</strong> 查看最占用内存的对象列表</li>
+<li>非常明显的发现发现<strong>org.eclipse.jetty.client.HttpClient</strong>占了90%多的内存,点开后发现都是是org.eclipse.jetty.client.http.HttpDestinationOverHTTP这个类型的objects</li>
+<li>选中其中一个HttpDestinationOverHTTP,右键<strong>Merge Shortest Path to GC Roots</strong> -&gt; <strong>with all references</strong> </li>
+<li>逐级点开后发现<strong>org.eclipse.jetty.client.HttpClient</strong>对象的_beans里有6581个该对象,一个对象有136416 Byte,也就是133KB,总共占用内存854MB,而我的老年代也就1G</li>
+<li>直接想法是这个对象是不是太多了?但是翻阅了源码发现在我们的使用场景下就应该有6000多的对象,那么就应该扩容内存了吗?</li>
+<li>诶,这个时候发现,一个对象133KB,作为一个目标级别的对象有点过于巨大了,于是我们仔细看了它的内存构成<ol>
+<li>回到最开始的dominator_tree</li>
+<li>逐级展开这个对象的内部,发现有两个属性占用内存最大,各占了65616Byte</li>
+<li>打开后发现分别是一个HashMap(16384)和一个Object[16384],再看它们的属性,发现都是空的,那么为什么会有个这么大的空对象在这呢?</li>
+<li>翻看源码,activeConnetions,idleConnections这两个属性都是按照<strong>org.eclipse.jetty.client.HttpClient</strong>的<strong>maxConnectionsPerDestination</strong>值来的,</li>
+<li>我们使用的xxljob的版本比较低,使用的是com.xuxueli:xxl-rpc-core:1.2.1版本,它代码默认设置的maxConnectionsPerDestination是10000而HashMap内部会向上取到16384,我们的使用场景用不到这么大的连接数,所以修改代码,将这个值设置为64</li>
 </ol>
 </li>
-<li>打算自己写个python的</li>
+<li>坑爹的部分,这个10000是直接写死在代码中的,我们只能在初始化的时候重新给它赋值为64</li>
+<li>第二天观察,每次fullGC后old gen会回到48mb左右,解决问题</li>
 </ol>
 
                 
@@ -335,7 +345,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/pulsar/" class="category-chain-item">pulsar</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
 
@@ -350,7 +360,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/pulsar/">#pulsar</a>
+        <a href="/tags/jvm/">#jvm</a>
+      
+        <a href="/tags/java/">#java</a>
       
     </div>
   
@@ -362,8 +374,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>pulsar 工具</div>
-      <div>http://zuoxu.club/2022/10/21/pulsar-tools/</div>
+      <div>一次频繁fullGC调优</div>
+      <div>http://zuoxu.club/2022/09/12/记一次FullGC过于频繁问题调优/</div>
     </div>
     <div class="license-meta">
       
@@ -375,7 +387,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月21日</div>
+          <div>2022年9月12日</div>
         </div>
       
       
@@ -410,9 +422,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/21/pulsar(8)%20update-partitioned-topic%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" title="pulsar update-partitioned-topic执行流程(八)">
+                      <a href="/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/" title="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pulsar update-partitioned-topic执行流程(八)</span>
+                        <span class="hidden-mobile">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +432,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/20/pulsar(6)%20%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="pulsar 负载均衡(六)">
-                        <span class="hidden-mobile">pulsar 负载均衡(六)</span>
+                      <a href="/2022/09/06/hexo%E5%BB%BA%E7%AB%99%E5%AD%A6%E4%B9%A0/" title="hexo建站学习">
+                        <span class="hidden-mobile">hexo建站学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

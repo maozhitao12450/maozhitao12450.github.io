@@ -35,7 +35,7 @@
     <link href="/2023/03/05/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1%E5%92%8C%E6%89%8B%E6%9C%BA%E5%8F%B7/"/>
     <url>/2023/03/05/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1%E5%92%8C%E6%89%8B%E6%9C%BA%E5%8F%B7/</url>
     
-    <content type="html"><![CDATA[<h2 id="临时邮箱网址"><a href="#临时邮箱网址" class="headerlink" title="临时邮箱网址"></a>临时邮箱网址</h2><p><a href="https://www.linshi-email.com/">https://www.linshi-email.com/</a></p><h2 id="免费国外手机验证码网址"><a href="#免费国外手机验证码网址" class="headerlink" title="免费国外手机验证码网址"></a>免费国外手机验证码网址</h2><p><a href="https://jiemahao.com/">https://jiemahao.com/</a></p><p><a href="mailto:&#97;&#113;&#x6d;&#x74;&#x79;&#x64;&#112;&#x68;&#103;&#x75;&#x40;&#105;&#x75;&#98;&#114;&#105;&#100;&#103;&#101;&#x2e;&#x63;&#111;&#x6d;">&#97;&#113;&#x6d;&#x74;&#x79;&#x64;&#112;&#x68;&#103;&#x75;&#x40;&#105;&#x75;&#98;&#114;&#105;&#100;&#103;&#101;&#x2e;&#x63;&#111;&#x6d;</a><br>&amp;JL8.cT-vMpWwU6</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="临时邮箱网址"><a href="#临时邮箱网址" class="headerlink" title="临时邮箱网址"></a>临时邮箱网址</h2><p><a href="https://www.linshi-email.com/">https://www.linshi-email.com/</a></p><h2 id="免费国外手机验证码网址"><a href="#免费国外手机验证码网址" class="headerlink" title="免费国外手机验证码网址"></a>免费国外手机验证码网址</h2><p><a href="https://jiemahao.com/">https://jiemahao.com/</a></p><p><a href="mailto:&#x61;&#x71;&#x6d;&#116;&#x79;&#x64;&#x70;&#104;&#x67;&#117;&#64;&#105;&#117;&#x62;&#114;&#x69;&#x64;&#x67;&#x65;&#46;&#99;&#111;&#x6d;">&#x61;&#x71;&#x6d;&#116;&#x79;&#x64;&#x70;&#104;&#x67;&#117;&#64;&#105;&#117;&#x62;&#114;&#x69;&#x64;&#x67;&#x65;&#46;&#99;&#111;&#x6d;</a><br>&amp;JL8.cT-vMpWwU6</p>]]></content>
     
     
     <categories>
@@ -1008,6 +1008,33 @@
     <tags>
       
       <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一次频繁fullGC调优</title>
+    <link href="/2022/09/12/%E8%AE%B0%E4%B8%80%E6%AC%A1FullGC%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%E9%97%AE%E9%A2%98%E8%B0%83%E4%BC%98/"/>
+    <url>/2022/09/12/%E8%AE%B0%E4%B8%80%E6%AC%A1FullGC%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%E9%97%AE%E9%A2%98%E8%B0%83%E4%BC%98/</url>
+    
+    <content type="html"><![CDATA[<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>公司监控发现xxljob-admin频繁fullgc,看了监控不仅频繁fullgc,内存还满了</p><ol><li>dump heap 到本地<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jmap -dump:format=b,file=&lt;dumpfile_path&gt; &lt;pid&gt;<br></code></pre></td></tr></table></figure></li><li>使用MAT打开, <strong>MemoryAnalyzer</strong></li><li>点击 <strong>Dominator Tree</strong> 查看最占用内存的对象列表</li><li>非常明显的发现发现<strong>org.eclipse.jetty.client.HttpClient</strong>占了90%多的内存,点开后发现都是是org.eclipse.jetty.client.http.HttpDestinationOverHTTP这个类型的objects</li><li>选中其中一个HttpDestinationOverHTTP,右键<strong>Merge Shortest Path to GC Roots</strong> -&gt; <strong>with all references</strong> </li><li>逐级点开后发现<strong>org.eclipse.jetty.client.HttpClient</strong>对象的_beans里有6581个该对象,一个对象有136416 Byte,也就是133KB,总共占用内存854MB,而我的老年代也就1G</li><li>直接想法是这个对象是不是太多了?但是翻阅了源码发现在我们的使用场景下就应该有6000多的对象,那么就应该扩容内存了吗?</li><li>诶,这个时候发现,一个对象133KB,作为一个目标级别的对象有点过于巨大了,于是我们仔细看了它的内存构成<ol><li>回到最开始的dominator_tree</li><li>逐级展开这个对象的内部,发现有两个属性占用内存最大,各占了65616Byte</li><li>打开后发现分别是一个HashMap(16384)和一个Object[16384],再看它们的属性,发现都是空的,那么为什么会有个这么大的空对象在这呢?</li><li>翻看源码,activeConnetions,idleConnections这两个属性都是按照<strong>org.eclipse.jetty.client.HttpClient</strong>的<strong>maxConnectionsPerDestination</strong>值来的,</li><li>我们使用的xxljob的版本比较低,使用的是com.xuxueli:xxl-rpc-core:1.2.1版本,它代码默认设置的maxConnectionsPerDestination是10000而HashMap内部会向上取到16384,我们的使用场景用不到这么大的连接数,所以修改代码,将这个值设置为64</li></ol></li><li>坑爹的部分,这个10000是直接写死在代码中的,我们只能在初始化的时候重新给它赋值为64</li><li>第二天观察,每次fullGC后old gen会回到48mb左右,解决问题</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>jvm</tag>
+      
+      <tag>java</tag>
       
     </tags>
     
