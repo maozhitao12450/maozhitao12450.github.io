@@ -139,7 +139,7 @@
     <link href="/2023/03/05/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1%E5%92%8C%E6%89%8B%E6%9C%BA%E5%8F%B7/"/>
     <url>/2023/03/05/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1%E5%92%8C%E6%89%8B%E6%9C%BA%E5%8F%B7/</url>
     
-    <content type="html"><![CDATA[<h2 id="临时邮箱网址"><a href="#临时邮箱网址" class="headerlink" title="临时邮箱网址"></a>临时邮箱网址</h2><p><a href="https://www.linshi-email.com/">https://www.linshi-email.com/</a></p><h2 id="免费国外手机验证码网址"><a href="#免费国外手机验证码网址" class="headerlink" title="免费国外手机验证码网址"></a>免费国外手机验证码网址</h2><p><a href="https://jiemahao.com/">https://jiemahao.com/</a></p><p><a href="mailto:&#x61;&#x71;&#x6d;&#116;&#x79;&#100;&#x70;&#104;&#103;&#x75;&#64;&#x69;&#117;&#x62;&#114;&#x69;&#100;&#103;&#x65;&#x2e;&#99;&#111;&#109;">&#x61;&#x71;&#x6d;&#116;&#x79;&#100;&#x70;&#104;&#103;&#x75;&#64;&#x69;&#117;&#x62;&#114;&#x69;&#100;&#103;&#x65;&#x2e;&#99;&#111;&#109;</a><br>&amp;JL8.cT-vMpWwU6</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="临时邮箱网址"><a href="#临时邮箱网址" class="headerlink" title="临时邮箱网址"></a>临时邮箱网址</h2><p><a href="https://www.linshi-email.com/">https://www.linshi-email.com/</a></p><h2 id="免费国外手机验证码网址"><a href="#免费国外手机验证码网址" class="headerlink" title="免费国外手机验证码网址"></a>免费国外手机验证码网址</h2><p><a href="https://jiemahao.com/">https://jiemahao.com/</a></p><p><a href="mailto:&#97;&#x71;&#109;&#x74;&#121;&#x64;&#112;&#x68;&#x67;&#x75;&#64;&#x69;&#x75;&#x62;&#114;&#105;&#100;&#x67;&#x65;&#x2e;&#99;&#111;&#109;">&#97;&#x71;&#109;&#x74;&#121;&#x64;&#112;&#x68;&#x67;&#x75;&#64;&#x69;&#x75;&#x62;&#114;&#105;&#100;&#x67;&#x65;&#x2e;&#99;&#111;&#109;</a><br>&amp;JL8.cT-vMpWwU6</p>]]></content>
     
     
     <categories>
@@ -189,7 +189,7 @@
     <link href="/2023/03/04/qinglongscripts/"/>
     <url>/2023/03/04/qinglongscripts/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="手机安装青龙服务"><a href="#手机安装青龙服务" class="headerlink" title="手机安装青龙服务"></a>手机安装青龙服务</h2><p><a href="https://segmentfault.com/a/1190000041976767">https://segmentfault.com/a/1190000041976767</a></p><h2 id="Termux-公网ipv6-域名-ssh访问"><a href="#Termux-公网ipv6-域名-ssh访问" class="headerlink" title="Termux 公网ipv6 域名 ssh访问"></a>Termux 公网ipv6 域名 ssh访问</h2><p>ddns-go </p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
     
     
     <categories>
@@ -204,6 +204,33 @@
       <tag>签到</tag>
       
       <tag>青龙脚本</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>temux</title>
+    <link href="/2023/03/04/temux/"/>
+    <url>/2023/03/04/temux/</url>
+    
+    <content type="html"><![CDATA[<h2 id="ssh-服务"><a href="#ssh-服务" class="headerlink" title="ssh 服务"></a>ssh 服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pkg install openssh<br></code></pre></td></tr></table></figure><h2 id="alpine"><a href="#alpine" class="headerlink" title="alpine"></a>alpine</h2><p>``` shell<br>pkg install proot<br>wget <a href="http://dl-cdn.alpinelinux.org/alpine/v3.14/releases/aarch64/alpine-minirootfs-3.14.2-aarch64.tar.gz">http://dl-cdn.alpinelinux.org/alpine/v3.14/releases/aarch64/alpine-minirootfs-3.14.2-aarch64.tar.gz</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>手机linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>temux</tag>
+      
+      <tag>手机linux</tag>
       
     </tags>
     
@@ -262,11 +289,36 @@
   
   
   <entry>
+    <title>flink 加速启动</title>
+    <link href="/2023/02/17/%E5%8A%A0%E9%80%9F%E5%90%AF%E5%8A%A8/"/>
+    <url>/2023/02/17/%E5%8A%A0%E9%80%9F%E5%90%AF%E5%8A%A8/</url>
+    
+    <content type="html"><![CDATA[<pre><code class="shell"># 上传flink安装包到hadoop(只有最初一次需要执行)FLINK_DIR=/data/flink-1.14.5# 远端hadoopFlink安装目录HADOOP_FLINK_DIR=/flink/flink-1.14.5## 清理之前的包,如果存在的话hadoop fs -rm -r -f $HADOOP_FLINK_DIRhadoop fs -rm -r -f .Trash## 进入安装目录cd $FLINK_DIRhadoop fs -put . /flink/# 当前打包模组PROJECT_NAME=&#123;这里填项目名&#125;PROJECT_PATH=&#123;这里填项目路径&#125;CURRENT_MODULE=&#123;这里填项目模块名&#125;HADOOP_URL=&#123;这里填hadoop网址,例如: test01:8020&#125;JOB_NAME=&#123;这里填任务名称&#125;# 打包对应的服务(每次执行)cd $PROJECT_PATH &amp;&amp; ./gradlew clean generateRuntimeConfig -Denv=pre -Dcluster=docker --daemon -p $CURRENT_MODULE# 创建module文件夹hadoop fs -mkdir /flink/$CURRENT_MODULE# 记录 sha256 值,这个需要存一下,以后用来清除无用的依赖列表cd $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME &amp;&amp; find $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME/lib/ -type f -print0 | sort -z | xargs -0 sha256sum | sha1sum | awk &#39;&#123;print $1&#125;&#39;&gt; $CURRENT_MODULE.sha# 设置一下环境变量# HDFS_DEFAULT=$(xmllint --xpath &quot;//property[name=&#39;fs.defaultFS&#39;]/value/text()&quot; $HADOOP_HOME/etc/hadoop/conf.cloudera.yarn/core-site.xml)HDFS_DEFAULT=$(hdfs getconf -confKey fs.defaultFS)CURRENT_MODULE_TASK_SHA=$(cat $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME/$CURRENT_MODULE.sha)flink_base_bin=/tmp/flink-1.14.5/binecho HDFS_DEFAULT:$HDFS_DEFAULTecho CURRENT_MODULE_TASK_SHA:$CURRENT_MODULE_TASK_SHAecho flink_base_bin:$flink_base_bin# 检查依赖是否存在hadoop fs -ls /flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHAif [ $? -eq 0 ]; then  echo &quot;Directory exists.&quot;else    # 不存在则上传所有依赖(如果依赖发生了变动则需要执行,TODO 需要增加判断变动的脚本)    cd $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME/lib &amp;&amp; hadoop fs -mkdir /flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA &amp;&amp; hadoop fs -put . /flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHAfi# 启动对应服务# $flink_base_bin/flink run -d -m yarn-cluster -p 1 -ys 1 -yjm 2048m \# -yD yarn.provided.lib.dirs=&quot;$HDFS_DEFAULT$HADOOP_FLINK_DIR/lib;$HDFS_DEFAULT$HADOOP_FLINK_DIR/plugins;$HDFS_DEFAULT/flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA/lib&quot; \# -yD env.java.opts=&quot;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=dev&quot; -ytm 3072m -ynm $JOB_NAME \# $PROJECT_PATH/$CURRENT_MODULE/build/libs/$PROJECT_NAME-$CURRENT_MODULE-1.0.0.jar &#123;任务启动参数&#125;$flink_base_bin/flink run-application \-t yarn-application \# yjm-Djobmanager.memory.process.size=2048m \# ytm-Dtaskmanager.memory.process.size=3072m \# ys-Dtaskmanager.numberOfTaskSlots=1 \# p-Dparallelism.default=1 \# ynm-Dyarn.application.name=$JOB_NAME \-Dyarn.provided.usrlib.dir=&quot;$HDFS_DEFAULT/flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA/lib&quot; \-Dyarn.provided.lib.dirs=&quot;$HDFS_DEFAULT$HADOOP_FLINK_DIR/lib;$HDFS_DEFAULT$HADOOP_FLINK_DIR/plugins;$HDFS_DEFAULT/flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA/lib&quot; \-Denv.java.opts=&quot;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=dev&quot; \$HDFS_DEFAULT/flink/$PROJECT_NAME-$CURRENT_MODULE.jar &#123;任务启动参数&#125;su - &#123;这里填user_name&#125; -c &#39;$FLINK_DIRbin/flink run-application -t yarn-application \-Djobmanager.memory.process.size=2048m \-Dtaskmanager.memory.process.size=3072m \-Dtaskmanager.numberOfTaskSlots=1 \-Dparallelism.default=1 \-Dyarn.application.name=$JOB_NAME \-Dyarn.provided.usrlib.dir=&quot;hdfs://$HADOOP_URL/flink/$CURRENT_MODULE/5806921dd4fda2206d9d5666d754a5788cbd63b7/lib&quot; \-Dyarn.provided.lib.dirs=&quot;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/lib;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/plugins;hdfs://$HADOOP_URL/flink/$CURRENT_MODULE/5806921dd4fda2206d9d5666d754a5788cbd63b7/lib&quot; \-Denv.java.opts=&quot;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=dev&quot; \hdfs://$HADOOP_URL/flink/$PROJECT_NAME-$CURRENT_MODULE.jar &#123;任务启动参数&#125;&#39;su - &#123;这里填user_name&#125; -c &#39;$FLINK_DIRbin/flink run -d -m yarn-cluster -p 1 -ys 1 -yjm 3072m \-yD env.java.opts=&#39;\&#39;&#39;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=pre&#39;\&#39;&#39; \-yD yarn.provided.lib.dirs=&#39;\&#39;&#39;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/lib;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/plugins;hdfs://$HADOOP_URL/flink/$PROJECT_NAME-$CURRENT_MODULE/5806921dd4fda2206d9d5666d754a5788cbd63b7/lib&#39;\&#39;&#39; \-ytm 4096m -ynm &#39;\&#39;&#39;$PROJECT_NAME-$CURRENT_MODULE.jobAssembleForPub.NORMAL&#39;\&#39;&#39; hdfs://$HADOOP_URL/flink/$PROJECT_NAME-$CURRENT_MODULE.jar -m NORMAL -c applicationJobAssembleForPub.yaml&#39;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>flink</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>flink</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>作为一个程序员,白嫖的快乐才是真的快乐</title>
     <link href="/2023/02/17/%E7%99%BD%E5%AB%96%E4%BD%BF%E6%88%91%E5%BF%AB%E4%B9%90/"/>
     <url>/2023/02/17/%E7%99%BD%E5%AB%96%E4%BD%BF%E6%88%91%E5%BF%AB%E4%B9%90/</url>
     
-    <content type="html"><![CDATA[<h2 id="测试用的mysql数据库-如果想建个最新的mysql测试之类的可以使用"><a href="#测试用的mysql数据库-如果想建个最新的mysql测试之类的可以使用" class="headerlink" title="测试用的mysql数据库,如果想建个最新的mysql测试之类的可以使用"></a>测试用的mysql数据库,如果想建个最新的mysql测试之类的可以使用</h2><p><a href="http://sqlpub.com/">http://sqlpub.com</a></p><h2 id="目前看来可以长期白嫖的数据库-大小5G-只需要有邮箱就可以注册-需要翻墙"><a href="#目前看来可以长期白嫖的数据库-大小5G-只需要有邮箱就可以注册-需要翻墙" class="headerlink" title="目前看来可以长期白嫖的数据库,大小5G,只需要有邮箱就可以注册(需要翻墙)"></a>目前看来可以长期白嫖的数据库,大小5G,只需要有邮箱就可以注册(需要翻墙)</h2><p><a href="https://app.planetscale.com/">https://app.planetscale.com</a></p><h2 id="aws-亚马逊云如果你有一张信用卡-那么可以白嫖全套一年"><a href="#aws-亚马逊云如果你有一张信用卡-那么可以白嫖全套一年" class="headerlink" title="aws 亚马逊云如果你有一张信用卡,那么可以白嫖全套一年"></a>aws 亚马逊云如果你有一张信用卡,那么可以白嫖全套一年</h2><blockquote><p><a href="https://console.aws.amazon.com/console/home">https://console.aws.amazon.com/console/home</a><br>信用卡可以白嫖招商银行的全币种信用卡,没有年费.<br>能白嫖数据库一个,服务器1g1c30G硬盘,永久免费Nosql30G…可以考虑,目前在试试</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h2 id="测试用的mysql数据库-如果想建个最新的mysql测试之类的可以使用"><a href="#测试用的mysql数据库-如果想建个最新的mysql测试之类的可以使用" class="headerlink" title="测试用的mysql数据库,如果想建个最新的mysql测试之类的可以使用"></a>测试用的mysql数据库,如果想建个最新的mysql测试之类的可以使用</h2><p><a href="http://sqlpub.com/">http://sqlpub.com</a></p><h2 id="目前看来可以长期白嫖的数据库-大小5G-只需要有邮箱就可以注册-需要翻墙"><a href="#目前看来可以长期白嫖的数据库-大小5G-只需要有邮箱就可以注册-需要翻墙" class="headerlink" title="目前看来可以长期白嫖的数据库,大小5G,只需要有邮箱就可以注册(需要翻墙)"></a>目前看来可以长期白嫖的数据库,大小5G,只需要有邮箱就可以注册(需要翻墙)</h2><p><a href="https://app.planetscale.com/">https://app.planetscale.com</a></p><h2 id="aws-亚马逊云如果你有一张信用卡-那么可以白嫖全套一年"><a href="#aws-亚马逊云如果你有一张信用卡-那么可以白嫖全套一年" class="headerlink" title="aws 亚马逊云如果你有一张信用卡,那么可以白嫖全套一年"></a>aws 亚马逊云如果你有一张信用卡,那么可以白嫖全套一年</h2><blockquote><p><a href="https://console.aws.amazon.com/console/home">https://console.aws.amazon.com/console/home</a><br>信用卡可以白嫖招商银行的全币种信用卡,没有年费.<br>能白嫖数据库一个,服务器1g1c30G硬盘,永久免费Nosql30G…可以考虑,目前在试试</p></blockquote><h2 id="免费部署网址"><a href="#免费部署网址" class="headerlink" title="免费部署网址"></a>免费部署网址</h2><p><a href="http://fly.io/">http://fly.io</a><br><a href="http://render.com/">http://render.com</a><br>railway.app<br><a href="http://vercel.com/">http://vercel.com</a></p><h2 id="反向代理一键部署"><a href="#反向代理一键部署" class="headerlink" title="反向代理一键部署"></a>反向代理一键部署</h2><p><a href="https://github.com/gaboolic/vercel-reverse-proxy">https://github.com/gaboolic/vercel-reverse-proxy</a></p>]]></content>
     
     
     <categories>
@@ -444,6 +496,31 @@
   
   <entry>
     <title>pulsar 概念梳理</title>
+    <link href="/2022/10/26/pulsar%20%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/"/>
+    <url>/2022/10/26/pulsar%20%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="有些问题一闪而过-记录一下正确的处理流程"><a href="#有些问题一闪而过-记录一下正确的处理流程" class="headerlink" title="有些问题一闪而过,记录一下正确的处理流程"></a>有些问题一闪而过,记录一下正确的处理流程</h2><ol><li>./pulsar_scripts.py –cluster cluster internal-stats topic-partition-0</li><li>./pulsar_scripts.py –cluster cluster stats -p topic</li><li>打开pulsar-manager查看segment状态</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>pulsar</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>pulsar</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pulsar 概念梳理</title>
     <link href="/2022/10/26/pulsar%20%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/"/>
     <url>/2022/10/26/pulsar%20%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/</url>
     
@@ -473,81 +550,6 @@
     <url>/2022/10/26/%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/</url>
     
     <content type="html"><![CDATA[<h2 id="查询创建耗时"><a href="#查询创建耗时" class="headerlink" title="查询创建耗时"></a>查询创建耗时</h2><h3 id="以下操作基于kibana"><a href="#以下操作基于kibana" class="headerlink" title="以下操作基于kibana"></a>以下操作基于kibana</h3><p>“tenant/namespaces/persistent/topic-partition-x” &amp;&amp; (“Created new ledger” ||”Creating a new ledger”)</p><h2 id="promethues"><a href="#promethues" class="headerlink" title="promethues"></a>promethues</h2><h3 id="缓存命中率"><a href="#缓存命中率" class="headerlink" title="缓存命中率"></a>缓存命中率</h3><p>brk_ml_cache_hits_rate/(brk_ml_cache_misses_rate + brk_ml_cache_hits_rate)*100<br>pulsar_ml_cache_hits_rate/(pulsar_ml_cache_misses_rate + pulsar_ml_cache_hits_rate)*100</p><h2 id="当前运行版本-prometheus"><a href="#当前运行版本-prometheus" class="headerlink" title="当前运行版本 prometheus"></a>当前运行版本 prometheus</h2><p>pulsar_version_info</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>pulsar</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>pulsar</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>pulsar 持久化 执行流程(九)</title>
-    <link href="/2022/10/25/pulsar(9)%20broker%E4%B8%8Ebookeeper,%E6%8C%81%E4%B9%85%E5%8C%96/"/>
-    <url>/2022/10/25/pulsar(9)%20broker%E4%B8%8Ebookeeper,%E6%8C%81%E4%B9%85%E5%8C%96/</url>
-    
-    <content type="html"><![CDATA[<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><a href="https://www.liuchengtu.com/lct/#R19b3b45e470e0acaaa86d203ca14ffc3">https://www.liuchengtu.com/lct/#R19b3b45e470e0acaaa86d203ca14ffc3</a></p><p>org.apache.pulsar.broker.BookKeeperClientFactory#create</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>pulsar</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>pulsar</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>pulsar 集群切换导致的缩容错误(七)</title>
-    <link href="/2022/10/21/pulsar(7)%20%E9%9B%86%E7%BE%A4%E5%88%87%E6%8D%A2%E5%AF%BC%E8%87%B4%E7%9A%84partition%20shrink/"/>
-    <url>/2022/10/21/pulsar(7)%20%E9%9B%86%E7%BE%A4%E5%88%87%E6%8D%A2%E5%AF%BC%E8%87%B4%E7%9A%84partition%20shrink/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>pulsar</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>pulsar</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>pulsar update-partitioned-topic执行流程(八)</title>
-    <link href="/2022/10/21/pulsar(8)%20update-partitioned-topic%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"/>
-    <url>/2022/10/21/pulsar(8)%20update-partitioned-topic%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/</url>
-    
-    <content type="html"><![CDATA[]]></content>
     
     
     <categories>
@@ -718,31 +720,6 @@
   
   
   <entry>
-    <title>pulsar manager</title>
-    <link href="/2022/10/12/pulsar-manager/"/>
-    <url>/2022/10/12/pulsar-manager/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>pulsar</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>pulsar</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>pulsar 源码编译</title>
     <link href="/2022/10/10/pulsar(0)-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/"/>
     <url>/2022/10/10/pulsar(0)-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</url>
@@ -823,31 +800,6 @@
     <url>/2022/10/09/pulsar(2)%20%E6%B6%88%E6%81%AF%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E7%94%9F%E4%BA%A7%E8%80%85-broker/</url>
     
     <content type="html"><![CDATA[<h2 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h2><p>直接看源码，broker的源码太多了，无法开头，但是我看客户端的源码时发现所有指令都来自org.apache.pulsar.common.protocol.Commands<br>命令模式，那么我打算从者入手，我们在生产者创建的时候会发送Commands.newProducer指令，就从者入手吧。<br>org.apache.pulsar.client.impl.ProducerImpl#connectionOpened</p><ol><li>org.apache.pulsar.common.protocol.Commands#newProducer<ol><li>BaseCommand cmd = localCmd(Type.PRODUCER);</li><li>如果进入 Type.PRODUCER 你会发现进入了 org.apache.pulsar.common.api.proto.BaseCommand<ol><li>protobuf 是个数据协议，类比xml,json</li></ol></li></ol></li><li>CommandProducer producer = cmd.setProducer()<ol><li>直接在Broker代码中搜索 CommandProducer ，就可以发现command的处理类 org.apache.pulsar.broker.service.ServerCnx</li></ol></li></ol><h2 id="org-apache-pulsar-broker-service-ServerCnx"><a href="#org-apache-pulsar-broker-service-ServerCnx" class="headerlink" title="org.apache.pulsar.broker.service.ServerCnx"></a>org.apache.pulsar.broker.service.ServerCnx</h2><p>这个是服务端的通信核心类与client端的 org.apache.pulsar.client.impl.ClientCnx进行通信<br><strong>pulsar基于netty通信，这个我还不会，正在学 TODO</strong> </p><p>接下来看看pulsar生产者初始化和发送消息相关的处理流程</p><h3 id="org-apache-pulsar-common-api-proto-CommandGetSchema-获取消息体格式"><a href="#org-apache-pulsar-common-api-proto-CommandGetSchema-获取消息体格式" class="headerlink" title="org.apache.pulsar.common.api.proto.CommandGetSchema 获取消息体格式"></a>org.apache.pulsar.common.api.proto.CommandGetSchema 获取消息体格式</h3><p>org.apache.pulsar.client.impl.ClientCnx#sendGetSchema 客户端发送请求<br>org.apache.pulsar.broker.service.ServerCnx#handleGetSchema 服务端处理请求</p><ol><li>org.apache.pulsar.broker.service.schema.SchemaRegistry#getSchema 获取格式信息<br>这个的获取过程和web的整体流程差不多，pulsar从bookeeper里获取版本信息 TODO </li></ol><h3 id="org-apache-pulsar-common-api-proto-CommandLookupTopic"><a href="#org-apache-pulsar-common-api-proto-CommandLookupTopic" class="headerlink" title="org.apache.pulsar.common.api.proto.CommandLookupTopic"></a>org.apache.pulsar.common.api.proto.CommandLookupTopic</h3><ol><li>isTopicOperationAllowed 鉴权 </li><li>getClusterDataIfDifferentCluster<br>TODO 感觉不太明白，还是先从一个消息的生命流程看吧。</li></ol><h3 id="org-apache-pulsar-common-naming-TopicName"><a href="#org-apache-pulsar-common-naming-TopicName" class="headerlink" title="org.apache.pulsar.common.naming.TopicName"></a>org.apache.pulsar.common.naming.TopicName</h3><p>org.apache.pulsar.common.naming.TopicName#cache 这有个很有意思的地方30分钟缓存10w的topicName</p><h2 id="服务端生产者创建过程"><a href="#服务端生产者创建过程" class="headerlink" title="服务端生产者创建过程"></a>服务端生产者创建过程</h2><h3 id="org-apache-pulsar-broker-service-ServerCnx-handleProducer"><a href="#org-apache-pulsar-broker-service-ServerCnx-handleProducer" class="headerlink" title="org.apache.pulsar.broker.service.ServerCnx#handleProducer"></a>org.apache.pulsar.broker.service.ServerCnx#handleProducer</h3><p>客户端 org.apache.pulsar.client.impl.ProducerImpl#connectionOpened 时初始化时调用 org.apache.pulsar.common.protocol. Commands#newProducer 发送producer创建指令 org.apache.pulsar.common.api.proto.CommandProducer</p><ol><li>org.apache.pulsar.broker.service.ServerCnx#validateTopicName <ol><li>topicName检测，必须要有订阅者才能生产</li></ol></li><li>invalidOriginalPrincipal 校验授权</li><li>isTopicOperationAllowed 校验授权是否由 TopicOperation.PRODUCE 权限</li><li>如果已由对应的producerId的生产者，判定一下是否是否完成创建或者抛出异常<ol><li>无异常则直接返回对应生产者</li><li>异常异常则返回对应异常</li></ol></li><li>org.apache.pulsar.broker.service.BrokerService#getOrCreateTopic</li><li>开始创建生产者流程<ol><li>获取或创建topic<ol><li>校验名称，默认不开启的系统队列<ol><li>__change_events</li><li>__transaction_buffer_snapshot</li></ol></li><li>校验是否有自动创建topic的权限<ol><li>从zk获取/admin/policies/{namespace} 的 allowAutoTopicCreation </li><li>如果zk配置存在则以zk配置为准，否则以本地 allowAutoTopicCreation 为准，默认开启</li></ol></li><li>从缓存中获取<ol><li>存在则查看一下创建过程，如果创建成功则直接返回，创建中则等待创建完成后再次尝试获取，创建失败则抛出异常</li><li>创建流程，永久主题与非永久主题<ol><li>永久<ol><li>org.apache.pulsar.broker.namespace.NamespaceService#bundleFactory (TODO 作用及初始化都不明白)<ol><li>ownedByThisInstance 目前看来时校验是否有操作权，毕竟创建topic是一个单线操作</li></ol></li><li>开始创建，这有个等待队列，看来topic在同一个broker的创建是单线的<ol><li>org.apache.pulsar.broker.service.BrokerService#createPersistentTopic</li><li>校验一下namespace是否unload,如果unload那么移除该topic</li></ol></li><li>maxTopicsPerNamespace 校验一个namespace下的topic是否超标<ol><li>优先zk</li></ol></li><li>org.apache.pulsar.broker.service.BrokerService#getManagedLedgerConfig<ol><li>org.apache.pulsar.broker.PulsarService#orderedExecutor TODO <ol><li>这个是bookie相关，传入topicName</li></ol></li><li>设置 managedLedgerConfig TODO 需要细看</li><li>org.apache.pulsar.common.intercept.BrokerEntryMetadataInterceptor  brokerEntryMetadataInterceptors 如果设置了拦截器那么在这会生效</li><li>org.apache.pulsar.common.naming.TopicName#getPersistenceNamingEncoding<ol><li>根据版本不同，存放在bookkeeper的路径也会不太一样<ol><li>tenant/namespace/domain/topic V2版</li><li>tenant/cluster/namespace/domain/topic</li></ol></li></ol></li><li>完成在bk的创建后，根据topic是否是系统topic分别创建不同的类型<ol><li>SystemTopic</li><li>PersistentTopic</li></ol></li><li>如果启用了压缩topic,那么会在这个时候创建订阅，以保证在其他所有订阅创建之前创建</li><li>添加topic到缓存里</li><li>从离线缓存中清除org.apache.pulsar.broker.service.BrokerService#offlineTopicStatCache </li><li>完成topic的创建</li></ol></li></ol></li><li>非永久（TODO)</li></ol></li></ol></li></ol></li><li>配额校验</li><li>加密校验</li><li>disableTcpNoDelayIfNeeded TODO <ol><li>如果是 replicatorPrefix设置的producerName默认 pulsar.repl 开头的 </li></ol></li><li>schema 的设置 TODO <ol><li>如果出现异常则移除生产者</li></ol></li><li>初始化 org.apache.pulsar.broker.service.Producer  <strong>TODO</strong></li><li>为topic添加生产者 <strong>TODO</strong></li><li>完成生产者创建流程</li></ol></li></ol><h3 id="org-apache-pulsar-broker-service-ServerCnx-handleSend-处理客户端producer创建的消息"><a href="#org-apache-pulsar-broker-service-ServerCnx-handleSend-处理客户端producer创建的消息" class="headerlink" title="org.apache.pulsar.broker.service.ServerCnx#handleSend 处理客户端producer创建的消息"></a>org.apache.pulsar.broker.service.ServerCnx#handleSend 处理客户端producer创建的消息</h3><ol><li>检查限速<ol><li>org.apache.pulsar.broker.service.PublishRateLimiter#isPublishRateExceeded</li><li>超出限速有一系列操作 TODO</li></ol></li><li>org.apache.pulsar.broker.service.Producer#checkAndStartPublish<ol><li>org.apache.pulsar.broker.service.Topic#incrementPublishCount<ol><li>开始之前先把增加限速器指标和统计指标<ol><li> topicPublishRateLimiter</li><li> brokerPublishRateLimiter</li><li> topic bytesInCounter</li><li> topic msgInCounter</li></ol></li></ol></li><li> java.util.concurrent.atomic.AtomicLongFieldUpdater#lazySet 这个功能不明白 TODO </li></ol></li><li>开始发送消息 org.apache.pulsar.broker.service.persistent.PersistentTopic#publishMessage<ol><li> pendingWriteOps  增加计数</li><li> isFenced TODO</li><li> 消息大小校验 org.apache.pulsar.broker.service.AbstractTopic#isExceedMaximumMessageSize </li><li>org.apache.pulsar.broker.service.persistent.MessageDeduplication#isDuplicate<ol><li> 重复校验 TODO </li><li> 重复直接ack</li></ol></li><li> org.apache.pulsar.broker.service.AbstractTopic#isExceedMaximumMessageSize</li><li>org.apache.pulsar.broker.service.BrokerService#brokerEntryMetadataInterceptors <ol><li> 这里有brokerEntryMetadatainterceptors TODO </li></ol></li><li>根据有没有拦截器区分操作 TODO <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">org.apache.bookkeeper.mledger.impl.OpAddEntry#create(org.apache.bookkeeper.mledger.impl.ManagedLedgerImpl, io.netty.buffer.ByteBuf, <span class="hljs-type">int</span>, org.apache.bookkeeper.mledger.AsyncCallbacks.AddEntryCallback, java.lang.Object)<br><br>org.apache.bookkeeper.mledger.impl.OpAddEntry#create(org.apache.bookkeeper.mledger.impl.ManagedLedgerImpl, io.netty.buffer.ByteBuf, org.apache.bookkeeper.mledger.AsyncCallbacks.AddEntryCallback, java.lang.Object)<br><br></code></pre></td></tr></table></figure></li><li>org.apache.bookkeeper.mledger.impl.ManagedLedgerImpl#executor 调用orderexecutor TODO 执行<ol><li>加入org.apache.bookkeeper.mledger.impl.ManagedLedgerImpl#pendingAddEntries队列</li></ol></li></ol></li></ol><h2 id="感觉漏了好多东西啊。其实写就这么简单。接下来看看broker的组成"><a href="#感觉漏了好多东西啊。其实写就这么简单。接下来看看broker的组成" class="headerlink" title="感觉漏了好多东西啊。其实写就这么简单。接下来看看broker的组成"></a>感觉漏了好多东西啊。其实写就这么简单。接下来看看broker的组成</h2>]]></content>
-    
-    
-    <categories>
-      
-      <category>pulsar</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>pulsar</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>pulsar issues 学习笔记(一)</title>
-    <link href="/2022/10/09/pulsar-issues/"/>
-    <url>/2022/10/09/pulsar-issues/</url>
-    
-    <content type="html"><![CDATA[<p>Pulsar-B集群broker侧出现超时</p><p>能发现该实例GC时间较高<br>OrderedExecutor? 这个是哪来的?</p>]]></content>
     
     
     <categories>

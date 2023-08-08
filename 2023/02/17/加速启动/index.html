@@ -16,22 +16,22 @@
   <meta name="author" content="mzt12450@163.com">
   <meta name="keywords" content="java,linux,flink">
   
-    <meta name="description" content="学习日记">
+    <meta name="description" content="Flink加速启动">
 <meta property="og:type" content="article">
-<meta property="og:title" content="loki学习日记">
-<meta property="og:url" content="http://zuoxu.club/2022/09/12/loki/index.html">
+<meta property="og:title" content="flink 加速启动">
+<meta property="og:url" content="http://zuoxu.club/2023/02/17/%E5%8A%A0%E9%80%9F%E5%90%AF%E5%8A%A8/index.html">
 <meta property="og:site_name" content="发际线的志逐渐暴露的博客">
-<meta property="og:description" content="学习日记">
+<meta property="og:description" content="Flink加速启动">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-12T14:41:22.000Z">
-<meta property="article:modified_time" content="2023-08-08T08:04:21.762Z">
+<meta property="article:published_time" content="2023-02-17T10:00:23.000Z">
+<meta property="article:modified_time" content="2023-08-08T08:04:21.743Z">
 <meta property="article:author" content="mzt12450@163.com">
-<meta property="article:tag" content="日志">
+<meta property="article:tag" content="flink">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>loki学习日记 - 发际线的志逐渐暴露的博客</title>
+  <title>flink 加速启动 - 发际线的志逐渐暴露的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="loki学习日记"></span>
+            <span id="subtitle" data-typed-text="flink 加速启动"></span>
           
         </div>
 
@@ -232,8 +232,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-12 22:41" pubdate>
-          2022年9月12日 晚上
+        <time datetime="2023-02-17 18:00" pubdate>
+          2023年2月17日 晚上
         </time>
       </span>
     
@@ -244,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          616 字
+          4.1k 字
         
       </span>
     
@@ -255,7 +255,7 @@
         
         
         
-          6 分钟
+          35 分钟
         
       </span>
     
@@ -301,16 +301,104 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">loki学习日记</h1>
+            <h1 style="display: none">flink 加速启动</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="官网地址"><a href="#官网地址" class="headerlink" title="官网地址"></a>官网地址</h2><pre><code class="hljs">https://grafana.com/docs/loki/latest/getting-started/
+                <pre><code class="shell">
+# 上传flink安装包到hadoop(只有最初一次需要执行)
+FLINK_DIR=/data/flink-1.14.5
+# 远端hadoopFlink安装目录
+HADOOP_FLINK_DIR=/flink/flink-1.14.5
+
+## 清理之前的包,如果存在的话
+hadoop fs -rm -r -f $HADOOP_FLINK_DIR
+hadoop fs -rm -r -f .Trash
+## 进入安装目录
+cd $FLINK_DIR
+hadoop fs -put . /flink/
+
+# 当前打包模组
+PROJECT_NAME=&#123;这里填项目名&#125;
+PROJECT_PATH=&#123;这里填项目路径&#125;
+CURRENT_MODULE=&#123;这里填项目模块名&#125;
+HADOOP_URL=&#123;这里填hadoop网址,例如: test01:8020&#125;
+JOB_NAME=&#123;这里填任务名称&#125;
+
+# 打包对应的服务(每次执行)
+cd $PROJECT_PATH &amp;&amp; ./gradlew clean generateRuntimeConfig -Denv=pre -Dcluster=docker --daemon -p $CURRENT_MODULE
+
+# 创建module文件夹
+hadoop fs -mkdir /flink/$CURRENT_MODULE
+
+# 记录 sha256 值,这个需要存一下,以后用来清除无用的依赖列表
+cd $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME &amp;&amp; find $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME/lib/ -type f -print0 | sort -z | xargs -0 sha256sum | sha1sum | awk &#39;&#123;print $1&#125;&#39;&gt; $CURRENT_MODULE.sha
+
+# 设置一下环境变量
+# HDFS_DEFAULT=$(xmllint --xpath &quot;//property[name=&#39;fs.defaultFS&#39;]/value/text()&quot; $HADOOP_HOME/etc/hadoop/conf.cloudera.yarn/core-site.xml)
+HDFS_DEFAULT=$(hdfs getconf -confKey fs.defaultFS)
+CURRENT_MODULE_TASK_SHA=$(cat $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME/$CURRENT_MODULE.sha)
+flink_base_bin=/tmp/flink-1.14.5/bin
+
+echo HDFS_DEFAULT:$HDFS_DEFAULT
+echo CURRENT_MODULE_TASK_SHA:$CURRENT_MODULE_TASK_SHA
+echo flink_base_bin:$flink_base_bin
+
+# 检查依赖是否存在
+hadoop fs -ls /flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA
+if [ $? -eq 0 ]; then
+  echo &quot;Directory exists.&quot;
+else
+    # 不存在则上传所有依赖(如果依赖发生了变动则需要执行,TODO 需要增加判断变动的脚本)
+    cd $PROJECT_PATH/$CURRENT_MODULE/build/$PROJECT_NAME/lib &amp;&amp; hadoop fs -mkdir /flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA &amp;&amp; hadoop fs -put . /flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA
+fi
+
+# 启动对应服务
+# $flink_base_bin/flink run -d -m yarn-cluster -p 1 -ys 1 -yjm 2048m \
+# -yD yarn.provided.lib.dirs=&quot;$HDFS_DEFAULT$HADOOP_FLINK_DIR/lib;$HDFS_DEFAULT$HADOOP_FLINK_DIR/plugins;$HDFS_DEFAULT/flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA/lib&quot; \
+# -yD env.java.opts=&quot;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=dev&quot; -ytm 3072m -ynm $JOB_NAME \
+# $PROJECT_PATH/$CURRENT_MODULE/build/libs/$PROJECT_NAME-$CURRENT_MODULE-1.0.0.jar &#123;任务启动参数&#125;
+
+
+$flink_base_bin/flink run-application \
+-t yarn-application \
+# yjm
+-Djobmanager.memory.process.size=2048m \
+# ytm
+-Dtaskmanager.memory.process.size=3072m \
+# ys
+-Dtaskmanager.numberOfTaskSlots=1 \
+# p
+-Dparallelism.default=1 \
+# ynm
+-Dyarn.application.name=$JOB_NAME \
+-Dyarn.provided.usrlib.dir=&quot;$HDFS_DEFAULT/flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA/lib&quot; \
+-Dyarn.provided.lib.dirs=&quot;$HDFS_DEFAULT$HADOOP_FLINK_DIR/lib;$HDFS_DEFAULT$HADOOP_FLINK_DIR/plugins;$HDFS_DEFAULT/flink/$CURRENT_MODULE/$CURRENT_MODULE_TASK_SHA/lib&quot; \
+-Denv.java.opts=&quot;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=dev&quot; \
+$HDFS_DEFAULT/flink/$PROJECT_NAME-$CURRENT_MODULE.jar &#123;任务启动参数&#125;
+
+
+
+su - &#123;这里填user_name&#125; -c &#39;$FLINK_DIRbin/flink run-application -t yarn-application \
+-Djobmanager.memory.process.size=2048m \
+-Dtaskmanager.memory.process.size=3072m \
+-Dtaskmanager.numberOfTaskSlots=1 \
+-Dparallelism.default=1 \
+-Dyarn.application.name=$JOB_NAME \
+-Dyarn.provided.usrlib.dir=&quot;hdfs://$HADOOP_URL/flink/$CURRENT_MODULE/5806921dd4fda2206d9d5666d754a5788cbd63b7/lib&quot; \
+-Dyarn.provided.lib.dirs=&quot;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/lib;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/plugins;hdfs://$HADOOP_URL/flink/$CURRENT_MODULE/5806921dd4fda2206d9d5666d754a5788cbd63b7/lib&quot; \
+-Denv.java.opts=&quot;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=dev&quot; \
+hdfs://$HADOOP_URL/flink/$PROJECT_NAME-$CURRENT_MODULE.jar &#123;任务启动参数&#125;&#39;
+
+
+su - &#123;这里填user_name&#125; -c &#39;$FLINK_DIRbin/flink run -d -m yarn-cluster -p 1 -ys 1 -yjm 3072m \
+-yD env.java.opts=&#39;\&#39;&#39;-DAPP_NAME=$PROJECT_NAME -DJOB_ENV=pre&#39;\&#39;&#39; \
+-yD yarn.provided.lib.dirs=&#39;\&#39;&#39;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/lib;hdfs://$HADOOP_URL$HADOOP_FLINK_DIR/plugins;hdfs://$HADOOP_URL/flink/$PROJECT_NAME-$CURRENT_MODULE/5806921dd4fda2206d9d5666d754a5788cbd63b7/lib&#39;\&#39;&#39; \
+-ytm 4096m -ynm &#39;\&#39;&#39;$PROJECT_NAME-$CURRENT_MODULE.jobAssembleForPub.NORMAL&#39;\&#39;&#39; hdfs://$HADOOP_URL/flink/$PROJECT_NAME-$CURRENT_MODULE.jar -m NORMAL -c applicationJobAssembleForPub.yaml&#39;
+
+
 </code></pre>
-<h2 id="get-start"><a href="#get-start" class="headerlink" title="get-start"></a>get-start</h2><p>官网教程如下</p>
-<h3 id="Obtain-the-test-environment"><a href="#Obtain-the-test-environment" class="headerlink" title="Obtain the test environment"></a>Obtain the test environment</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><br>mkdir evaluate-loki<br>cd evaluate-loki<br><br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/loki-config.yaml -O loki-config.yaml<br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/promtail-local-config.yaml -O promtail-local-config.yaml<br>wget https://raw.githubusercontent.com/grafana/loki/main/examples/getting-started/docker-compose.yaml -O docker-compose.yaml<br><br></code></pre></td></tr></table></figure>
-<p>但是我的网络无法从这个地址下载,其实可以直接取github上找<br><a target="_blank" rel="noopener" href="https://github.com/grafana/loki/tree/main/examples/getting-started">https://github.com/grafana/loki/tree/main/examples/getting-started</a><br>下载对应的3个配置文件</p>
 
                 
               </div>
@@ -329,7 +417,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/loki/" class="category-chain-item">loki</a>
+  <a href="/categories/flink/" class="category-chain-item">flink</a>
   
   
 
@@ -344,7 +432,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%97%A5%E5%BF%97/">#日志</a>
+        <a href="/tags/flink/">#flink</a>
       
     </div>
   
@@ -356,8 +444,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>loki学习日记</div>
-      <div>http://zuoxu.club/2022/09/12/loki/</div>
+      <div>flink 加速启动</div>
+      <div>http://zuoxu.club/2023/02/17/加速启动/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +457,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月12日</div>
+          <div>2023年2月17日</div>
         </div>
       
       
@@ -404,9 +492,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/12/linux%20%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="搭建linux 代理服务器">
+                      <a href="/2023/02/23/pulsar(10)%20%E8%AE%A2%E9%98%85/" title="pulsar 订阅执行流程(十)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">搭建linux 代理服务器</span>
+                        <span class="hidden-mobile">pulsar 订阅执行流程(十)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -414,8 +502,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/12/%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%81%9A%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5/" title="写个脚本做自动同步，这样就不用手动操作了，只要写博客就行">
-                        <span class="hidden-mobile">写个脚本做自动同步，这样就不用手动操作了，只要写博客就行</span>
+                      <a href="/2023/02/17/%E7%99%BD%E5%AB%96%E4%BD%BF%E6%88%91%E5%BF%AB%E4%B9%90/" title="作为一个程序员,白嫖的快乐才是真的快乐">
+                        <span class="hidden-mobile">作为一个程序员,白嫖的快乐才是真的快乐</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
