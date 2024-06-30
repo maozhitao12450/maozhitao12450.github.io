@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="https://mirrors-i.tuna.tsinghua.edu.cn/help/postmarketOS/
+
+官网: [[Installation/Using pmbootstrap - postmarketOS](https://wiki.postmarketos.org/wiki/Installation/Using_pmbootstrap)](https://wiki.postmarketos.org/wiki/Installation/Using_pmbootstrap)
+
+```bash
+   47  source ~/.profile
+
+   55  git clone --depth=1 https://gitlab.com/postmarketOS/pmbootstrap.git
+   56  mkdir -p ~/.local/bin
+   57  ln -s '$PWD/pmbootstrap/pmbootstrap.py' ~/.local/bin/pmbootstrap
+   58  pmbootstrap --version
+   59  mkdir -p /home/zhitao/.local/var/pmbootstrap
+   60  pmbootstrap --version
+   62  ~/.local/bin/pmbootstrap init
+   63  ls
+   64  cd pmbootstrap/
+   65  ls
+   66  pmbootstrap pull
+   67  PATH='$HOME/.local/bin:$PATH'
+   68  pmbootstrap --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/ init
+   69  pmbootstrap --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/ install
+   70 pmbootstrap  --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/  export /mnt/d/tmp/pmbootstra
+p/export 
+   
+```
+
+[[Xiaomi Mi Mix 2S (xiaomi-polaris) - postmarketOS](https://wiki.postmarketos.org/wiki/Xiaomi_Mi_Mix_2S_(xiaomi-polaris)#Installation)](https://wiki.postmarketos.org/wiki/Xiaomi_Mi_Mix_2S_(xiaomi-polaris)#Installation)
+
+```bash
+zhitao@PDZL77528BJ:~$ pmbootstrap init
+[11:01:23] Location of the 'work' path. Multiple chroots (native, device arch, device rootfs) will be created in there.
+[11:01:23] Work path [/home/zhitao/.local/var/pmbootstrap]:
+[11:01:24] NOTE: pmaports path: /home/zhitao/.local/var/pmbootstrap/cache_git/pmaports
+[11:01:24] Choose the postmarketOS release channel.
+[11:01:24] Available (9):
+[11:01:24] * edge: Rolling release / Most devices / Occasional breakage: https://postmarketos.org/edge
+[11:01:24] * v23.12: Latest release / Recommended for best stability
+[11:01:24] * v23.06: Old release (unsupported)
+[11:01:24] Channel [edge]:
+[11:01:24] NOTE: pmaports is on master branch, copying git hooks.
+[11:01:24] Choose your target device vendor (either an existing one, or a new one for porting).
+[11:01:24] Available vendors (85): acer, alcatel, amazon, amediatech, apple, ark, arrow, asus, beelink, bq, clockworkpi, cubietech, cutiepi, dongshanpi, essential, fairphone, finepower, fly, generic, goclever, google, gp, hisense, htc, huawei, inet, infocus, jolla, klipad, kobo, lark, leeco, lenovo, lg, librecomputer, linksys, mangopi, medion, meizu, microsoft, mobvoi, motorola, nextbit, nobby, nokia, nvidia, odroid, oneplus, oppo, ouya, pine64, planet, pocketbook, powkiddy, purism, qemu, radxa, raspberry, realme, samsung, semc, sharp, shift, sipeed, sony, sourceparts, surftab, t2m, thundercomm, tokio, tolino, trekstor, valve, vernee, videostrong, vivo, volla, wexler, wiko, wileyfox, xiaomi, xunlong, yu, zte, zuk
+[11:01:24] Vendor [xiaomi]:
+[11:01:24] Available codenames (48): aries, armani, begonia, beryllium, cactus, cancro, cepheus, cereus, clover, daisy, davinci, dior, elish, equuleus, ferrari, fire, fog, gemini, ido, kenzo, laurel, lavender, libra, markw, merlin, mido, monet, natrium, olive, once, onclite, pine, platina, polaris, riva, rolex, sagit, santoni, scorpio, surya, tissot, tulip, vayu, vince, whyred, willow, wt88047, ysl
+[11:01:24] Device codename [polaris]:
+[11:01:24] Username [user]:
+[11:01:25] Available providers for postmarketos-base-ui-wifi (2):
+[11:01:25] * wpa_supplicant: Use wpa_supplicant as the WiFi backend. (default)
+[11:01:25] * iwd: Use iwd as the WiFi backend (but may not work with all devices)
+[11:01:25] Provider [wpa_supplicant]:
+[11:01:26] Available user interfaces (22):
+[11:01:26] * none: Bare minimum OS image for testing and manual customization. The 'console' UI should be selected if a graphical UI is not desired.
+[11:01:26] * asteroid: (Wayland) Smartwatch UI from AsteroidOS
+[11:01:26] * bananui: (Wayland) Keypad controlled UI for feature phones
+[11:01:26] * cage: (Wayland) Kiosk WM
+[11:01:26] * console: Console environment, with no graphical/touch UI
+[11:01:26] * fbkeyboard: Plain framebuffer console with touchscreen keyboard support
+[11:01:26] * framebufferphone: Minimalist framebuffer menu/keyboard UI accessible via touch/volume keys & compatible scripts
+[11:01:26] * gnome: (Wayland) Gnome Shell
+[11:01:26] * gnome-mobile: (Wayland) Gnome Shell patched to adapt better to phones (Experimental)
+[11:01:26] * i3wm: (X11) Tiling WM (keyboard required)
+[11:01:26] * kodi: (GBM) 10-foot UI useful on TV's
+[11:01:26] * lxqt: (X11) Lightweight Qt Desktop Environment (stylus recommended)
+[11:01:26] * mate: (X11) MATE Desktop Environment, fork of GNOME2 (stylus recommended)
+[11:01:26] * openbox: (X11) A highly configurable and lightweight X11 window manager (keyboard required)
+[11:01:26] * phosh: (Wayland) Mobile UI initially developed for the Librem 5
+[11:01:26] * plasma-desktop: (X11/Wayland) KDE Desktop Environment (works well with tablets)
+[11:01:26] * plasma-mobile: (Wayland) Mobile variant of KDE Plasma (does not run without hardware acceleration)
+[11:01:26] * shelli: Plain console with touchscreen gesture support
+[11:01:26] * sway: (Wayland) Tiling WM, drop-in replacement for i3wm (DOES NOT RUN WITHOUT HW ACCELERATION!)
+[11:01:26] * sxmo-de-dwm: Simple Mobile: Mobile environment based on SXMO and running on dwm
+[11:01:26] * sxmo-de-sway: Simple Mobile: Mobile environment based on SXMO and running on sway
+[11:01:26] * weston: (Wayland) Reference compositor (demo, not a phone interface)
+[11:01:26] * xfce4: (X11) Lightweight desktop (stylus recommended)
+[11:01:26] User interface [phosh]:
+[11:01:27] Additional options: extra free space: 0 MB, boot partition size: 256 MB, parallel jobs: 9, ccache per arch: 5G, sudo timer: False, mirror: http://mirror.postmarketos.org/postmarketos/
+[11:01:27] Change them? (y/n) [n]:
+[11:01:31] Additional packages that will be installed to rootfs. Specify them in a comma separated list (e.g.: vim,file) or 'none'
+[11:01:31] Extra packages [vim]:
+[11:01:32] Your host timezone: Asia/Shanghai
+[11:01:32] Use this timezone instead of GMT? (y/n) [y]:
+[11:01:33] Choose your preferred locale, like e.g. en_US. Only UTF-8 is supported, it gets appended automatically. Use tab-completion if needed.
+[11:01:33] Locale [en_US]: UTF-8
+[11:01:40] WARNING: this locale is not in the list of known valid locales.
+[11:01:40] Continue? (y/n) [n]:
+[11:01:46] Locale [en_US]:
+[11:01:47] Device hostname (short form, e.g. 'foo') [xiaomi-polaris]:
+[11:01:49] After pmaports are changed, the binary packages may be outdated. If you want to install postmarketOS without changes, reply 'n' for a faster installation.
+[11:01:49] Build outdated packages during 'pmbootstrap install'? (y/n) [y]:
+[11:01:51] Zap existing chroots to apply configuration? (y/n) [y]:
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_native
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_buildroot_aarch64
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_buildroot_armv7
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_rootfs_xiaomi-polaris
+[11:01:56] Cleared up ~280 MB of space
+[11:01:56] WARNING: The chroots and git repositories in the work dir do not get updated automatically.
+[11:01:56] Run 'pmbootstrap status' once a day before working with pmbootstrap to make sure that everything is up-to-date.
+[11:01:56] DONE!
+```
+
+https://developer.android.com/tools/releases/platform-tools
+
+```bash
+fastboot devices #查看手机是否连接
+fastboot.exe erase  boot
+fastboot.exe erase  system
+fastboot.exe erase  userdata
+
+# processo 为处理器平台 YYYYMMDD 为日期 model 为手机代号
+fastboot flash boot boot.img
+fastboot flash system boot.img
+fastboot -S 100M flash userdata xiaomi-polaris.img
+fastboot erase dtbo
+fastboot reboot
+
+```
+
+<aside>
+💡 有关Notion安装或者使用上的问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>
+
+ssh连接手机: 
+
+1. 打开设置, 
+2. system → sercure shell → 开启
+3. 查看wifi连接中的ip,ssh 即可。">
+<meta property="og:title" content="xiaomi mix2s 刷linux系统">
+<meta property="og:description" content="https://mirrors-i.tuna.tsinghua.edu.cn/help/postmarketOS/
+
+官网: [[Installation/Using pmbootstrap - postmarketOS](https://wiki.postmarketos.org/wiki/Installation/Using_pmbootstrap)](https://wiki.postmarketos.org/wiki/Installation/Using_pmbootstrap)
+
+```bash
+   47  source ~/.profile
+
+   55  git clone --depth=1 https://gitlab.com/postmarketOS/pmbootstrap.git
+   56  mkdir -p ~/.local/bin
+   57  ln -s '$PWD/pmbootstrap/pmbootstrap.py' ~/.local/bin/pmbootstrap
+   58  pmbootstrap --version
+   59  mkdir -p /home/zhitao/.local/var/pmbootstrap
+   60  pmbootstrap --version
+   62  ~/.local/bin/pmbootstrap init
+   63  ls
+   64  cd pmbootstrap/
+   65  ls
+   66  pmbootstrap pull
+   67  PATH='$HOME/.local/bin:$PATH'
+   68  pmbootstrap --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/ init
+   69  pmbootstrap --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/ install
+   70 pmbootstrap  --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/  export /mnt/d/tmp/pmbootstra
+p/export 
+   
+```
+
+[[Xiaomi Mi Mix 2S (xiaomi-polaris) - postmarketOS](https://wiki.postmarketos.org/wiki/Xiaomi_Mi_Mix_2S_(xiaomi-polaris)#Installation)](https://wiki.postmarketos.org/wiki/Xiaomi_Mi_Mix_2S_(xiaomi-polaris)#Installation)
+
+```bash
+zhitao@PDZL77528BJ:~$ pmbootstrap init
+[11:01:23] Location of the 'work' path. Multiple chroots (native, device arch, device rootfs) will be created in there.
+[11:01:23] Work path [/home/zhitao/.local/var/pmbootstrap]:
+[11:01:24] NOTE: pmaports path: /home/zhitao/.local/var/pmbootstrap/cache_git/pmaports
+[11:01:24] Choose the postmarketOS release channel.
+[11:01:24] Available (9):
+[11:01:24] * edge: Rolling release / Most devices / Occasional breakage: https://postmarketos.org/edge
+[11:01:24] * v23.12: Latest release / Recommended for best stability
+[11:01:24] * v23.06: Old release (unsupported)
+[11:01:24] Channel [edge]:
+[11:01:24] NOTE: pmaports is on master branch, copying git hooks.
+[11:01:24] Choose your target device vendor (either an existing one, or a new one for porting).
+[11:01:24] Available vendors (85): acer, alcatel, amazon, amediatech, apple, ark, arrow, asus, beelink, bq, clockworkpi, cubietech, cutiepi, dongshanpi, essential, fairphone, finepower, fly, generic, goclever, google, gp, hisense, htc, huawei, inet, infocus, jolla, klipad, kobo, lark, leeco, lenovo, lg, librecomputer, linksys, mangopi, medion, meizu, microsoft, mobvoi, motorola, nextbit, nobby, nokia, nvidia, odroid, oneplus, oppo, ouya, pine64, planet, pocketbook, powkiddy, purism, qemu, radxa, raspberry, realme, samsung, semc, sharp, shift, sipeed, sony, sourceparts, surftab, t2m, thundercomm, tokio, tolino, trekstor, valve, vernee, videostrong, vivo, volla, wexler, wiko, wileyfox, xiaomi, xunlong, yu, zte, zuk
+[11:01:24] Vendor [xiaomi]:
+[11:01:24] Available codenames (48): aries, armani, begonia, beryllium, cactus, cancro, cepheus, cereus, clover, daisy, davinci, dior, elish, equuleus, ferrari, fire, fog, gemini, ido, kenzo, laurel, lavender, libra, markw, merlin, mido, monet, natrium, olive, once, onclite, pine, platina, polaris, riva, rolex, sagit, santoni, scorpio, surya, tissot, tulip, vayu, vince, whyred, willow, wt88047, ysl
+[11:01:24] Device codename [polaris]:
+[11:01:24] Username [user]:
+[11:01:25] Available providers for postmarketos-base-ui-wifi (2):
+[11:01:25] * wpa_supplicant: Use wpa_supplicant as the WiFi backend. (default)
+[11:01:25] * iwd: Use iwd as the WiFi backend (but may not work with all devices)
+[11:01:25] Provider [wpa_supplicant]:
+[11:01:26] Available user interfaces (22):
+[11:01:26] * none: Bare minimum OS image for testing and manual customization. The 'console' UI should be selected if a graphical UI is not desired.
+[11:01:26] * asteroid: (Wayland) Smartwatch UI from AsteroidOS
+[11:01:26] * bananui: (Wayland) Keypad controlled UI for feature phones
+[11:01:26] * cage: (Wayland) Kiosk WM
+[11:01:26] * console: Console environment, with no graphical/touch UI
+[11:01:26] * fbkeyboard: Plain framebuffer console with touchscreen keyboard support
+[11:01:26] * framebufferphone: Minimalist framebuffer menu/keyboard UI accessible via touch/volume keys & compatible scripts
+[11:01:26] * gnome: (Wayland) Gnome Shell
+[11:01:26] * gnome-mobile: (Wayland) Gnome Shell patched to adapt better to phones (Experimental)
+[11:01:26] * i3wm: (X11) Tiling WM (keyboard required)
+[11:01:26] * kodi: (GBM) 10-foot UI useful on TV's
+[11:01:26] * lxqt: (X11) Lightweight Qt Desktop Environment (stylus recommended)
+[11:01:26] * mate: (X11) MATE Desktop Environment, fork of GNOME2 (stylus recommended)
+[11:01:26] * openbox: (X11) A highly configurable and lightweight X11 window manager (keyboard required)
+[11:01:26] * phosh: (Wayland) Mobile UI initially developed for the Librem 5
+[11:01:26] * plasma-desktop: (X11/Wayland) KDE Desktop Environment (works well with tablets)
+[11:01:26] * plasma-mobile: (Wayland) Mobile variant of KDE Plasma (does not run without hardware acceleration)
+[11:01:26] * shelli: Plain console with touchscreen gesture support
+[11:01:26] * sway: (Wayland) Tiling WM, drop-in replacement for i3wm (DOES NOT RUN WITHOUT HW ACCELERATION!)
+[11:01:26] * sxmo-de-dwm: Simple Mobile: Mobile environment based on SXMO and running on dwm
+[11:01:26] * sxmo-de-sway: Simple Mobile: Mobile environment based on SXMO and running on sway
+[11:01:26] * weston: (Wayland) Reference compositor (demo, not a phone interface)
+[11:01:26] * xfce4: (X11) Lightweight desktop (stylus recommended)
+[11:01:26] User interface [phosh]:
+[11:01:27] Additional options: extra free space: 0 MB, boot partition size: 256 MB, parallel jobs: 9, ccache per arch: 5G, sudo timer: False, mirror: http://mirror.postmarketos.org/postmarketos/
+[11:01:27] Change them? (y/n) [n]:
+[11:01:31] Additional packages that will be installed to rootfs. Specify them in a comma separated list (e.g.: vim,file) or 'none'
+[11:01:31] Extra packages [vim]:
+[11:01:32] Your host timezone: Asia/Shanghai
+[11:01:32] Use this timezone instead of GMT? (y/n) [y]:
+[11:01:33] Choose your preferred locale, like e.g. en_US. Only UTF-8 is supported, it gets appended automatically. Use tab-completion if needed.
+[11:01:33] Locale [en_US]: UTF-8
+[11:01:40] WARNING: this locale is not in the list of known valid locales.
+[11:01:40] Continue? (y/n) [n]:
+[11:01:46] Locale [en_US]:
+[11:01:47] Device hostname (short form, e.g. 'foo') [xiaomi-polaris]:
+[11:01:49] After pmaports are changed, the binary packages may be outdated. If you want to install postmarketOS without changes, reply 'n' for a faster installation.
+[11:01:49] Build outdated packages during 'pmbootstrap install'? (y/n) [y]:
+[11:01:51] Zap existing chroots to apply configuration? (y/n) [y]:
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_native
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_buildroot_aarch64
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_buildroot_armv7
+[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_rootfs_xiaomi-polaris
+[11:01:56] Cleared up ~280 MB of space
+[11:01:56] WARNING: The chroots and git repositories in the work dir do not get updated automatically.
+[11:01:56] Run 'pmbootstrap status' once a day before working with pmbootstrap to make sure that everything is up-to-date.
+[11:01:56] DONE!
+```
+
+https://developer.android.com/tools/releases/platform-tools
+
+```bash
+fastboot devices #查看手机是否连接
+fastboot.exe erase  boot
+fastboot.exe erase  system
+fastboot.exe erase  userdata
+
+# processo 为处理器平台 YYYYMMDD 为日期 model 为手机代号
+fastboot flash boot boot.img
+fastboot flash system boot.img
+fastboot -S 100M flash userdata xiaomi-polaris.img
+fastboot erase dtbo
+fastboot reboot
+
+```
+
+<aside>
+💡 有关Notion安装或者使用上的问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>
+
+ssh连接手机: 
+
+1. 打开设置, 
+2. system → sercure shell → 开启
+3. 查看wifi连接中的ip,ssh 即可。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://maozhitao12450.github.io/mzt.github.io/post/xiaomi%20mix2s%20-shua-linux-xi-tong.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>xiaomi mix2s 刷linux系统</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">xiaomi mix2s 刷linux系统</h1>
+<div class="title-right">
+    <a href="https://maozhitao12450.github.io/mzt.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/maozhitao12450/maozhitao12450.github.io/issues/2" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p><a href="https://mirrors-i.tuna.tsinghua.edu.cn/help/postmarketOS/" rel="nofollow">https://mirrors-i.tuna.tsinghua.edu.cn/help/postmarketOS/</a></p>
+<p>官网: [<a href="https://wiki.postmarketos.org/wiki/Installation/Using_pmbootstrap" rel="nofollow">Installation/Using pmbootstrap - postmarketOS</a>](<a href="https://wiki.postmarketos.org/wiki/Installation/Using_pmbootstrap" rel="nofollow">https://wiki.postmarketos.org/wiki/Installation/Using_pmbootstrap</a>)</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">   47  <span class="pl-c1">source</span> <span class="pl-k">~</span>/.profile
+
+   55  git clone --depth=1 https://gitlab.com/postmarketOS/pmbootstrap.git
+   56  mkdir -p <span class="pl-k">~</span>/.local/bin
+   57  ln -s <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$PWD</span>/pmbootstrap/pmbootstrap.py<span class="pl-pds">"</span></span> <span class="pl-k">~</span>/.local/bin/pmbootstrap
+   58  pmbootstrap --version
+   59  mkdir -p /home/zhitao/.local/var/pmbootstrap
+   60  pmbootstrap --version
+   62  <span class="pl-k">~</span>/.local/bin/pmbootstrap init
+   63  ls
+   64  <span class="pl-c1">cd</span> pmbootstrap/
+   65  ls
+   66  pmbootstrap pull
+   67  PATH=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/.local/bin:<span class="pl-smi">$PATH</span><span class="pl-pds">"</span></span>
+   68  pmbootstrap --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/ init
+   69  pmbootstrap --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/ install
+   70 pmbootstrap  --mirror-pmOS=http://mirrors.tuna.tsinghua.edu.cn/postmarketOS/ --mirror-alpine=http://mirrors.tuna.tsinghua.edu.cn/alpine/  <span class="pl-k">export</span> /mnt/d/tmp/pmbootstra
+p/export 
+   </pre></div>
+<p>[<a href="https://wiki.postmarketos.org/wiki/Xiaomi_Mi_Mix_2S_(xiaomi-polaris)#Installation" rel="nofollow">Xiaomi Mi Mix 2S (xiaomi-polaris) - postmarketOS</a>](<a href="https://wiki.postmarketos.org/wiki/Xiaomi_Mi_Mix_2S_(xiaomi-polaris)#Installation" rel="nofollow">https://wiki.postmarketos.org/wiki/Xiaomi_Mi_Mix_2S_(xiaomi-polaris)#Installation</a>)</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">zhitao@PDZL77528BJ:<span class="pl-k">~</span>$ pmbootstrap init
+[11:01:23] Location of the <span class="pl-s"><span class="pl-pds">'</span>work<span class="pl-pds">'</span></span> path. Multiple chroots (native, device arch, device rootfs) will be created <span class="pl-k">in</span> there.
+[11:01:23] Work path [/home/zhitao/.local/var/pmbootstrap]:
+[11:01:24] NOTE: pmaports path: /home/zhitao/.local/var/pmbootstrap/cache_git/pmaports
+[11:01:24] Choose the postmarketOS release channel.
+[11:01:24] Available (9):
+[11:01:24] <span class="pl-k">*</span> edge: Rolling release / Most devices / Occasional breakage: https://postmarketos.org/edge
+[11:01:24] <span class="pl-k">*</span> v23.12: Latest release / Recommended <span class="pl-k">for</span> best stability
+[11:01:24] <span class="pl-k">*</span> v23.06: Old release (unsupported)
+[11:01:24] Channel [edge]:
+[11:01:24] NOTE: pmaports is on master branch, copying git hooks.
+[11:01:24] Choose your target device vendor (either an existing one, or a new one <span class="pl-k">for</span> porting).
+[11:01:24] Available vendors (85): acer, alcatel, amazon, amediatech, apple, ark, arrow, asus, beelink, bq, clockworkpi, cubietech, cutiepi, dongshanpi, essential, fairphone, finepower, fly, generic, goclever, google, gp, hisense, htc, huawei, inet, infocus, jolla, klipad, kobo, lark, leeco, lenovo, lg, librecomputer, linksys, mangopi, medion, meizu, microsoft, mobvoi, motorola, nextbit, nobby, nokia, nvidia, odroid, oneplus, oppo, ouya, pine64, planet, pocketbook, powkiddy, purism, qemu, radxa, raspberry, realme, samsung, semc, sharp, shift, sipeed, sony, sourceparts, surftab, t2m, thundercomm, tokio, tolino, trekstor, valve, vernee, videostrong, vivo, volla, wexler, wiko, wileyfox, xiaomi, xunlong, yu, zte, zuk
+[11:01:24] Vendor [xiaomi]:
+[11:01:24] Available codenames (48): aries, armani, begonia, beryllium, cactus, cancro, cepheus, cereus, clover, daisy, davinci, dior, elish, equuleus, ferrari, fire, fog, gemini, ido, kenzo, laurel, lavender, libra, markw, merlin, mido, monet, natrium, olive, once, onclite, pine, platina, polaris, riva, rolex, sagit, santoni, scorpio, surya, tissot, tulip, vayu, vince, whyred, willow, wt88047, ysl
+[11:01:24] Device codename [polaris]:
+[11:01:24] Username [user]:
+[11:01:25] Available providers <span class="pl-k">for</span> postmarketos-base-ui-wifi (2):
+[11:01:25] <span class="pl-k">*</span> wpa_supplicant: Use wpa_supplicant as the WiFi backend. (default)
+[11:01:25] <span class="pl-k">*</span> iwd: Use iwd as the WiFi backend (but may not work with all devices)
+[11:01:25] Provider [wpa_supplicant]:
+[11:01:26] Available user interfaces (22):
+[11:01:26] <span class="pl-k">*</span> none: Bare minimum OS image <span class="pl-k">for</span> testing and manual customization. The <span class="pl-s"><span class="pl-pds">"</span>console<span class="pl-pds">"</span></span> UI should be selected <span class="pl-k">if</span> a graphical UI is not desired.
+[11:01:26] <span class="pl-k">*</span> asteroid: (Wayland) Smartwatch UI from AsteroidOS
+[11:01:26] <span class="pl-k">*</span> bananui: (Wayland) Keypad controlled UI <span class="pl-k">for</span> feature phones
+[11:01:26] <span class="pl-k">*</span> cage: (Wayland) Kiosk WM
+[11:01:26] <span class="pl-k">*</span> console: Console environment, with no graphical/touch UI
+[11:01:26] <span class="pl-k">*</span> fbkeyboard: Plain framebuffer console with touchscreen keyboard support
+[11:01:26] <span class="pl-k">*</span> framebufferphone: Minimalist framebuffer menu/keyboard UI accessible via touch/volume keys <span class="pl-k">&amp;</span> compatible scripts
+[11:01:26] <span class="pl-k">*</span> gnome: (Wayland) Gnome Shell
+[11:01:26] <span class="pl-k">*</span> gnome-mobile: (Wayland) Gnome Shell patched to adapt better to phones (Experimental)
+[11:01:26] <span class="pl-k">*</span> i3wm: (X11) Tiling WM (keyboard required)
+[11:01:26] <span class="pl-k">*</span> kodi: (GBM) 10-foot UI useful on TV<span class="pl-s"><span class="pl-pds">'</span>s</span>
+<span class="pl-s">[11:01:26] * lxqt: (X11) Lightweight Qt Desktop Environment (stylus recommended)</span>
+<span class="pl-s">[11:01:26] * mate: (X11) MATE Desktop Environment, fork of GNOME2 (stylus recommended)</span>
+<span class="pl-s">[11:01:26] * openbox: (X11) A highly configurable and lightweight X11 window manager (keyboard required)</span>
+<span class="pl-s">[11:01:26] * phosh: (Wayland) Mobile UI initially developed for the Librem 5</span>
+<span class="pl-s">[11:01:26] * plasma-desktop: (X11/Wayland) KDE Desktop Environment (works well with tablets)</span>
+<span class="pl-s">[11:01:26] * plasma-mobile: (Wayland) Mobile variant of KDE Plasma (does not run without hardware acceleration)</span>
+<span class="pl-s">[11:01:26] * shelli: Plain console with touchscreen gesture support</span>
+<span class="pl-s">[11:01:26] * sway: (Wayland) Tiling WM, drop-in replacement for i3wm (DOES NOT RUN WITHOUT HW ACCELERATION!)</span>
+<span class="pl-s">[11:01:26] * sxmo-de-dwm: Simple Mobile: Mobile environment based on SXMO and running on dwm</span>
+<span class="pl-s">[11:01:26] * sxmo-de-sway: Simple Mobile: Mobile environment based on SXMO and running on sway</span>
+<span class="pl-s">[11:01:26] * weston: (Wayland) Reference compositor (demo, not a phone interface)</span>
+<span class="pl-s">[11:01:26] * xfce4: (X11) Lightweight desktop (stylus recommended)</span>
+<span class="pl-s">[11:01:26] User interface [phosh]:</span>
+<span class="pl-s">[11:01:27] Additional options: extra free space: 0 MB, boot partition size: 256 MB, parallel jobs: 9, ccache per arch: 5G, sudo timer: False, mirror: http://mirror.postmarketos.org/postmarketos/</span>
+<span class="pl-s">[11:01:27] Change them? (y/n) [n]:</span>
+<span class="pl-s">[11:01:31] Additional packages that will be installed to rootfs. Specify them in a comma separated list (e.g.: vim,file) or "none"</span>
+<span class="pl-s">[11:01:31] Extra packages [vim]:</span>
+<span class="pl-s">[11:01:32] Your host timezone: Asia/Shanghai</span>
+<span class="pl-s">[11:01:32] Use this timezone instead of GMT? (y/n) [y]:</span>
+<span class="pl-s">[11:01:33] Choose your preferred locale, like e.g. en_US. Only UTF-8 is supported, it gets appended automatically. Use tab-completion if needed.</span>
+<span class="pl-s">[11:01:33] Locale [en_US]: UTF-8</span>
+<span class="pl-s">[11:01:40] WARNING: this locale is not in the list of known valid locales.</span>
+<span class="pl-s">[11:01:40] Continue? (y/n) [n]:</span>
+<span class="pl-s">[11:01:46] Locale [en_US]:</span>
+<span class="pl-s">[11:01:47] Device hostname (short form, e.g. <span class="pl-pds">'</span></span>foo<span class="pl-s"><span class="pl-pds">'</span>) [xiaomi-polaris]:</span>
+<span class="pl-s">[11:01:49] After pmaports are changed, the binary packages may be outdated. If you want to install postmarketOS without changes, reply <span class="pl-pds">'</span></span>n<span class="pl-s"><span class="pl-pds">'</span> for a faster installation.</span>
+<span class="pl-s">[11:01:49] Build outdated packages during <span class="pl-pds">'</span></span>pmbootstrap install<span class="pl-s"><span class="pl-pds">'</span>? (y/n) [y]:</span>
+<span class="pl-s">[11:01:51] Zap existing chroots to apply configuration? (y/n) [y]:</span>
+<span class="pl-s">[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_native</span>
+<span class="pl-s">[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_buildroot_aarch64</span>
+<span class="pl-s">[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_buildroot_armv7</span>
+<span class="pl-s">[11:01:55] % rm -rf /home/zhitao/.local/var/pmbootstrap/chroot_rootfs_xiaomi-polaris</span>
+<span class="pl-s">[11:01:56] Cleared up ~280 MB of space</span>
+<span class="pl-s">[11:01:56] WARNING: The chroots and git repositories in the work dir do not get updated automatically.</span>
+<span class="pl-s">[11:01:56] Run <span class="pl-pds">'</span></span>pmbootstrap status<span class="pl-s"><span class="pl-pds">'</span> once a day before working with pmbootstrap to make sure that everything is up-to-date.</span>
+<span class="pl-s">[11:01:56] DONE!</span></pre></div>
+<p><a href="https://developer.android.com/tools/releases/platform-tools" rel="nofollow">https://developer.android.com/tools/releases/platform-tools</a></p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">fastboot devices <span class="pl-c"><span class="pl-c">#</span>查看手机是否连接</span>
+fastboot.exe erase  boot
+fastboot.exe erase  system
+fastboot.exe erase  userdata
+
+<span class="pl-c"><span class="pl-c">#</span> processo 为处理器平台 YYYYMMDD 为日期 model 为手机代号</span>
+fastboot flash boot boot.img
+fastboot flash system boot.img
+fastboot -S 100M flash userdata xiaomi-polaris.img
+fastboot erase dtbo
+fastboot reboot
+</pre></div>
+
+💡 有关Notion安装或者使用上的问题，欢迎您在底部评论区留言，一起交流~
+
+<p>ssh连接手机:</p>
+<ol>
+<li>打开设置,</li>
+<li>system → sercure shell → 开启</li>
+<li>查看wifi连接中的ip,ssh 即可</li>
+</ol></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://maozhitao12450.github.io/mzt.github.io"> Blog Title </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","maozhitao12450/maozhitao12450.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
